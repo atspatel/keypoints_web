@@ -347,7 +347,6 @@ class VideoPlayerComp extends Component {
     return width ? (
       <div>
         <ReactPlayer
-          muted
           playing={this.state.playing}
           width={width}
           height={height}

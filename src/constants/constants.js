@@ -1,9 +1,7 @@
-// export const video_url =
-//   "https://storage.googleapis.com/kp_videos/realme_demo/realme_demo_1_compressed.mp4";
-
 import path from "path";
 
-export const BASE_DIR = ".";
+// export const BASE_DIR = ".";
+export const BASE_DIR = "https://storage.googleapis.com/kp_videos/realme_demo";
 export const video_url = path.join(
   BASE_DIR,
   "media/realme_demo_1_compressed.mp4"

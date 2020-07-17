@@ -23,7 +23,7 @@ class ImageCarousel extends Component {
             <div
               className="image-container"
               style={{
-                backgroundColor: "white",
+                backgroundColor: "black",
                 borderRadius: "10px",
                 overflow: "hidden",
                 position: "relative"

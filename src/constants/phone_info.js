@@ -392,7 +392,7 @@ export const realmeX2 = {
         constants.realmeX2,
         "camera/image1.jpg"
       ),
-      legend: null
+      legend: "Flagship-level Photography"
     },
     {
       id: 2,
@@ -402,7 +402,7 @@ export const realmeX2 = {
         constants.realmeX2,
         "camera/image2.jpg"
       ),
-      legend: null
+      legend: "4cm Macro Lens"
     },
     {
       id: 3,
@@ -412,7 +412,7 @@ export const realmeX2 = {
         constants.realmeX2,
         "camera/image3.jpg"
       ),
-      legend: null
+      legend: "4cm Macro Lens"
     },
     {
       id: 4,
@@ -422,7 +422,7 @@ export const realmeX2 = {
         constants.realmeX2,
         "camera/image4.jpg"
       ),
-      legend: null
+      legend: "119˚ Ultra Wide-Angle Lens | 4x as Wide as Normal"
     },
     {
       id: 5,
@@ -432,7 +432,7 @@ export const realmeX2 = {
         constants.realmeX2,
         "camera/image5.jpg"
       ),
-      legend: null
+      legend: "Enhanced Portrait Mode"
     },
     {
       id: 6,
@@ -442,7 +442,7 @@ export const realmeX2 = {
         constants.realmeX2,
         "camera/image6.jpg"
       ),
-      legend: null
+      legend: "32MP AI Front Camera"
     },
     {
       id: 7,
@@ -452,7 +452,7 @@ export const realmeX2 = {
         constants.realmeX2,
         "camera/image7.jpg"
       ),
-      legend: null
+      legend: "Super Nightscape 2.0 Clear Low-light Photos"
     },
     {
       id: 8,
@@ -1009,36 +1009,86 @@ export const realmeX50Pro = {
     ]
   },
   camera_images: [
-    // {
-    //   id: 1,
-    //   source: path.join(BASE_DIR, "media", constants.realmeX50Pro, "camera/image1.jpg"),
-    //   legend: null
-    // },
-    // {
-    //   id: 2,
-    //   source: path.join(BASE_DIR, "media", constants.realmeX50Pro, "camera/image2.jpg"),
-    //   legend: null
-    // },
-    // {
-    //   id: 3,
-    //   source: path.join(BASE_DIR, "media", constants.realmeX50Pro, "camera/image3.jpg"),
-    //   legend: null
-    // },
-    // {
-    //   id: 4,
-    //   source: path.join(BASE_DIR, "media", constants.realmeX50Pro, "camera/image4.jpg"),
-    //   legend: null
-    // },
-    // {
-    //   id: 5,
-    //   source: path.join(BASE_DIR, "media", constants.realmeX50Pro, "camera/image5.jpg"),
-    //   legend: null
-    // },
-    // {
-    //   id: 6,
-    //   source: path.join(BASE_DIR, "media", constants.realmeX50Pro, "camera/image6.jpg"),
-    //   legend: null
-    // }
+    {
+      id: 1,
+      source: path.join(
+        BASE_DIR,
+        "media",
+        constants.realmeX50Pro,
+        "camera/image1.jpg"
+      ),
+      legend: null
+    },
+    {
+      id: 2,
+      source: path.join(
+        BASE_DIR,
+        "media",
+        constants.realmeX50Pro,
+        "camera/image2.jpg"
+      ),
+      legend: "64MP Quad Camera | 20x Hybrid Zoom"
+    },
+    {
+      id: 3,
+      source: path.join(
+        BASE_DIR,
+        "media",
+        constants.realmeX50Pro,
+        "camera/image3.jpg"
+      ),
+      legend: "Normal Mode"
+    },
+    {
+      id: 4,
+      source: path.join(
+        BASE_DIR,
+        "media",
+        constants.realmeX50Pro,
+        "camera/image4.jpg"
+      ),
+      legend: "Ultra 64MP Mode"
+    },
+    {
+      id: 5,
+      source: path.join(
+        BASE_DIR,
+        "media",
+        constants.realmeX50Pro,
+        "camera/image5.jpg"
+      ),
+      legend: "Ultra-wide Mode"
+    },
+    {
+      id: 6,
+      source: path.join(
+        BASE_DIR,
+        "media",
+        constants.realmeX50Pro,
+        "camera/image6.jpg"
+      ),
+      legend: "Super Nightscape 3.0"
+    },
+    {
+      id: 7,
+      source: path.join(
+        BASE_DIR,
+        "media",
+        constants.realmeX50Pro,
+        "camera/image7.jpg"
+      ),
+      legend: "Super Nightscape 3.0"
+    },
+    {
+      id: 8,
+      source: path.join(
+        BASE_DIR,
+        "media",
+        constants.realmeX50Pro,
+        "camera/image8.jpg"
+      ),
+      legend: "Ultra NightScape"
+    }
   ],
   buyOptions: [
     {

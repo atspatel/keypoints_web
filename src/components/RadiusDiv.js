@@ -3,14 +3,14 @@ import React, { Component } from "react";
 import "../css/border.css";
 class RadiusDiv extends Component {
   render() {
-    const { color } = this.props;
-    const b_color = color ? color : "#f7cb49";
+    const { isSelected } = this.props;
+    const selectedClass = isSelected ? "selected" : "";
     return (
       <div className="box">
-        <span className="span_h"></span>
-        <span className="span_h"></span>
-        <span className="span_v"></span>
-        <span className="span_v"></span>
+        <span className={`span_h ${selectedClass}`}></span>
+        <span className={`span_h ${selectedClass}`}></span>
+        <span className={`span_v ${selectedClass}`}></span>
+        <span className={`span_v ${selectedClass}`}></span>
       </div>
     );
   }

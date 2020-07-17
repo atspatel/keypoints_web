@@ -60,7 +60,7 @@ class HtmlVideoComp extends Component {
     isPaused: true,
     isMute: false,
 
-    phone: null
+    phone_id: null
   };
 
   update_button_list = current => {
@@ -122,11 +122,11 @@ class HtmlVideoComp extends Component {
     window.open(url, "_blank");
   };
 
-  openPopUp = (type, phone) => {
+  openPopUp = (type, phone_id) => {
     this.player.pause();
     this.setState({
       showPopup: type,
-      phone: phone_info[phone],
+      phone_id: phone_id,
       playing: false
     });
   };
@@ -155,7 +155,7 @@ class HtmlVideoComp extends Component {
   }
 
   render_transparent_button(item) {
-    const { height, width } = this.state;
+    const { height, width, phone_id } = this.state;
     return (
       <div
         style={{
@@ -181,7 +181,11 @@ class HtmlVideoComp extends Component {
           }
         }}
       >
-        {item.button_type === "circle" ? <RadiusDivCircle /> : <RadiusDiv />}
+        {item.button_type === "circle" ? (
+          <RadiusDivCircle />
+        ) : (
+          <RadiusDiv isSelected={item.id === phone_id} />
+        )}
       </div>
     );
   }
@@ -247,14 +251,17 @@ class HtmlVideoComp extends Component {
   };
 
   renderPopUp(popup_type) {
-    const { width, height, phone } = this.state;
+    const { width, height, phone_id } = this.state;
+    const phone = phone_id ? phone_info[phone_id] : null;
     let popup = null;
-    if (popup_type === "specification_popup") {
-      popup = <SpecificationPopUp phone={phone} />;
-    } else if (popup_type === "camera_popup") {
-      popup = <CameraPopUp camera_images={phone.camera_images} />;
-    } else if (popup_type === "processor_popup") {
-      popup = <ProcessorPopUp processor_image={phone.processor} />;
+    if (phone) {
+      if (popup_type === "specification_popup") {
+        popup = <SpecificationPopUp phone={phone} />;
+      } else if (popup_type === "camera_popup") {
+        popup = <CameraPopUp camera_images={phone.camera_images} />;
+      } else if (popup_type === "processor_popup") {
+        popup = <ProcessorPopUp processor_image={phone.processor} />;
+      }
     }
     return (
       <AnimatedProgressProvider
@@ -403,7 +410,7 @@ class HtmlVideoComp extends Component {
           justifyContent: "center"
         }}
         onClick={() =>
-          this.setState({ showPopup: false }, () => {
+          this.setState({ showPopup: false, phone_id: null }, () => {
             if (this.state.playedSeconds < this.player.duration - 0.5) {
               !this.state.isPaused && this.player.play();
             }

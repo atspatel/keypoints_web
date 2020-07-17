@@ -17,6 +17,7 @@ class ImageCarousel extends Component {
         centerMode
         infiniteLoop
         centerSlidePercentage={90}
+        style={{ backgroundColor: "white" }}
       >
         {images.map(item => {
           return (

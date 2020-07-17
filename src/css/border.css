@@ -125,6 +125,10 @@
   }
 }
 
+.selected:before {
+  background: #09ff00;
+}
+
 .span_cir {
   position: absolute;
   top: 0;

@@ -1,0 +1,34 @@
+@mixin transition($transition-property, $transition-time, $method) {
+  -webkit-transition: $transition-property $transition-time $method;
+  -moz-transition: $transition-property $transition-time $method;
+  -ms-transition: $transition-property $transition-time $method;
+  -o-transition: $transition-property $transition-time $method;
+  transition: $transition-property $transition-time $method;
+}
+
+.carousel-wrapper,
+.carousel,
+.carousel > .slider-wrapper,
+.carousel > .slider-wrapper > .slider {
+  height: 100%;
+}
+
+.image-container {
+  height: 100%;
+  width: 96%;
+  margin: 0% 2%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.legend_custom {
+  @include transition(all, 0.5s, ease-in-out);
+  position: absolute;
+  width: 90%;
+  border-radius: 10px;
+  color: black;
+  text-align: center;
+  opacity: 1;
+  @include transition(opacity, 0.35s, ease-in-out);
+}

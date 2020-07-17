@@ -55,6 +55,13 @@ class VideoPlayerComp extends Component {
     this.setState({ playedSeconds });
   };
   componentDidUpdate() {
+    const { clientHeight, clientWidth } = this.playerDiv;
+    const { height, width } = this.state;
+    console.log(clientHeight, clientWidth);
+    if (height !== clientHeight || width !== clientWidth) {
+      this.setState({ height: clientHeight, width: clientWidth });
+    }
+
     const { playedSeconds, currentOverlay, playing } = this.state;
     if (playing) {
       if (playedSeconds >= 8.0 && playedSeconds <= 12.0) {
@@ -306,7 +313,8 @@ class VideoPlayerComp extends Component {
           height: 0.05 * width,
           borderRadius: 0.025 * width,
           border: "1px solid black",
-          backgroundColor: "rgba(255, 255, 255, 0.7)"
+          backgroundColor: "rgba(255, 255, 255, 0.7)",
+          zIndex: 21323434
         }}
         onClick={() => {
           this.setState({ currentOverlay: "features", playing: false });
@@ -344,38 +352,43 @@ class VideoPlayerComp extends Component {
 
   render() {
     const { width, height } = this.state;
+    // console.log(width, height);
     return width ? (
-      <div>
-        <ReactPlayer
-          playing={this.state.playing}
-          width={width}
-          height={height}
-          url={constants.video_url}
-          style={{ backgroundColor: "black" }}
-          progressInterval={250}
-          onProgress={this.onProgress}
-          ref={c => (this.player = c)}
-        />
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: width,
-            height: height
-          }}
-          onClick={this.togglePlay}
-        ></div>
-
-        {this.render_feature_options()}
-        {/* {this.render_redmi_online()} */}
-        {/* {this.render_realme_online()} */}
-        {this.render_widevine()}
-        {this.render_contact()}
-        {this.render_transparent_buttons()}
+      <div style={{ height: 500, width: 200 }} ref={c => (this.playerDiv = c)}>
+        <div style={{ position: "relative" }}>
+          <ReactPlayer
+            muted
+            controls
+            width="100%"
+            height="100%"
+            playing={this.state.playing}
+            url={constants.video_url}
+            style={{
+              position: "relative",
+              backgroundColor: "black"
+            }}
+            progressInterval={250}
+            onProgress={this.onProgress}
+            ref={c => (this.player = c)}
+          >
+            <div
+              style={{
+                position: "reltive",
+                width: "100%",
+                height: "100%"
+              }}
+              ref={c => (this.playerDiv = c)}
+            ></div>
+          </ReactPlayer>
+          {this.render_feature_options()}
+          {this.render_widevine()}
+          {this.render_contact()}
+          {this.render_transparent_buttons()}
+        </div>
       </div>
     ) : (
-      <div className={styles.centerH}></div>
+      // </div>
+      <div className={styles.centerH} />
     );
   }
 }

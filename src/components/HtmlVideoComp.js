@@ -544,7 +544,7 @@ class HtmlVideoComp extends Component {
           overflow: "hidden"
         }}
       >
-        {/* <Helmet>
+        <Helmet>
           <title>Realme Shopable Video</title>
           <meta name="description" content="Smart way to buy Smartphone." />
 
@@ -564,7 +564,7 @@ class HtmlVideoComp extends Component {
           <meta property="og:image:height" content="153" />
 
           <meta property="og:url" content={constants.kp_url} />
-        </Helmet> */}
+        </Helmet>
         <ResizeObserver onResize={this.updateDimensions}>
           <video ref={c => (this.player = c)} width="100%" height="100%">
             <source

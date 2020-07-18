@@ -547,9 +547,16 @@ class HtmlVideoComp extends Component {
         <Helmet>
           <title>Realme Shopable Video</title>
           <meta name="description" content="Smart way to buy Smartphone." />
-          <meta name="og:image" content={constants.url_thumbnail} />
-          <meta name="og:title" content="Realme Shopable Video" />
-          <meta name="og:description" content="Smart way to buy Smartphone." />
+          <meta
+            property="og:site_name"
+            content="Smart way to buy Smartphone."
+          />
+          <meta property="og:image" content={constants.url_thumbnail} />
+          <meta property="og:title" content="Realme Shopable Video" />
+          <meta
+            property="og:description"
+            content="Smart way to buy Smartphone."
+          />
           <meta property="og:url" content={constants.kp_url} />
         </Helmet>
         <ResizeObserver onResize={this.updateDimensions}>

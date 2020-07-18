@@ -547,11 +547,16 @@ class HtmlVideoComp extends Component {
         <Helmet>
           <title>Realme Shopable Video</title>
           <meta name="description" content="Smart way to buy Smartphone." />
+          <meta property="og:type" content="website" />
           <meta
             property="og:site_name"
             content="Smart way to buy Smartphone."
           />
-          <meta property="og:image" content={constants.url_thumbnail} />
+          <meta
+            property="og:image:secure_url"
+            itemprop="image"
+            content={constants.url_thumbnail}
+          />
           <meta property="og:title" content="Realme Shopable Video" />
           <meta
             property="og:description"

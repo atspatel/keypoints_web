@@ -6,6 +6,9 @@ export const video_url = path.join(
   BASE_DIR,
   "media/realme_demo_1_compressed.mp4"
 );
+
+export const url_thumbnail = path.join(BASE_DIR, "media/realme_thumbnail.png");
+
 export const realme_logo = path.join(
   BASE_DIR,
   "media/realme_logo_transparent.png"

@@ -7,6 +7,8 @@ import * as buttons from "../constants/button_constants";
 import * as phone_info from "../constants/phone_info";
 import * as styles from "../css/app.module.css";
 
+import { Helmet } from "react-helmet";
+
 import RadiusDiv from "./RadiusDiv";
 import RadiusDivCircle from "./RadiusDivCircle";
 
@@ -542,6 +544,14 @@ class HtmlVideoComp extends Component {
           overflow: "hidden"
         }}
       >
+        <Helmet>
+          <title>Realme Shopable Video</title>
+          <meta name="description" content="Smart way to buy Smartphone." />
+          <meta name="og:image" content={constants.url_thumbnail} />
+          <meta name="og:title" content="Realme Shopable Video" />
+          <meta name="og:description" content="Smart way to buy Smartphone." />
+          <meta property="og:url" content={constants.kp_url} />
+        </Helmet>
         <ResizeObserver onResize={this.updateDimensions}>
           <video ref={c => (this.player = c)} width="100%" height="100%">
             <source

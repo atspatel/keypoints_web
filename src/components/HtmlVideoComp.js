@@ -544,26 +544,6 @@ class HtmlVideoComp extends Component {
           overflow: "hidden"
         }}
       >
-        <Helmet>
-          <title>Realme Shopable Video</title>
-          <meta name="description" content="Smart way to buy Smartphone." />
-          <meta property="og:type" content="website" />
-          <meta
-            property="og:site_name"
-            content="Smart way to buy Smartphone."
-          />
-          <meta
-            property="og:image:secure_url"
-            itemprop="image"
-            content={constants.url_thumbnail}
-          />
-          <meta property="og:title" content="Realme Shopable Video" />
-          <meta
-            property="og:description"
-            content="Smart way to buy Smartphone."
-          />
-          <meta property="og:url" content={constants.kp_url} />
-        </Helmet>
         <ResizeObserver onResize={this.updateDimensions}>
           <video ref={c => (this.player = c)} width="100%" height="100%">
             <source

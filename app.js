@@ -10,8 +10,8 @@ app.get("/*", function(req, res) {
 https
   .createServer(
     {
-      key: fs.readFileSync("/home/atish/server.key"),
-      cert: fs.readFileSync("/home/atish/server.cert")
+      key: fs.readFileSync(path.join(__dirname, "server.key")),
+      cert: fs.readFileSync(path.join(__dirname, "server.cert"))
     },
     app
   )

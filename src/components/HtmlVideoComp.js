@@ -419,7 +419,7 @@ class HtmlVideoComp extends Component {
           })
         }
       >
-        <KeyboardArrowLeftIcon style={{ color: "black", margin: 5 }} />
+        <p style={{ margin: 0, padding: 0 }}>Back</p>
       </button>
     );
   }
@@ -471,7 +471,39 @@ class HtmlVideoComp extends Component {
             style={{ height: "100%", width: "100%", color: "white" }}
           />
         </div>
-
+        {this.state.button_list.length > 0 && (
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: "20%",
+              width: "50%",
+              height: "90%",
+              display: "flex",
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <p style={{ color: "white" }}>Click {"  "}</p>
+            <div
+              style={{
+                height: "90%",
+                margin: "0% 2%",
+                position: "relative",
+                display: "flex",
+                flex: 1,
+                maxWidth: "30%",
+                justifyContent: "center",
+                alignItems: "center"
+              }}
+            >
+              <RadiusDiv />
+              <p style={{ margin: 0, padding: 0, color: "white" }}>Box</p>
+            </div>
+            <p style={{ color: "white" }}>{"  "} to Know More</p>
+          </div>
+        )}
         <div
           style={{
             position: "absolute",
@@ -556,14 +588,10 @@ class HtmlVideoComp extends Component {
           />
 
           <meta property="og:image" content={constants.url_thumbnail} />
-
-          <meta property="og:type" content="website" />
           <meta property="og:image:type" content="image/png" />
 
           <meta property="og:image:width" content="300" />
           <meta property="og:image:height" content="153" />
-
-          <meta property="og:url" content={constants.kp_url} />
         </Helmet>
         <ResizeObserver onResize={this.updateDimensions}>
           <video ref={c => (this.player = c)} width="100%" height="100%">

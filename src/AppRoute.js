@@ -6,14 +6,14 @@ import {
   Redirect
 } from "react-router-dom";
 
-import HtmlVideoComp from "./components/HtmlVideoComp";
+import RealmeVideo from "./VideoPages/RealmeVideo";
 
 class AppRoute extends Component {
   render() {
     return (
       <Router>
         <Switch>
-          <Route path="/sample_video" render={() => <HtmlVideoComp />} />
+          <Route path="/sample_video" render={() => <RealmeVideo />} />
           <Route render={() => <Redirect to="/sample_video" />} />
         </Switch>
       </Router>

@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 // import { useSpring, animated, interpolate } from "react-spring";
-import {
-  Keyframes,
-  Spring,
-  animated,
-  interpolate
-} from "react-spring/renderprops";
+import { Keyframes, animated } from "react-spring/renderprops";
 
 import {
   CircularProgressbar,

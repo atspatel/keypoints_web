@@ -3,10 +3,10 @@ import ImageCarousel from "./ImageCarousel";
 
 class CameraPopUp extends Component {
   render() {
-    const { camera_images } = this.props;
+    const { data: phone } = this.props;
     return (
       <div style={{ height: "100%", width: "100%" }}>
-        <ImageCarousel images={camera_images} />
+        <ImageCarousel images={phone.camera_images} />
       </div>
     );
   }

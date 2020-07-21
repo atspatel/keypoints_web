@@ -2,22 +2,11 @@ import React, { Component } from "react";
 import ResizeObserver from "rc-resize-observer";
 import ReactFitText from "react-fittext";
 
-import * as constants from "../constants/constants";
-import * as buttons from "../constants/button_constants";
-import * as phone_info from "../constants/phone_info";
-import * as styles from "../css/app.module.css";
-
-import { Helmet } from "react-helmet";
-
 import RadiusDiv from "./RadiusDiv";
 import RadiusDivCircle from "./RadiusDivCircle";
 
 import AnimatedProgressProvider from "./AnimatedProgressProvider";
 import { easeQuadInOut } from "d3-ease";
-
-import SpecificationPopUp from "./SpecificationPopUp";
-import CameraPopUp from "./CameraPopUp";
-import ProcessorPopUp from "./ProcessorPopUp";
 
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import PauseIcon from "@material-ui/icons/Pause";
@@ -31,14 +20,8 @@ import FullscreenExitIcon from "@material-ui/icons/FullscreenExit";
 
 import ListIcon from "@material-ui/icons/List";
 
-const transparent_button = buttons.transparent_button;
-
-const popup_dimension = {
-  // [top, left, width, height], keep 0.08 at bottom for back button
-  specification_popup: [0.02, 0.05, 0.9, 0.9],
-  camera_popup: [0.02, 0.05, 0.9, 0.9],
-  processor_popup: [0.24, 0.345, 0.31, 0.68]
-};
+import * as popup_constants from "../constants/popup_constants";
+import * as styles from "../css/app.module.css";
 
 class HtmlVideoComp extends Component {
   state = {
@@ -60,11 +43,15 @@ class HtmlVideoComp extends Component {
     isPaused: true,
     isMute: false,
 
-    phone_id: null
+    phone_id: null,
+
+    showPopup: null,
+    popup_data: null
   };
 
   update_button_list = current => {
-    let active_button_list = transparent_button.filter(
+    const { overlay_buttons } = this.props;
+    let active_button_list = overlay_buttons.filter(
       item => current >= item.start && current <= item.end
     );
     this.setState({ button_list: active_button_list });
@@ -122,10 +109,11 @@ class HtmlVideoComp extends Component {
     window.open(url, "_blank");
   };
 
-  openPopUp = (type, phone_id) => {
+  openPopUp = (type, data, phone_id) => {
     this.player.pause();
     this.setState({
       showPopup: type,
+      popup_data: data,
       phone_id: phone_id,
       playing: false
     });
@@ -154,7 +142,7 @@ class HtmlVideoComp extends Component {
     this.player.removeEventListener("play", this.onPlay);
   }
 
-  render_transparent_button(item) {
+  render_overlay_button(item) {
     const { height, width, phone_id } = this.state;
     return (
       <div
@@ -170,18 +158,20 @@ class HtmlVideoComp extends Component {
           backgroundColor: "rgba(0, 0, 0, 0.0)"
         }}
         onClick={() => {
-          if (item.action_type === "specification_popup") {
-            this.openPopUp("specification_popup", item.id);
-          } else if (item.action_type === "camera_popup") {
-            this.openPopUp("camera_popup", item.id);
-          } else if (item.action_type === "processor_popup") {
-            this.openPopUp("processor_popup", item.id);
-          } else if (item.action_type === "open_url") {
-            this.openUrlInTab(item.url);
+          if (
+            item.button &&
+            item.button.action === popup_constants.ACTION_POPUP
+          ) {
+            this.openPopUp(item.button.action_id, item.button.data, item.id);
+          } else if (
+            item.button &&
+            item.button.action === popup_constants.ACTION_URL
+          ) {
+            this.openUrlInTab(item.button.data);
           }
         }}
       >
-        {item.button_type === "circle" ? (
+        {item.button && item.button.type === "circle" ? (
           <RadiusDivCircle />
         ) : (
           <RadiusDiv isSelected={item.id === phone_id} />
@@ -190,10 +180,10 @@ class HtmlVideoComp extends Component {
     );
   }
 
-  render_transparent_buttons() {
+  render_overlay_buttons() {
     const { button_list } = this.state;
     return button_list.map(item => {
-      return this.render_transparent_button(item);
+      return this.render_overlay_button(item);
     });
   }
 
@@ -250,24 +240,13 @@ class HtmlVideoComp extends Component {
     }
   };
 
-  renderPopUp(popup_type) {
-    const { width, height, phone_id } = this.state;
-    const phone = phone_id ? phone_info[phone_id] : null;
-    let popup = null;
-    if (phone) {
-      if (popup_type === "specification_popup") {
-        popup = <SpecificationPopUp phone={phone} />;
-      } else if (popup_type === "camera_popup") {
-        popup = <CameraPopUp camera_images={phone.camera_images} />;
-      } else if (popup_type === "processor_popup") {
-        popup = <ProcessorPopUp processor_image={phone.processor} />;
-      }
-    }
+  renderPopUp(popup_info, popup_data) {
+    const { width, height } = this.state;
     return (
       <AnimatedProgressProvider
         easingFunction={easeQuadInOut}
         valueStart={1}
-        valueEnd={popup_dimension[popup_type][0]}
+        valueEnd={popup_info.bbox[0]}
         duration={1}
       >
         {value => (
@@ -275,16 +254,18 @@ class HtmlVideoComp extends Component {
             style={{
               position: "absolute",
               top: value * height,
-              left: popup_dimension[popup_type][1] * width,
-              width: popup_dimension[popup_type][2] * width,
-              height: popup_dimension[popup_type][3] * height,
+              left: popup_info.bbox[1] * width,
+              width: popup_info.bbox[2] * width,
+              height: popup_info.bbox[3] * height,
               borderRadius: "1em",
               overflow: "hidden",
               border: "1px solid black",
               backgroundColor: "rgba(255, 255, 255, 0.9)"
             }}
           >
-            {value < popup_dimension[popup_type][0] + 0.01 && popup}
+            {value < popup_info.bbox[0] + 0.01 && (
+              <popup_info.component data={popup_data} />
+            )}
           </div>
         )}
       </AnimatedProgressProvider>
@@ -410,18 +391,21 @@ class HtmlVideoComp extends Component {
           justifyContent: "center"
         }}
         onClick={() =>
-          this.setState({ showPopup: false, phone_id: null }, () => {
-            if (this.state.playedSeconds < this.player.duration - 0.5) {
-              !this.state.isPaused && this.player.play();
+          this.setState(
+            { showPopup: false, popup_data: null, phone_id: null },
+            () => {
+              if (this.state.playedSeconds < this.player.duration - 0.5) {
+                !this.state.isPaused && this.player.play();
+              }
             }
-          })
+          )
         }
       >
         <p style={{ margin: 0, padding: 0 }}>Back</p>
       </button>
     );
   }
-  renderControls() {
+  renderControls(showMenu, showFullScreen) {
     const { width, height } = this.state;
     return (
       <div
@@ -502,18 +486,22 @@ class HtmlVideoComp extends Component {
             <p style={{ color: "white" }}>{"  "} to Know More</p>
           </div>
         )}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: "75%",
-            width: "5%",
-            height: "90%"
-          }}
-          onClick={this.toggleMenu}
-        >
-          <ListIcon style={{ height: "100%", width: "100%", color: "white" }} />
-        </div>
+        {showMenu && (
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: "75%",
+              width: "5%",
+              height: "90%"
+            }}
+            onClick={this.toggleMenu}
+          >
+            <ListIcon
+              style={{ height: "100%", width: "100%", color: "white" }}
+            />
+          </div>
+        )}
 
         <div
           style={{
@@ -535,33 +523,41 @@ class HtmlVideoComp extends Component {
             />
           )}
         </div>
-
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: "90%",
-            width: "5%",
-            height: "90%"
-          }}
-          onClick={this.toggleFullScreenDiv}
-        >
-          {this.isFullScreen() ? (
-            <FullscreenExitIcon
-              style={{ height: "100%", width: "100%", color: "white" }}
-            />
-          ) : (
-            <FullscreenIcon
-              style={{ height: "100%", width: "100%", color: "white" }}
-            />
-          )}
-        </div>
+        {showFullScreen && (
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: "90%",
+              width: "5%",
+              height: "90%"
+            }}
+            onClick={this.toggleFullScreenDiv}
+          >
+            {this.isFullScreen() ? (
+              <FullscreenExitIcon
+                style={{ height: "100%", width: "100%", color: "white" }}
+              />
+            ) : (
+              <FullscreenIcon
+                style={{ height: "100%", width: "100%", color: "white" }}
+              />
+            )}
+          </div>
+        )}
       </div>
     );
   }
 
   render() {
-    const { marginTop, marginLeft, showPopup } = this.state;
+    const { marginTop, marginLeft, showPopup, popup_data } = this.state;
+    const {
+      maxWidth,
+      video_url,
+      overlay_buttons,
+      showFullScreen,
+      showMenu
+    } = this.props;
     return (
       <div
         id="div1"
@@ -569,32 +565,15 @@ class HtmlVideoComp extends Component {
         className={styles.centerH}
         style={{
           alignItems: "center",
-          maxWidth: 900,
+          maxWidth: maxWidth ? maxWidth : null,
           position: "relative",
           overflow: "hidden"
         }}
       >
-        <Helmet>
-          <title>Realme Shopable Video</title>
-          <meta name="description" content="Smart way to buy Smartphone." />
-
-          <meta property="og:site_name" content="Realme Shopable Video" />
-          <meta property="og:title" content="Realme Shopable Video" />
-          <meta
-            property="og:description"
-            content="Smart way to buy Smartphone."
-          />
-
-          <meta property="og:image" content={constants.url_thumbnail} />
-          <meta property="og:image:type" content="image/png" />
-
-          <meta property="og:image:width" content="300" />
-          <meta property="og:image:height" content="153" />
-        </Helmet>
         <ResizeObserver onResize={this.updateDimensions}>
           <video ref={c => (this.player = c)} width="100%" height="100%">
             <source
-              src={constants.video_url}
+              src={video_url}
               type="video/mp4"
               ref={c => (this.video = c)}
             />
@@ -607,14 +586,16 @@ class HtmlVideoComp extends Component {
             left: marginLeft
           }}
         >
-          {!showPopup && this.player && this.renderControls()}
-          {(!showPopup || showPopup === "processor_popup") &&
-            this.render_transparent_buttons()}
+          {!showPopup &&
+            this.player &&
+            this.renderControls(showMenu, showFullScreen)}
+          {(!showPopup || showPopup.showOverlayButtons) &&
+            this.render_overlay_buttons()}
 
           {showPopup && this.renderBackButton()}
-          {showPopup && this.renderPopUp(showPopup)}
+          {showPopup && this.renderPopUp(showPopup, popup_data)}
 
-          {this.state.isMenuOpen && this.renderMenu()}
+          {showMenu && this.state.isMenuOpen && this.renderMenu()}
         </div>
       </div>
     );

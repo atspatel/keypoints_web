@@ -531,7 +531,7 @@ class SpecificationPopUp extends Component {
 
   render() {
     const { selected_color } = this.state;
-    const { phone } = this.props;
+    const { data: phone } = this.props;
     return (
       <div
         style={{

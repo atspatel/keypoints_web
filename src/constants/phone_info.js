@@ -125,13 +125,12 @@ export const realmeX = {
     {
       id: 2,
       name: "Whatsapp",
-      url:
-        "https://api.whatsapp.com/send?phone=918953457318&text=RealmeX&source=&data=&app_absent="
+      url: `https://api.whatsapp.com/send?phone=91${constants.contact}&text=RealmeX&source=&data=&app_absent=`
     },
     {
       id: 3,
       name: "Call",
-      url: "tel: +918953457318"
+      url: `tel: +91${constants.contact}`
     }
   ]
 };
@@ -278,13 +277,12 @@ export const realmeX2 = {
     {
       id: 2,
       name: "Whatsapp",
-      url:
-        "https://api.whatsapp.com/send?phone=918953457318&text=RealmeX2&source=&data=&app_absent="
+      url: `https://api.whatsapp.com/send?phone=91${constants.contact}&text=RealmeX2&source=&data=&app_absent=`
     },
     {
       id: 3,
       name: "Call",
-      url: "tel: +918953457318"
+      url: `tel: +91${constants.contact}`
     }
   ]
 };
@@ -403,13 +401,12 @@ export const realmeX2Pro = {
     {
       id: 2,
       name: "Whatsapp",
-      url:
-        "https://api.whatsapp.com/send?phone=918953457318&text=RealmeX2Pro&source=&data=&app_absent="
+      url: `https://api.whatsapp.com/send?phone=91${constants.contact}&text=RealmeX2Pro&source=&data=&app_absent=`
     },
     {
       id: 3,
       name: "Call",
-      url: "tel: +918953457318"
+      url: `tel: +91${constants.contact}`
     }
   ]
 };
@@ -523,13 +520,12 @@ export const realmeXT = {
     {
       id: 2,
       name: "Whatsapp",
-      url:
-        "https://api.whatsapp.com/send?phone=918953457318&text=RealmeXT&source=&data=&app_absent="
+      url: `https://api.whatsapp.com/send?phone=91${constants.contact}&text=RealmeXT&source=&data=&app_absent=`
     },
     {
       id: 3,
       name: "Call",
-      url: "tel: +918953457318"
+      url: `tel: +91${constants.contact}`
     }
   ]
 };
@@ -653,13 +649,12 @@ export const realmeX50Pro = {
     {
       id: 2,
       name: "Whatsapp",
-      url:
-        "https://api.whatsapp.com/send?phone=918953457318&text=RealmeX50Pro&source=&data=&app_absent="
+      url: `https://api.whatsapp.com/send?phone=91${constants.contact}&text=RealmeX50Pro&source=&data=&app_absent=`
     },
     {
       id: 3,
       name: "Call",
-      url: "tel: +918953457318"
+      url: `tel: +91${constants.contact}`
     }
   ]
 };

@@ -19,8 +19,6 @@ import SpecificationPopUp from "./SpecificationPopUp";
 import CameraPopUp from "./CameraPopUp";
 import ProcessorPopUp from "./ProcessorPopUp";
 
-import KeyboardArrowLeftIcon from "@material-ui/icons/KeyboardArrowLeft";
-
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import PauseIcon from "@material-ui/icons/Pause";
 import ReplayIcon from "@material-ui/icons/Replay";

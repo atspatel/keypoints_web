@@ -14,3 +14,5 @@ export const realmeX2 = "realmeX2";
 export const realmeX2Pro = "realmeX2Pro";
 export const realmeXT = "realmeXT";
 export const realmeX50Pro = "realmeX50Pro";
+
+export const contact = "9739908844";

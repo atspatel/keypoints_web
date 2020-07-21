@@ -3,7 +3,6 @@ import ResizeObserver from "rc-resize-observer";
 import ReactFitText from "react-fittext";
 
 import RadiusDiv from "./RadiusDiv";
-import RadiusDivCircle from "./RadiusDivCircle";
 
 import AnimatedProgressProvider from "./AnimatedProgressProvider";
 import { easeQuadInOut } from "d3-ease";
@@ -21,6 +20,7 @@ import FullscreenExitIcon from "@material-ui/icons/FullscreenExit";
 import ListIcon from "@material-ui/icons/List";
 
 import * as popup_constants from "../constants/popup_constants";
+import * as radius_constants from "../constants/radius_constants";
 import * as styles from "../css/app.module.css";
 
 class HtmlVideoComp extends Component {
@@ -46,15 +46,29 @@ class HtmlVideoComp extends Component {
     phone_id: null,
 
     showPopup: null,
-    popup_data: null
+    popup_data: null,
+
+    showControl: true
   };
 
   update_button_list = current => {
     const { overlay_buttons } = this.props;
     let active_button_list = overlay_buttons.filter(
-      item => current >= item.start && current <= item.end
+      item =>
+        (current >= item.start && current <= item.end) ||
+        (current >= item.start && item.end === -1)
     );
     this.setState({ button_list: active_button_list });
+
+    active_button_list.map(item => {
+      if (
+        item.pauseVideo !== null &&
+        current >= item.pauseVideo &&
+        current <= item.end
+      ) {
+        this.setState({ showControl: false }, () => this.player.pause());
+      }
+    });
   };
 
   updateDimensions = () => {
@@ -81,12 +95,18 @@ class HtmlVideoComp extends Component {
       this.setState({ videoHeight: videoHeight, videoWidth: videoWidth });
     }
   };
-
+  onEndVideo = () => {
+    this.props.onEndVideo && this.props.onEndVideo();
+    this.props.endLoop && this.playerSeekTo(this.props.endLoop, true);
+  };
   setProgress = () => {
     if (this.player) {
       if (!this.player.paused) {
         const playedSeconds = this.player.currentTime;
         this.update_button_list(playedSeconds);
+        if (this.state.playedSeconds > this.player.duration - 0.5) {
+          this.onEndVideo();
+        }
         this.setState({
           playedSeconds: playedSeconds
         });
@@ -105,7 +125,7 @@ class HtmlVideoComp extends Component {
   };
 
   openUrlInTab = url => {
-    this.setState({ playing: false });
+    this.player.pause();
     window.open(url, "_blank");
   };
 
@@ -124,7 +144,7 @@ class HtmlVideoComp extends Component {
   };
 
   onPlay = () => {
-    this.setState({ playing: true, isPaused: false });
+    this.setState({ playing: true, isPaused: false, showControl: true });
   };
 
   componentDidMount() {
@@ -132,7 +152,7 @@ class HtmlVideoComp extends Component {
     this.player.addEventListener("pause", this.onPause);
     this.player.addEventListener("play", this.onPlay);
 
-    var intervalId = setInterval(this.setProgress, 500);
+    var intervalId = setInterval(this.setProgress, 250);
     this.setState({ intervalId: intervalId });
   }
 
@@ -144,6 +164,10 @@ class HtmlVideoComp extends Component {
 
   render_overlay_button(item) {
     const { height, width, phone_id } = this.state;
+    const RadiusComp =
+      item.button && item.button.shape
+        ? radius_constants.RADIUS[item.button.shape].component
+        : null;
     return (
       <div
         style={{
@@ -152,30 +176,28 @@ class HtmlVideoComp extends Component {
           left: item.bbox[1] * width,
           width: item.bbox[2] * width,
           height:
-            item.button_type === "circle"
+            item.button && item.button.shape === "circle"
               ? item.bbox[2] * width
               : item.bbox[3] * height,
           backgroundColor: "rgba(0, 0, 0, 0.0)"
         }}
         onClick={() => {
-          if (
-            item.button &&
-            item.button.action === popup_constants.ACTION_POPUP
-          ) {
-            this.openPopUp(item.button.action_id, item.button.data, item.id);
-          } else if (
-            item.button &&
-            item.button.action === popup_constants.ACTION_URL
-          ) {
-            this.openUrlInTab(item.button.data);
+          if (item.button) {
+            if (item.button.action === popup_constants.ACTION_POPUP) {
+              this.openPopUp(item.button.action_id, item.button.data, item.id);
+            } else if (item.button.action === popup_constants.ACTION_URL) {
+              this.openUrlInTab(item.button.data);
+            } else if (item.button.action === popup_constants.ACTION_SEEK_TO) {
+              this.playerSeekTo(item.button.data);
+            } else if (
+              item.button.action === popup_constants.ACTION_SEEK_TO_PLAY
+            ) {
+              this.playerSeekTo(item.button.data, true);
+            }
           }
         }}
       >
-        {item.button && item.button.type === "circle" ? (
-          <RadiusDivCircle />
-        ) : (
-          <RadiusDiv isSelected={item.id === phone_id} />
-        )}
+        {RadiusComp && <RadiusComp isSelected={item.id === phone_id} />}
       </div>
     );
   }
@@ -259,7 +281,7 @@ class HtmlVideoComp extends Component {
               height: popup_info.bbox[3] * height,
               borderRadius: "1em",
               overflow: "hidden",
-              border: "1px solid black",
+              // border: "1px solid black",
               backgroundColor: "rgba(255, 255, 255, 0.9)"
             }}
           >
@@ -405,16 +427,18 @@ class HtmlVideoComp extends Component {
       </button>
     );
   }
-  renderControls(showMenu, showFullScreen) {
+  renderControls(showMenu, showFullScreen, showInstruction) {
     const { width, height } = this.state;
+    const control_h = Math.min(0.08 * height, 40);
+    const top = height - control_h;
     return (
       <div
         style={{
           position: "absolute",
-          top: 0.92 * height,
+          top: top,
           left: 0 * width,
           width: width,
-          height: 0.08 * height,
+          height: control_h,
           backgroundColor: "rgba(0, 0, 0, 0.3)"
         }}
       >
@@ -453,7 +477,7 @@ class HtmlVideoComp extends Component {
             style={{ height: "100%", width: "100%", color: "white" }}
           />
         </div>
-        {this.state.button_list.length > 0 && (
+        {this.state.button_list.length > 0 && showInstruction && (
           <div
             style={{
               position: "absolute",
@@ -550,13 +574,21 @@ class HtmlVideoComp extends Component {
   }
 
   render() {
-    const { marginTop, marginLeft, showPopup, popup_data } = this.state;
+    const {
+      marginTop,
+      marginLeft,
+      showPopup,
+      popup_data,
+      showControl
+    } = this.state;
     const {
       maxWidth,
       video_url,
       overlay_buttons,
+      showInstruction,
       showFullScreen,
-      showMenu
+      showMenu,
+      endLoop
     } = this.props;
     return (
       <div
@@ -586,9 +618,6 @@ class HtmlVideoComp extends Component {
             left: marginLeft
           }}
         >
-          {!showPopup &&
-            this.player &&
-            this.renderControls(showMenu, showFullScreen)}
           {(!showPopup || showPopup.showOverlayButtons) &&
             this.render_overlay_buttons()}
 
@@ -596,6 +625,10 @@ class HtmlVideoComp extends Component {
           {showPopup && this.renderPopUp(showPopup, popup_data)}
 
           {showMenu && this.state.isMenuOpen && this.renderMenu()}
+          {showControl &&
+            !showPopup &&
+            this.player &&
+            this.renderControls(showMenu, showFullScreen, showInstruction)}
         </div>
       </div>
     );

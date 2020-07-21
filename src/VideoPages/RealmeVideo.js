@@ -9,9 +9,10 @@ class RealmeVideo extends Component {
       <HtmlVideoComp
         maxWidth={900}
         video_url={realme_constants.video_url}
-        showFullScreen={true}
         overlay_buttons={realme_constants.overlay_buttons}
+        showFullScreen={true}
         showMenu={true} // TODO :: generalize this
+        showInstruction={true}
       />
     );
   }

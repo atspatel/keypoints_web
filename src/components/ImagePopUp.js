@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 
-class ProcessorPopUp extends Component {
+class ImagePopUp extends Component {
   render() {
-    const { data: phone } = this.props;
+    const { data } = this.props;
     return (
       <div style={{ height: "100%", width: "100%" }}>
         <img
-          src={phone.processor}
+          src={data}
           style={{
             width: "100%",
             height: "100%",
@@ -20,4 +20,4 @@ class ProcessorPopUp extends Component {
   }
 }
 
-export default ProcessorPopUp;
+export default ImagePopUp;

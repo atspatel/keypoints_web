@@ -7,7 +7,8 @@ export const BASE_DIR_oximeter = `${constants.BASE_DIR}/oximeter`;
 export const video_url = `${BASE_DIR_oximeter}/video1.mp4`;
 export const chart_url = `${BASE_DIR_oximeter}/chart.png`;
 
-const shop_url = "https://www.miracles.shop/";
+const shop_url =
+  "https://clubconciergeonline.com/shop/ols/products/pulse-oximeter";
 
 export const loop_time = 55.3;
 

@@ -20,7 +20,6 @@ import FullscreenExitIcon from "@material-ui/icons/FullscreenExit";
 import ListIcon from "@material-ui/icons/List";
 
 import * as acton_constants from "../constants/action_constants";
-import * as popup_constants from "../constants/popup_constants";
 import * as radius_constants from "../constants/radius_constants";
 import * as styles from "../css/app.module.css";
 

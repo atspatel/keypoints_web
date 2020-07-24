@@ -1,3 +1,4 @@
+import * as action_constants from "./action_constants";
 import * as popup_constants from "./popup_constants";
 import * as radius_constants from "./radius_constants";
 import * as constants from "./constants";
@@ -19,7 +20,7 @@ export const overlay_buttons = [
     bbox: [0.3, 0.6, 0.27, 0.07],
     button: {
       shape: radius_constants.RECT,
-      action: popup_constants.ACTION_SEEK_TO_PLAY,
+      action: action_constants.ACTION_SEEK_TO_PLAY,
       action_id: 17,
       data: 17
     }
@@ -31,7 +32,7 @@ export const overlay_buttons = [
     bbox: [0.76, 0.02, 0.4, 0.13],
     button: {
       shape: null,
-      action: popup_constants.ACTION_POPUP,
+      action: action_constants.ACTION_POPUP,
       action_id: popup_constants.POPUP_CHART,
       data: chart_url
     }
@@ -43,7 +44,7 @@ export const overlay_buttons = [
     bbox: [0.74, 0.57, 0.39, 0.13],
     button: {
       shape: null,
-      action: popup_constants.ACTION_URL,
+      action: action_constants.ACTION_URL,
       action_id: shop_url,
       data: shop_url
     }
@@ -55,7 +56,7 @@ export const overlay_buttons = [
     bbox: [0.46, 0.72, 0.26, 0.1],
     button: {
       shape: null,
-      action: popup_constants.ACTION_URL,
+      action: action_constants.ACTION_URL,
       action_id: shop_url,
       data: shop_url
     }

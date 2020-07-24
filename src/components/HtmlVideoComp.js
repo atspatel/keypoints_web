@@ -19,6 +19,7 @@ import FullscreenExitIcon from "@material-ui/icons/FullscreenExit";
 
 import ListIcon from "@material-ui/icons/List";
 
+import * as acton_constants from "../constants/action_constants";
 import * as popup_constants from "../constants/popup_constants";
 import * as radius_constants from "../constants/radius_constants";
 import * as styles from "../css/app.module.css";
@@ -43,7 +44,7 @@ class HtmlVideoComp extends Component {
     isPaused: true,
     isMute: false,
 
-    phone_id: null,
+    button_id: null,
 
     showPopup: null,
     popup_data: null,
@@ -97,7 +98,8 @@ class HtmlVideoComp extends Component {
   };
   onEndVideo = () => {
     this.props.onEndVideo && this.props.onEndVideo();
-    this.props.endLoop && this.playerSeekTo(this.props.endLoop, true);
+    this.props.endLoop &&
+      acton_constants.playerSeekTo(this, this.props.endLoop, true);
   };
   setProgress = () => {
     if (this.player) {
@@ -114,30 +116,15 @@ class HtmlVideoComp extends Component {
     }
   };
 
-  playerSeekTo = (duration, toPlay) => {
-    if (this.player) {
-      this.player.currentTime = duration;
-      toPlay
-        ? this.player.play()
-        : this.setState({ isPaused: true }, () => this.player.pause());
-      setTimeout(() => this.update_button_list(duration), 200);
-    }
-  };
-
-  openUrlInTab = url => {
-    this.player.pause();
-    window.open(url, "_blank");
-  };
-
-  openPopUp = (type, data, phone_id) => {
-    this.player.pause();
-    this.setState({
-      showPopup: type,
-      popup_data: data,
-      phone_id: phone_id,
-      playing: false
-    });
-  };
+  // playerSeekTo = (duration, toPlay) => {
+  //   if (this.player) {
+  //     this.player.currentTime = duration;
+  //     toPlay
+  //       ? this.player.play()
+  //       : this.setState({ isPaused: true }, () => this.player.pause());
+  //     setTimeout(() => this.update_button_list(duration), 200);
+  //   }
+  // };
 
   onPause = () => {
     this.setState({ playing: false });
@@ -163,7 +150,7 @@ class HtmlVideoComp extends Component {
   }
 
   render_overlay_button(item) {
-    const { height, width, phone_id } = this.state;
+    const { height, width, button_id } = this.state;
     const RadiusComp =
       item.button && item.button.shape
         ? radius_constants.RADIUS[item.button.shape].component
@@ -183,21 +170,11 @@ class HtmlVideoComp extends Component {
         }}
         onClick={() => {
           if (item.button) {
-            if (item.button.action === popup_constants.ACTION_POPUP) {
-              this.openPopUp(item.button.action_id, item.button.data, item.id);
-            } else if (item.button.action === popup_constants.ACTION_URL) {
-              this.openUrlInTab(item.button.data);
-            } else if (item.button.action === popup_constants.ACTION_SEEK_TO) {
-              this.playerSeekTo(item.button.data);
-            } else if (
-              item.button.action === popup_constants.ACTION_SEEK_TO_PLAY
-            ) {
-              this.playerSeekTo(item.button.data, true);
-            }
+            acton_constants.ACTION[item.button.action](this, item.button);
           }
         }}
       >
-        {RadiusComp && <RadiusComp isSelected={item.id === phone_id} />}
+        {RadiusComp && <RadiusComp isSelected={item.id === button_id} />}
       </div>
     );
   }
@@ -240,7 +217,7 @@ class HtmlVideoComp extends Component {
   };
 
   onReplay = () => {
-    this.playerSeekTo(0, true);
+    acton_constants.playerSeekTo(this, 0, true);
   };
 
   toggleVolume = () => {
@@ -317,7 +294,9 @@ class HtmlVideoComp extends Component {
             backgroundColor: "rgba(255, 255, 255, 1)"
           }}
           onClick={() =>
-            this.setState({ isMenuOpen: false }, () => this.playerSeekTo(26))
+            this.setState({ isMenuOpen: false }, () =>
+              acton_constants.playerSeekTo(this, 26)
+            )
           }
         >
           <ReactFitText compressor={0.5}>
@@ -345,7 +324,9 @@ class HtmlVideoComp extends Component {
             backgroundColor: "rgba(255, 255, 255, 1)"
           }}
           onClick={() =>
-            this.setState({ isMenuOpen: false }, () => this.playerSeekTo(38))
+            this.setState({ isMenuOpen: false }, () =>
+              acton_constants.playerSeekTo(this, 38)
+            )
           }
         >
           <ReactFitText compressor={0.5}>
@@ -373,7 +354,9 @@ class HtmlVideoComp extends Component {
             backgroundColor: "rgba(255, 255, 255, 1)"
           }}
           onClick={() =>
-            this.setState({ isMenuOpen: false }, () => this.playerSeekTo(72))
+            this.setState({ isMenuOpen: false }, () =>
+              acton_constants.playerSeekTo(this, 72)
+            )
           }
         >
           <ReactFitText compressor={0.5}>
@@ -414,7 +397,7 @@ class HtmlVideoComp extends Component {
         }}
         onClick={() =>
           this.setState(
-            { showPopup: false, popup_data: null, phone_id: null },
+            { showPopup: false, popup_data: null, button_id: null },
             () => {
               if (this.state.playedSeconds < this.player.duration - 0.5) {
                 !this.state.isPaused && this.player.play();

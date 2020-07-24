@@ -4,6 +4,7 @@ import CameraPopUp from "../components/CameraPopUp";
 import SpecificationPopUp from "../components/SpecificationPopUp";
 import ImagePopUp from "../components/ImagePopUp";
 
+export const POPUP_HTML = "popup_html";
 export const POPUP_SPECIFICATION = "popup_specification";
 export const POPUP_CAMERA = "popup_camera";
 export const POPUP_PROCESSOR = "popup_processor";
@@ -11,6 +12,11 @@ export const POPUP_CHART = "popup_chart";
 
 // Leave 0.08 at bottom for back button
 export const POPUP = {
+  [POPUP_HTML]: {
+    showOverlayButtons: false,
+    bbox: [0.02, 0.05, 0.9, 0.9],
+    component: null
+  },
   [POPUP_SPECIFICATION]: {
     showOverlayButtons: false,
     bbox: [0.02, 0.05, 0.9, 0.9],

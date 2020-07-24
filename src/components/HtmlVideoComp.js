@@ -21,7 +21,7 @@ import ListIcon from "@material-ui/icons/List";
 
 import * as acton_constants from "../constants/action_constants";
 import * as radius_constants from "../constants/radius_constants";
-import * as styles from "../css/app.module.css";
+import "../css/app.css";
 
 class HtmlVideoComp extends Component {
   state = {
@@ -576,7 +576,7 @@ class HtmlVideoComp extends Component {
       <div
         id="div1"
         ref={c => (this.fullscreenDiv = c)}
-        className={styles.centerH}
+        className="centerH"
         style={{
           alignItems: "center",
           maxWidth: maxWidth ? maxWidth : null,

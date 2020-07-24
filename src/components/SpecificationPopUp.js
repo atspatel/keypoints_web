@@ -12,7 +12,7 @@ import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 import CallIcon from "@material-ui/icons/Call";
 
 import * as constants from "../constants/constants";
-import * as styles from "../css/app.module.css";
+import "../css/app.css";
 
 const openUrlInTab = url => {
   window.open(url, "_blank");
@@ -70,7 +70,7 @@ class ReviewSection extends Component {
     const { phone } = this.props;
     return (
       <div
-        className={styles.centerH}
+        className="centerH"
         style={{
           display: "flex",
           flexWrap: "wrap",

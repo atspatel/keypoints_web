@@ -5,6 +5,7 @@ import * as constants from "./constants";
 
 export const BASE_DIR_oximeter = `${constants.BASE_DIR}/oximeter`;
 export const video_url = `${BASE_DIR_oximeter}/video1.mp4`;
+export const url_thumbnail = `${BASE_DIR_oximeter}/thumbnail.png`;
 export const chart_url = `${BASE_DIR_oximeter}/chart.png`;
 
 const shop_url =

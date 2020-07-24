@@ -11,9 +11,23 @@ function App() {
     <div className="App">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Keypoints</title>
-        <meta property="og:url" content={constants.kp_url} />
         <meta property="og:type" content="website" />
+
+        <title>Keypoints</title>
+        <meta name="description" content="Short Intretive Video Platform" />
+
+        <meta property="og:url" content={constants.kp_url} />
+        <meta property="og:site_name" content="KeyPoints" />
+        <meta property="og:title" content="Keypoints" />
+        <meta
+          property="og:description"
+          content="Short Intretive Video Platform"
+        />
+
+        <meta property="og:image" content={constants.kp_logo} />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="256" />
+        <meta property="og:image:height" content="256" />
       </Helmet>
       <AppRoute />
     </div>

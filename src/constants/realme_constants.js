@@ -1,6 +1,8 @@
 import * as action_constants from "./action_constants";
 import * as popup_constants from "./popup_constants";
 import * as radius_constants from "./radius_constants";
+
+import * as config from "../config";
 import * as constants from "./constants";
 
 export const contact = "9739908844";
@@ -11,13 +13,11 @@ export const realmeX2Pro = "realmeX2Pro";
 export const realmeXT = "realmeXT";
 export const realmeX50Pro = "realmeX50Pro";
 
-export const BASE_DIR_realme = `${constants.BASE_DIR}/realme_demo`;
+export const video_id = "realme_demo";
+export const BASE_DIR_realme = `${config.BASE_DIR}/realme_demo`;
 export const video_url = `${BASE_DIR_realme}/realme_demo_1_compressed.mp4`;
 
 export const url_thumbnail = `${BASE_DIR_realme}/realme_thumbnail.png`;
-
-// export const realme_logo = `${BASE_DIR_realme}/realme_logo_transparent.png`;
-// export const gadgets360_logo = `${BASE_DIR_realme}/gadgets360_logo.png`;
 
 export const phone_info = {
   realmeX: {
@@ -684,7 +684,7 @@ export const overlay_buttons = [
     url: null,
     bbox: [0.15, 0.04, 0.16, 0.65],
     button: {
-      id: realmeX,
+      id: `${realmeX}_shop1`,
       shape: radius_constants.RECT,
       action: action_constants.ACTION_POPUP,
       action_id: popup_constants.POPUP_SPECIFICATION,
@@ -698,7 +698,7 @@ export const overlay_buttons = [
     url: null,
     bbox: [0.15, 0.23, 0.16, 0.65],
     button: {
-      id: realmeXT,
+      id: `${realmeXT}_shop1`,
       shape: radius_constants.RECT,
       action: action_constants.ACTION_POPUP,
       action_id: popup_constants.POPUP_SPECIFICATION,
@@ -712,7 +712,7 @@ export const overlay_buttons = [
     url: null,
     bbox: [0.15, 0.42, 0.16, 0.65],
     button: {
-      id: realmeX2,
+      id: `${realmeX2}_shop1`,
       shape: radius_constants.RECT,
       action: action_constants.ACTION_POPUP,
       action_id: popup_constants.POPUP_SPECIFICATION,
@@ -726,7 +726,7 @@ export const overlay_buttons = [
     url: null,
     bbox: [0.15, 0.61, 0.16, 0.65],
     button: {
-      id: realmeX2Pro,
+      id: `${realmeX2Pro}_shop1`,
       shape: radius_constants.RECT,
       action: action_constants.ACTION_POPUP,
       action_id: popup_constants.POPUP_SPECIFICATION,
@@ -740,7 +740,7 @@ export const overlay_buttons = [
     url: null,
     bbox: [0.15, 0.8, 0.16, 0.65],
     button: {
-      id: realmeX50Pro,
+      id: `${realmeX50Pro}_shop1`,
       shape: radius_constants.RECT,
       action: action_constants.ACTION_POPUP,
       action_id: popup_constants.POPUP_SPECIFICATION,
@@ -755,7 +755,7 @@ export const overlay_buttons = [
     url: null,
     bbox: [0.05, 0.39, 0.22, 0.25],
     button: {
-      id: realmeX,
+      id: `${realmeX}_camera`,
       shape: radius_constants.RECT,
       action: action_constants.ACTION_POPUP,
       action_id: popup_constants.POPUP_CAMERA,
@@ -769,7 +769,7 @@ export const overlay_buttons = [
     url: null,
     bbox: [0.28, 0.08, 0.22, 0.25],
     button: {
-      id: realmeXT,
+      id: `${realmeXT}_camera`,
       shape: radius_constants.RECT,
       action: action_constants.ACTION_POPUP,
       action_id: popup_constants.POPUP_CAMERA,
@@ -783,7 +783,7 @@ export const overlay_buttons = [
     url: null,
     bbox: [0.6, 0.08, 0.22, 0.25],
     button: {
-      id: realmeX2,
+      id: `${realmeX2}_camera`,
       shape: radius_constants.RECT,
       action: action_constants.ACTION_POPUP,
       action_id: popup_constants.POPUP_CAMERA,
@@ -797,7 +797,7 @@ export const overlay_buttons = [
     url: null,
     bbox: [0.6, 0.72, 0.22, 0.25],
     button: {
-      id: realmeX2Pro,
+      id: `${realmeX2Pro}_camera`,
       shape: radius_constants.RECT,
       action: action_constants.ACTION_POPUP,
       action_id: popup_constants.POPUP_CAMERA,
@@ -811,7 +811,7 @@ export const overlay_buttons = [
     url: null,
     bbox: [0.28, 0.72, 0.22, 0.25],
     button: {
-      id: realmeX50Pro,
+      id: `${realmeX50Pro}_camera`,
       shape: radius_constants.RECT,
       action: action_constants.ACTION_POPUP,
       action_id: popup_constants.POPUP_CAMERA,
@@ -826,7 +826,7 @@ export const overlay_buttons = [
     url: null,
     bbox: [0.05, 0.38, 0.22, 0.18],
     button: {
-      id: realmeX,
+      id: `${realmeX}_processor`,
       shape: radius_constants.RECT,
       action: action_constants.ACTION_POPUP,
       action_id: popup_constants.POPUP_PROCESSOR,
@@ -840,7 +840,7 @@ export const overlay_buttons = [
     url: null,
     bbox: [0.28, 0.08, 0.22, 0.18],
     button: {
-      id: realmeXT,
+      id: `${realmeXT}_processor`,
       shape: radius_constants.RECT,
       action: action_constants.ACTION_POPUP,
       action_id: popup_constants.POPUP_PROCESSOR,
@@ -854,7 +854,7 @@ export const overlay_buttons = [
     url: null,
     bbox: [0.6, 0.08, 0.22, 0.18],
     button: {
-      id: realmeX2,
+      id: `${realmeX2}_processor`,
       shape: radius_constants.RECT,
       action: action_constants.ACTION_POPUP,
       action_id: popup_constants.POPUP_PROCESSOR,
@@ -868,7 +868,7 @@ export const overlay_buttons = [
     url: null,
     bbox: [0.6, 0.71, 0.22, 0.18],
     button: {
-      id: realmeX2Pro,
+      id: `${realmeX2Pro}_processor`,
       shape: radius_constants.RECT,
       action: action_constants.ACTION_POPUP,
       action_id: popup_constants.POPUP_PROCESSOR,
@@ -882,7 +882,7 @@ export const overlay_buttons = [
     url: null,
     bbox: [0.28, 0.71, 0.22, 0.18],
     button: {
-      id: realmeX50Pro,
+      id: `${realmeX50Pro}_processor`,
       shape: radius_constants.RECT,
       action: action_constants.ACTION_POPUP,
       action_id: popup_constants.POPUP_PROCESSOR,
@@ -897,7 +897,7 @@ export const overlay_buttons = [
     url: null,
     bbox: [0.15, 0.04, 0.16, 0.65],
     button: {
-      id: realmeX,
+      id: `${realmeX}_shop2`,
       shape: radius_constants.RECT,
       action: action_constants.ACTION_POPUP,
       action_id: popup_constants.POPUP_SPECIFICATION,
@@ -911,7 +911,7 @@ export const overlay_buttons = [
     url: null,
     bbox: [0.15, 0.23, 0.16, 0.65],
     button: {
-      id: realmeXT,
+      id: `${realmeXT}_shop2`,
       shape: radius_constants.RECT,
       action: action_constants.ACTION_POPUP,
       action_id: popup_constants.POPUP_SPECIFICATION,
@@ -925,7 +925,7 @@ export const overlay_buttons = [
     url: null,
     bbox: [0.15, 0.42, 0.16, 0.65],
     button: {
-      id: realmeX2,
+      id: `${realmeX2}_shop2`,
       shape: radius_constants.RECT,
       action: action_constants.ACTION_POPUP,
       action_id: popup_constants.POPUP_SPECIFICATION,
@@ -939,7 +939,7 @@ export const overlay_buttons = [
     url: null,
     bbox: [0.15, 0.61, 0.16, 0.65],
     button: {
-      id: realmeX2Pro,
+      id: `${realmeX2Pro}_shop2`,
       shape: radius_constants.RECT,
       action: action_constants.ACTION_POPUP,
       action_id: popup_constants.POPUP_SPECIFICATION,
@@ -953,7 +953,7 @@ export const overlay_buttons = [
     url: null,
     bbox: [0.15, 0.8, 0.16, 0.65],
     button: {
-      id: realmeX50Pro,
+      id: `${realmeX50Pro}_shop2`,
       shape: radius_constants.RECT,
       action: action_constants.ACTION_POPUP,
       action_id: popup_constants.POPUP_SPECIFICATION,

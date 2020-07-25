@@ -26,6 +26,7 @@ class RealmeVideo extends Component {
           <meta property="og:image:height" content="153" />
         </Helmet>
         <HtmlVideoComp
+          video_id={realme_constants.video_id}
           maxWidth={900}
           video_url={realme_constants.video_url}
           overlay_buttons={realme_constants.overlay_buttons}

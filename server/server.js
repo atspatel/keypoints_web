@@ -6,7 +6,7 @@ import express from "express";
 import ReactDOMServer from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
 
-import * as constants from "../src/constants/constants";
+import * as config from "../src/config";
 // import { Helmet } from "react-helmet";
 
 import App from "../src/App";
@@ -44,7 +44,7 @@ httpServer.listen(80, () => {
 });
 
 // console.log(load_https, "--------");
-if (constants.load_https) {
+if (config.load_https) {
   // Certificate & Starting both https servers
   const https = require("https");
   const privateKey = fs.readFileSync(

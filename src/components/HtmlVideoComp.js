@@ -22,6 +22,7 @@ import ListIcon from "@material-ui/icons/List";
 import * as acton_constants from "../constants/action_constants";
 import * as radius_constants from "../constants/radius_constants";
 import "../css/app.css";
+import { post_activity } from "../functions/post_activity";
 
 class HtmlVideoComp extends Component {
   state = {
@@ -140,6 +141,8 @@ class HtmlVideoComp extends Component {
 
     var intervalId = setInterval(this.setProgress, 250);
     this.setState({ intervalId: intervalId });
+
+    post_activity("play", this.props.video_id);
   }
 
   componentWillUnmount() {
@@ -169,6 +172,7 @@ class HtmlVideoComp extends Component {
         }}
         onClick={() => {
           if (item.button) {
+            post_activity("click", this.props.video_id, item.button.id);
             acton_constants.ACTION[item.button.action](this, item.button);
           }
         }}
@@ -564,6 +568,7 @@ class HtmlVideoComp extends Component {
       showControl
     } = this.state;
     const {
+      video_id,
       maxWidth,
       video_url,
       overlay_buttons,

@@ -32,6 +32,7 @@ class RealmeVideo extends Component {
           <meta property="og:image:height" content="256" />
         </Helmet>
         <HtmlVideoComp
+          video_id={oximeter_constants.video_id}
           maxWidth={900}
           video_url={oximeter_constants.video_url}
           showFullScreen={true}

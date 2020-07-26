@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import HtmlVideoComp from "../components/HtmlVideoComp";
 import { Helmet } from "react-helmet";
 
+import "../css/app.css";
 import * as oximeter_constants from "../constants/oximeter_constants";
 
-class RealmeVideo extends Component {
+export class OximeterEmbedVideo extends Component {
   render() {
     return (
       <>
@@ -33,7 +34,6 @@ class RealmeVideo extends Component {
         </Helmet>
         <HtmlVideoComp
           video_id={oximeter_constants.video_id}
-          maxWidth={900}
           video_url={oximeter_constants.video_url}
           showFullScreen={true}
           overlay_buttons={oximeter_constants.overlay_buttons}
@@ -46,4 +46,14 @@ class RealmeVideo extends Component {
   }
 }
 
-export default RealmeVideo;
+class OximeterVideo extends Component {
+  render() {
+    return (
+      <div style={{ maxWidth: 750 }} className="centerH">
+        <OximeterEmbedVideo />
+      </div>
+    );
+  }
+}
+
+export default OximeterVideo;

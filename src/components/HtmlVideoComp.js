@@ -69,6 +69,7 @@ class HtmlVideoComp extends Component {
       ) {
         this.setState({ showControl: false }, () => this.player.pause());
       }
+      return true;
     });
   };
 
@@ -568,14 +569,14 @@ class HtmlVideoComp extends Component {
       showControl
     } = this.state;
     const {
-      video_id,
+      // video_id,
       maxWidth,
       video_url,
-      overlay_buttons,
+      // overlay_buttons,
       showInstruction,
       showFullScreen,
-      showMenu,
-      endLoop
+      showMenu
+      // endLoop
     } = this.props;
     return (
       <div
@@ -583,6 +584,8 @@ class HtmlVideoComp extends Component {
         ref={c => (this.fullscreenDiv = c)}
         className="centerH"
         style={{
+          width: "100%",
+          height: "100%",
           alignItems: "center",
           maxWidth: maxWidth ? maxWidth : null,
           position: "relative",

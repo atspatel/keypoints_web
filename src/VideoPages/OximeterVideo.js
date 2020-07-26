@@ -7,6 +7,7 @@ import * as oximeter_constants from "../constants/oximeter_constants";
 
 export class OximeterEmbedVideo extends Component {
   render() {
+    const { maxWidth } = this.props;
     return (
       <>
         <Helmet>
@@ -34,6 +35,7 @@ export class OximeterEmbedVideo extends Component {
         </Helmet>
         <HtmlVideoComp
           video_id={oximeter_constants.video_id}
+          maxWidth={maxWidth ? maxWidth : null}
           video_url={oximeter_constants.video_url}
           showFullScreen={true}
           overlay_buttons={oximeter_constants.overlay_buttons}
@@ -49,8 +51,8 @@ export class OximeterEmbedVideo extends Component {
 class OximeterVideo extends Component {
   render() {
     return (
-      <div style={{ maxWidth: 750 }} className="centerH">
-        <OximeterEmbedVideo />
+      <div style={{}} className="centerH">
+        <OximeterEmbedVideo maxWidth={750} />
       </div>
     );
   }

@@ -51,7 +51,7 @@ export class OximeterEmbedVideo extends Component {
 class OximeterVideo extends Component {
   render() {
     return (
-      <div style={{}} className="centerH">
+      <div>
         <OximeterEmbedVideo maxWidth={750} />
       </div>
     );

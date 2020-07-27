@@ -15,11 +15,6 @@ class AppRoute extends Component {
         <Route path="/realme" render={() => <RealmeVideo />} />
         <Route path="/oximeter" render={() => <OximeterVideo />} />
         <Route path="/embed_oximeter" render={() => <OximeterEmbedVideo />} />
-        <Route path="/oximeter_rect" render={() => <OximeterRectVideo />} />
-        <Route
-          path="/embed_oximeter_rect"
-          render={() => <OximeterRectEmbedVideo />}
-        />
         <Route render={() => <Redirect to="/sample_video" />} />
       </Switch>
     );

@@ -6,7 +6,7 @@ import * as config from "../config";
 
 export const video_id = "oximeter";
 export const BASE_DIR_oximeter = `${config.BASE_DIR}/oximeter`;
-export const video_url = `${BASE_DIR_oximeter}/video1.mp4`;
+export const video_url = `${BASE_DIR_oximeter}/video2.mp4`;
 export const url_thumbnail = `${BASE_DIR_oximeter}/thumbnail.png`;
 export const chart_url = `${BASE_DIR_oximeter}/chart.png`;
 
@@ -21,7 +21,7 @@ export const overlay_buttons = [
     start: 13.5,
     end: 15,
     pauseVideo: 14,
-    bbox: [0.3, 0.6, 0.27, 0.07],
+    bbox: [0.3, 0.59, 0.25, 0.07],
     button: {
       id: "oximeter_pause",
       shape: radius_constants.RECT,
@@ -34,7 +34,7 @@ export const overlay_buttons = [
     id: 2,
     start: 17,
     end: 38,
-    bbox: [0.76, 0.02, 0.4, 0.13],
+    bbox: [0.76, 0.07, 0.36, 0.13],
     button: {
       id: "oximeter_chart",
       shape: null,
@@ -47,7 +47,7 @@ export const overlay_buttons = [
     id: 3,
     start: 38,
     end: 52,
-    bbox: [0.74, 0.57, 0.39, 0.13],
+    bbox: [0.74, 0.56, 0.35, 0.13],
     button: {
       id: "oximeter_shop1",
       shape: null,
@@ -60,7 +60,7 @@ export const overlay_buttons = [
     id: 4,
     start: 53,
     end: 58,
-    bbox: [0.46, 0.72, 0.26, 0.1],
+    bbox: [0.46, 0.7, 0.23, 0.1],
     button: {
       id: "oximeter_shop2",
       shape: null,

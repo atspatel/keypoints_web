@@ -391,8 +391,8 @@ class HtmlVideoComp extends Component {
         style={{
           position: "absolute",
           top: 0.92 * height,
-          left: 0.45 * width,
-          width: 0.1 * width,
+          left: 0.4 * width,
+          width: 0.2 * width,
           height: 0.08 * height,
           borderRadius: "20%",
           outline: "none",

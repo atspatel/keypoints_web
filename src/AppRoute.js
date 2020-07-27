@@ -3,9 +3,6 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 import RealmeVideo from "./VideoPages/RealmeVideo";
 import OximeterVideo, { OximeterEmbedVideo } from "./VideoPages/OximeterVideo";
-import OximeterRectVideo, {
-  OximeterRectEmbedVideo
-} from "./VideoPages/OximeterRectVideo";
 
 class AppRoute extends Component {
   render() {

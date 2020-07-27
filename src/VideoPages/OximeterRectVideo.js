@@ -7,6 +7,7 @@ import * as oximeter_rect_constants from "../constants/oximeter_rect_constants";
 
 export class OximeterRectEmbedVideo extends Component {
   render() {
+    const { maxWidth } = this.props;
     return (
       <>
         <Helmet>
@@ -36,6 +37,7 @@ export class OximeterRectEmbedVideo extends Component {
           video_id={oximeter_rect_constants.video_id}
           video_url={oximeter_rect_constants.video_url}
           autoplay={true}
+          maxWidth={maxWidth ? maxWidth : null}
           showFullScreen={true}
           overlay_buttons={oximeter_rect_constants.overlay_buttons}
           showMenu={false} // TODO :: generalize this
@@ -51,7 +53,7 @@ class OximeterRectVideo extends Component {
   render() {
     return (
       <>
-        <OximeterRectEmbedVideo />
+        <OximeterRectEmbedVideo maxWidth={800} />
       </>
     );
   }

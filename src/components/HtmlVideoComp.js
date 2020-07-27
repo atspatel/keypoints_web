@@ -143,6 +143,7 @@ class HtmlVideoComp extends Component {
     var intervalId = setInterval(this.setProgress, 250);
     this.setState({ intervalId: intervalId });
 
+    this.props.autoplay && this.player.play();
     post_activity("play", this.props.video_id);
   }
 
@@ -572,6 +573,7 @@ class HtmlVideoComp extends Component {
       // video_id,
       maxWidth,
       video_url,
+      // autoplay,
       // overlay_buttons,
       showInstruction,
       showFullScreen,

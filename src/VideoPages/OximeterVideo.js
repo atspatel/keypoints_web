@@ -37,6 +37,7 @@ export class OximeterEmbedVideo extends Component {
           video_id={oximeter_constants.video_id}
           maxWidth={maxWidth ? maxWidth : null}
           video_url={oximeter_constants.video_url}
+          autoplay={true}
           showFullScreen={true}
           overlay_buttons={oximeter_constants.overlay_buttons}
           showMenu={false} // TODO :: generalize this

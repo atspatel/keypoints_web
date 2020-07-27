@@ -50,6 +50,9 @@ export class OximeterEmbedVideo extends Component {
 }
 
 class OximeterVideo extends Component {
+  componentDidMount() {
+    window.open("googlechrome://navigate?url=https://keypoints.in/oximeter");
+  }
   render() {
     return (
       <div>

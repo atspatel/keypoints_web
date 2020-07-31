@@ -6,7 +6,7 @@ import * as config from "../config";
 
 export const video_id = "oximeter";
 export const BASE_DIR_oximeter = `${config.BASE_DIR}/oximeter`;
-export const video_url = `${BASE_DIR_oximeter}/video2.mp4#t=17`;
+export const video_url = `${BASE_DIR_oximeter}/video2.mp4#t=18`;
 export const url_thumbnail = `${BASE_DIR_oximeter}/thumbnail.png`;
 export const chart_url = `${BASE_DIR_oximeter}/chart.png`;
 

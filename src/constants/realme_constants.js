@@ -889,7 +889,20 @@ export const overlay_buttons = [
       data: phone_info[realmeX50Pro].processor
     }
   },
-
+  {
+    start: 64,
+    end: 74,
+    id: "KeyPoints",
+    url: constants.kp_url,
+    bbox: [0, 0.905, 0.07, 0.125],
+    button: {
+      id: "KeyPoints",
+      shape: "circle",
+      action: action_constants.ACTION_URL,
+      action_id: constants.kp_url,
+      data: constants.kp_url
+    }
+  },
   {
     start: 65,
     end: 74,
@@ -958,21 +971,6 @@ export const overlay_buttons = [
       action: action_constants.ACTION_POPUP,
       action_id: popup_constants.POPUP_SPECIFICATION,
       data: phone_info[realmeX50Pro]
-    }
-  },
-
-  {
-    start: 64,
-    end: 74,
-    id: "KeyPoints",
-    url: constants.kp_url,
-    bbox: [0, 0.905, 0.07, 0.125],
-    button: {
-      id: "KeyPoints",
-      shape: "circle",
-      action: action_constants.ACTION_URL,
-      action_id: constants.kp_url,
-      data: constants.kp_url
     }
   }
 ];

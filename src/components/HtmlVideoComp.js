@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import ResizeObserver from "rc-resize-observer";
 import ReactFitText from "react-fittext";
 
-import RadiusDiv from "./RadiusDiv";
-
 import AnimatedProgressProvider from "./AnimatedProgressProvider";
 import { easeQuadInOut } from "d3-ease";
 
@@ -18,6 +16,8 @@ import FullscreenIcon from "@material-ui/icons/Fullscreen";
 import FullscreenExitIcon from "@material-ui/icons/FullscreenExit";
 
 import ListIcon from "@material-ui/icons/List";
+
+import StackedProgressBar, { DurationText } from "./StackedProgressBar";
 
 import * as acton_constants from "../constants/action_constants";
 import * as radius_constants from "../constants/radius_constants";
@@ -42,14 +42,15 @@ class HtmlVideoComp extends Component {
 
     isMenuOpen: false,
     isPaused: true,
-    isMute: false,
 
     button_id: null,
 
     showPopup: null,
     popup_data: null,
 
-    showControl: true
+    showControl: true,
+
+    partialControl: false
   };
 
   update_button_list = current => {
@@ -117,15 +118,15 @@ class HtmlVideoComp extends Component {
     }
   };
 
-  // playerSeekTo = (duration, toPlay) => {
-  //   if (this.player) {
-  //     this.player.currentTime = duration;
-  //     toPlay
-  //       ? this.player.play()
-  //       : this.setState({ isPaused: true }, () => this.player.pause());
-  //     setTimeout(() => this.update_button_list(duration), 200);
-  //   }
-  // };
+  playerSeekTo = (duration, toPlay) => {
+    if (this.player) {
+      this.player.currentTime = duration;
+      toPlay
+        ? this.player.play()
+        : this.setState({ isPaused: true }, () => this.player.pause());
+      setTimeout(() => this.update_button_list(duration), 200);
+    }
+  };
 
   onPause = () => {
     this.setState({ playing: false });
@@ -161,16 +162,22 @@ class HtmlVideoComp extends Component {
         : null;
     return (
       <div
+        key={item.id}
         style={{
           position: "absolute",
           top: item.bbox[0] * height,
           left: item.bbox[1] * width,
           width: item.bbox[2] * width,
           height:
-            item.button && item.button.shape === "circle"
+            item.button &&
+            (item.button.shape === "circle" || item.button.shape === "square")
               ? item.bbox[2] * width
               : item.bbox[3] * height,
-          backgroundColor: "rgba(0, 0, 0, 0.0)"
+          backgroundColor: "rgba(0, 0, 0, 0.3)",
+          backgroundImage: `url(${item.button.background})`,
+          backgroundSize: "contain",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat"
         }}
         onClick={() => {
           if (item.button) {
@@ -228,7 +235,6 @@ class HtmlVideoComp extends Component {
   toggleVolume = () => {
     if (this.player) {
       this.player.muted = !this.player.muted;
-      this.setState({ isMute: this.player.muted });
     }
   };
 
@@ -244,6 +250,20 @@ class HtmlVideoComp extends Component {
     }
   };
 
+  closePopUp = () => {
+    const { showPopup, popup_data } = this.state;
+    showPopup.onClose && showPopup.onClose(this.player, popup_data);
+    this.setState(
+      { showPopup: false, popup_data: null, button_id: null },
+      () => {
+        if (this.state.playedSeconds < this.player.duration - 0.5) {
+          !this.state.isPaused && this.player.play();
+        }
+      }
+    );
+    return true;
+  };
+
   renderPopUp(popup_info, popup_data) {
     const { width, height } = this.state;
     return (
@@ -251,7 +271,7 @@ class HtmlVideoComp extends Component {
         easingFunction={easeQuadInOut}
         valueStart={1}
         valueEnd={popup_info.bbox[0]}
-        duration={1}
+        duration={popup_info.inDuration ? popup_info.inDuration : 1}
       >
         {value => (
           <div
@@ -261,14 +281,18 @@ class HtmlVideoComp extends Component {
               left: popup_info.bbox[1] * width,
               width: popup_info.bbox[2] * width,
               height: popup_info.bbox[3] * height,
-              borderRadius: "1em",
+              // borderRadius: "1em",
               overflow: "hidden",
               // border: "1px solid black",
               backgroundColor: "rgba(255, 255, 255, 0.9)"
             }}
           >
             {value < popup_info.bbox[0] + 0.01 && (
-              <popup_info.component data={popup_data} />
+              <popup_info.component
+                data={popup_data}
+                isMute={this.player.muted}
+                closePopUp={this.closePopUp}
+              />
             )}
           </div>
         )}
@@ -400,167 +424,284 @@ class HtmlVideoComp extends Component {
           alignItems: "center",
           justifyContent: "center"
         }}
-        onClick={() =>
-          this.setState(
-            { showPopup: false, popup_data: null, button_id: null },
-            () => {
-              if (this.state.playedSeconds < this.player.duration - 0.5) {
-                !this.state.isPaused && this.player.play();
-              }
-            }
-          )
-        }
+        onClick={this.closePopUp}
       >
         <p style={{ margin: 0, padding: 0 }}>Back</p>
       </button>
     );
   }
-  renderControls(showMenu, showFullScreen, showInstruction) {
-    const { width, height } = this.state;
-    const control_h = Math.min(0.08 * height, 40);
+
+  renderProgressBar() {
+    const { playedSeconds, partialControl } = this.state;
+    const { timelineMarks } = this.props;
+    return (
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: partialControl ? "100%" : "20%"
+        }}
+      >
+        {!isNaN(this.player.duration) && (
+          <StackedProgressBar
+            current={playedSeconds}
+            total={this.player.duration}
+            marks={timelineMarks ? timelineMarks : []}
+            onChangeSlider={s => this.playerSeekTo(s, true)}
+          />
+        )}
+      </div>
+    );
+  }
+
+  renderPlayPause() {
+    return (
+      <div
+        style={{
+          height: "100%",
+          margin: "0% 2%"
+        }}
+        onClick={this.togglePlay}
+      >
+        {this.player.paused ? (
+          <PlayArrowIcon
+            style={{
+              height: "100%",
+              color: "white"
+            }}
+          />
+        ) : (
+          <PauseIcon
+            style={{
+              height: "100%",
+              color: "white"
+            }}
+          />
+        )}
+      </div>
+    );
+  }
+  renderReplay() {
+    return (
+      <div
+        style={{
+          height: "100%",
+          margin: "0% 2%"
+        }}
+        onClick={this.onReplay}
+      >
+        <ReplayIcon style={{ height: "100%", color: "white" }} />
+      </div>
+    );
+  }
+  renderDuration() {
+    return (
+      <div
+        style={{
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          margin: "0% 2%"
+        }}
+      >
+        <DurationText
+          current={this.state.playedSeconds}
+          total={this.player.duration}
+        />
+      </div>
+    );
+  }
+  renderMenu() {
+    return (
+      <div
+        style={{
+          height: "100%",
+          margin: "0% 2%"
+        }}
+        onClick={this.toggleMenu}
+      >
+        <ListIcon style={{ height: "100%", color: "white" }} />
+      </div>
+    );
+  }
+  renderVolume() {
+    return (
+      <div
+        style={{
+          height: "100%",
+          margin: "0% 2%"
+        }}
+        onClick={this.toggleVolume}
+      >
+        {this.player.muted ? (
+          <VolumeOffIcon style={{ height: "100%", color: "white" }} />
+        ) : (
+          <VolumeUpIcon style={{ height: "100%", color: "white" }} />
+        )}
+      </div>
+    );
+  }
+  renderFullScreen() {
+    return (
+      <div
+        style={{
+          height: "100%",
+          margin: "0% 2%"
+        }}
+        onClick={this.toggleFullScreenDiv}
+      >
+        {this.isFullScreen() ? (
+          <FullscreenExitIcon style={{ height: "100%", color: "white" }} />
+        ) : (
+          <FullscreenIcon style={{ height: "100%", color: "white" }} />
+        )}
+      </div>
+    );
+  }
+  renderControlsButtons(
+    showMenu,
+    showFullScreen,
+    showInstruction,
+    showProgressBar
+  ) {
+    return (
+      <div
+        style={{
+          position: "absolute",
+          top: "20%",
+          width: "96%",
+          height: "80%",
+          display: "flex",
+          flex: 1,
+          alignItems: "center"
+        }}
+      >
+        <div
+          style={{
+            height: "100%",
+            justifyContent: "flex-start",
+            display: "flex",
+            alignItems: "center"
+          }}
+        >
+          {this.renderPlayPause()}
+          {this.renderReplay()}
+          {showProgressBar && this.renderDuration()}
+        </div>
+        <div style={{ height: "100%", display: "flex", flex: 1 }}>
+          {/* {showInstruction && this.renderInstruction()} */}
+        </div>
+        <div
+          style={{
+            height: "100%",
+            justifyContent: "flex-end",
+            display: "flex"
+          }}
+        >
+          {showMenu && this.renderMenu()}
+          {this.renderVolume()}
+          {showFullScreen && this.renderFullScreen()}
+        </div>
+      </div>
+    );
+  }
+  renderControls(showMenu, showFullScreen, showInstruction, showProgressBar) {
+    const { width, height, partialControl } = this.state;
+    let control_h = Math.min(Math.max(0.08 * height, 40), 50);
+    control_h = partialControl ? 0.25 * control_h : control_h;
     const top = height - control_h;
     return (
       <div
         style={{
           position: "absolute",
           top: top,
-          left: 0 * width,
+          left: 0,
           width: width,
           height: control_h,
-          backgroundColor: "rgba(0, 0, 0, 0.3)"
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          display: "flex",
+          flexDirection: "column",
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center"
         }}
       >
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: "3%",
-            width: "5%",
-            height: "90%"
-          }}
-          onClick={this.togglePlay}
-        >
-          {this.player.paused ? (
-            <PlayArrowIcon
-              style={{ height: "100%", width: "100%", color: "white" }}
-            />
-          ) : (
-            <PauseIcon
-              style={{ height: "100%", width: "100%", color: "white" }}
-            />
+        {showProgressBar && this.renderProgressBar()}
+        {!partialControl &&
+          this.renderControlsButtons(
+            showMenu,
+            showFullScreen,
+            showInstruction,
+            showProgressBar
           )}
-        </div>
-
-        <div
+        {/* <div
           style={{
             position: "absolute",
-            top: 0,
-            left: "10%",
-            width: "5%",
-            height: "90%"
+            top: "20%",
+            left: "5%",
+            width: "90%",
+            height: "80%"
           }}
-          onClick={this.onReplay}
         >
-          <ReplayIcon
-            style={{ height: "100%", width: "100%", color: "white" }}
-          />
-        </div>
-        {this.state.button_list.length > 0 && showInstruction && (
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: "20%",
-              width: "50%",
-              height: "90%",
-              display: "flex",
-              flex: 1,
-              justifyContent: "center",
-              alignItems: "center"
-            }}
-          >
-            <p style={{ color: "white" }}>Click {"  "}</p>
+          {this.state.button_list.length > 0 && showInstruction && (
             <div
               style={{
+                position: "absolute",
+                top: 0,
+                left: "20%",
+                width: "50%",
                 height: "90%",
-                margin: "0% 2%",
-                position: "relative",
                 display: "flex",
                 flex: 1,
-                maxWidth: "30%",
                 justifyContent: "center",
                 alignItems: "center"
               }}
             >
-              <RadiusDiv />
-              <p style={{ margin: 0, padding: 0, color: "white" }}>Box</p>
+              <p style={{ color: "white" }}>Click {"  "}</p>
+              <div
+                style={{
+                  height: "90%",
+                  margin: "0% 2%",
+                  position: "relative",
+                  display: "flex",
+                  flex: 1,
+                  maxWidth: "30%",
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                <RadiusDiv />
+                <p style={{ margin: 0, padding: 0, color: "white" }}>Box</p>
+              </div>
+              <p style={{ color: "white" }}>{"  "} to Know More</p>
             </div>
-            <p style={{ color: "white" }}>{"  "} to Know More</p>
-          </div>
-        )}
-        {showMenu && (
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: "75%",
-              width: "5%",
-              height: "90%"
-            }}
-            onClick={this.toggleMenu}
-          >
-            <ListIcon
-              style={{ height: "100%", width: "100%", color: "white" }}
-            />
-          </div>
-        )}
-
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: "83%",
-            width: "5%",
-            height: "90%"
-          }}
-          onClick={this.toggleVolume}
-        >
-          {this.player.muted ? (
-            <VolumeOffIcon
-              style={{ height: "100%", width: "100%", color: "white" }}
-            />
-          ) : (
-            <VolumeUpIcon
-              style={{ height: "100%", width: "100%", color: "white" }}
-            />
           )}
-        </div>
-        {showFullScreen && (
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: "90%",
-              width: "5%",
-              height: "90%"
-            }}
-            onClick={this.toggleFullScreenDiv}
-          >
-            {this.isFullScreen() ? (
-              <FullscreenExitIcon
-                style={{ height: "100%", width: "100%", color: "white" }}
-              />
-            ) : (
-              <FullscreenIcon
-                style={{ height: "100%", width: "100%", color: "white" }}
-              />
-            )}
-          </div>
-        )}
+        </div> */}
       </div>
     );
   }
 
+  doClickAction() {
+    console.log(" click");
+  }
+  doDoubleClickAction() {
+    console.log("Double Click");
+  }
+  handleClick = () => {
+    this.timer = setTimeout(function() {
+      if (!this.prevent) {
+        this.doClickAction();
+      }
+      this.prevent = false;
+    }, 200);
+  };
+  handleDoubleClick = () => {
+    this.timer && clearTimeout(this.timer);
+    this.prevent = true;
+    this.doDoubleClickAction();
+  };
   render() {
     const {
       marginTop,
@@ -577,7 +718,9 @@ class HtmlVideoComp extends Component {
       // overlay_buttons,
       showInstruction,
       showFullScreen,
-      showMenu
+      showMenu,
+      showProgressBar
+      // timelineMarks
       // endLoop
     } = this.props;
     return (
@@ -595,7 +738,22 @@ class HtmlVideoComp extends Component {
         }}
       >
         <ResizeObserver onResize={this.updateDimensions}>
-          <video ref={c => (this.player = c)} width="100%" height="100%">
+          <video
+            ref={c => (this.player = c)}
+            width="100%"
+            height="100%"
+            muted
+            onClick={this.togglePlay}
+            onDoubleClick={() => {
+              this.setState({ partialControl: !this.state.partialControl });
+            }}
+            onMouseEnter={() => {
+              this.setState({ partialControl: false });
+            }}
+            onMouseLeave={() => {
+              this.setState({ partialControl: true });
+            }}
+          >
             <source
               src={video_url}
               type="video/mp4"
@@ -609,18 +767,29 @@ class HtmlVideoComp extends Component {
             top: marginTop,
             left: marginLeft
           }}
+          onMouseEnter={() => {
+            this.setState({ partialControl: false });
+          }}
+          onMouseLeave={() => {
+            this.setState({ partialControl: true });
+          }}
         >
           {(!showPopup || showPopup.showOverlayButtons) &&
             this.render_overlay_buttons()}
 
-          {showPopup && this.renderBackButton()}
           {showPopup && this.renderPopUp(showPopup, popup_data)}
+          {showPopup && showPopup.showBackButton && this.renderBackButton()}
 
           {showMenu && this.state.isMenuOpen && this.renderMenu()}
           {showControl &&
             !showPopup &&
             this.player &&
-            this.renderControls(showMenu, showFullScreen, showInstruction)}
+            this.renderControls(
+              showMenu,
+              showFullScreen,
+              showInstruction,
+              showProgressBar
+            )}
         </div>
       </div>
     );

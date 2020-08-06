@@ -35,6 +35,7 @@ class HtmlVideoComp extends Component {
     height: null,
     width: null,
 
+    isMute: true,
     playing: true,
     playedSeconds: 0,
 
@@ -138,6 +139,7 @@ class HtmlVideoComp extends Component {
 
   componentDidMount() {
     this.updateDimensions();
+    this.setState({ isMute: this.player.muted });
     this.player.addEventListener("pause", this.onPause);
     this.player.addEventListener("play", this.onPlay);
 
@@ -173,8 +175,10 @@ class HtmlVideoComp extends Component {
             (item.button.shape === "circle" || item.button.shape === "square")
               ? item.bbox[2] * width
               : item.bbox[3] * height,
-          backgroundColor: "rgba(0, 0, 0, 0.3)",
-          backgroundImage: `url(${item.button.background})`,
+          backgroundColor: item.button.background ? "rgba(0, 0, 0, 0.3)" : null,
+          backgroundImage: item.button.background
+            ? `url(${item.button.background})`
+            : null,
           backgroundSize: "contain",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat"
@@ -236,6 +240,7 @@ class HtmlVideoComp extends Component {
   toggleVolume = () => {
     if (this.player) {
       this.player.muted = !this.player.muted;
+      this.setState({ isMute: this.player.muted });
     }
   };
 
@@ -307,7 +312,7 @@ class HtmlVideoComp extends Component {
         style={{
           position: "absolute",
           top: 0.71 * height,
-          left: 0.7 * width,
+          left: 0.85 * width,
           width: 0.1 * width,
           height: 0.21 * height,
 
@@ -514,7 +519,7 @@ class HtmlVideoComp extends Component {
       </div>
     );
   }
-  renderMenu() {
+  renderMenuIcon() {
     return (
       <div
         style={{
@@ -601,7 +606,7 @@ class HtmlVideoComp extends Component {
             display: "flex"
           }}
         >
-          {showMenu && this.renderMenu()}
+          {showMenu && this.renderMenuIcon()}
           {this.renderVolume()}
           {showFullScreen && this.renderFullScreen()}
         </div>
@@ -743,7 +748,6 @@ class HtmlVideoComp extends Component {
             ref={c => (this.player = c)}
             width="100%"
             height="100%"
-            muted
             onClick={this.togglePlay}
             onDoubleClick={() => {
               this.setState({ partialControl: !this.state.partialControl });

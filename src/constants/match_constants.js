@@ -8,7 +8,11 @@ export const BASE_DIR_MATCH = `${config.BASE_DIR}/match`;
 
 export const video_id = "hotstart";
 export const video_url = `${BASE_DIR_MATCH}/highlights.mp4`;
-export const bg_png = `${BASE_DIR_MATCH}/button1.png`;
+export const bg_png = `${BASE_DIR_MATCH}/button_001.png`;
+
+export const stat_png = `${BASE_DIR_MATCH}/button_002.png`;
+export const analysis_png = `${BASE_DIR_MATCH}/button_003.png`;
+
 export const replay_png = `${BASE_DIR_MATCH}/replay.png`;
 export const url_thumbnail = null;
 export const match_data = [
@@ -151,12 +155,12 @@ function modify_buttons_and_marks() {
 
   match_data.map((item, index) => {
     const inButton = {
-      id: item.id,
+      id: `${item.id}_replay`,
       start: item.start,
       end: item.end,
       bbox: [0.7, 0.85, 0.07, 0.09],
       button: {
-        id: item.id,
+        id: `${item.id}_replay`,
         shape: null,
         action: action_constants.ACTION_POPUP,
         action_id: popup_constants.POPUP_VIDEO,
@@ -164,7 +168,38 @@ function modify_buttons_and_marks() {
         background: bg_png
       }
     };
-    overlay_buttons = [...overlay_buttons, inButton];
+    const statButton = {
+      id: `${item.id}_start`,
+      start: item.start,
+      end: item.end,
+      bbox: [0.6, 0.85, 0.07, 0.09],
+      button: {
+        id: `${item.id}_start`,
+        shape: null,
+        action: null,
+        action_id: null,
+        data: { src: item.source, end: item.end },
+        background: stat_png
+      }
+    };
+    const analysisButton = {
+      id: `${item.id}_analysis`,
+      start: item.start,
+      end: item.end,
+      bbox: [0.5, 0.85, 0.07, 0.09],
+      button: {
+        id: `${item.id}_analysis`,
+        shape: null,
+        action: null,
+        action_id: null,
+        data: { src: item.source, end: item.end },
+        background: analysis_png
+      }
+    };
+    overlay_buttons = [
+      ...overlay_buttons,
+      ...[inButton, statButton, analysisButton]
+    ];
   });
   return overlay_buttons;
 }

@@ -5,7 +5,6 @@ import * as config from "../config";
 export const replay_png = `${config.BASE_DIR}/replay.png`;
 
 export const onClosePopUp = function(player, popup_data) {
-  console.log(player);
   player.currentTime = popup_data.end + 0.3;
   player.play();
 };

@@ -182,7 +182,8 @@ class HtmlVideoComp extends Component {
         onClick={() => {
           if (item.button) {
             post_activity("click", this.props.video_id, item.button.id);
-            acton_constants.ACTION[item.button.action](this, item.button);
+            item.button.action &&
+              acton_constants.ACTION[item.button.action](this, item.button);
           }
         }}
       >

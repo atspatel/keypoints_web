@@ -45,7 +45,9 @@ class SamsungDemo extends Component {
   state = {
     x: parseInt(0.5 * innerWidth),
     y: parseInt(0.5 * innerWidth),
-    clicked: false
+    clicked: false,
+
+    started: false
   };
 
   syncVideo = () => {
@@ -67,11 +69,19 @@ class SamsungDemo extends Component {
     this[key] = c;
   };
 
-  componentDidMount() {
+  startVideo() {
     setTimeout(() => {
       this.player1.play();
       this.player2.play();
-    }, 2000);
+      this.setState({ started: true });
+    }, 1000);
+  }
+
+  componentDidMount() {
+    // setTimeout(() => {
+    //   this.player1.play();
+    //   this.player2.play();
+    // }, 2000);
     var intervalId = setInterval(this.syncVideo, 10);
     this.setState({ intervalId: intervalId });
   }
@@ -101,6 +111,19 @@ class SamsungDemo extends Component {
             zIndex: 3
           }}
         />
+        {!this.state.started && (
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              zIndex: 4
+            }}
+            onClick={() => this.startVideo()}
+          ></div>
+        )}
         <div
           style={{
             position: "absolute",

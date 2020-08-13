@@ -11,6 +11,9 @@ import NeuButton from "./NeuButton";
 import { format_seconds } from "../functions/createPlayList";
 import "../css/app.css";
 
+import * as curefit_constants from "../constants/curefit_constants";
+const video_url = curefit_constants.video_url;
+
 class PreviewVideo extends Component {
   render() {
     const { src, name } = this.props;
@@ -172,6 +175,23 @@ class CureFitDashboard extends Component {
           position: "relative"
         }}
       >
+        <div
+          style={{
+            position: "absolute",
+            top: "0%",
+            left: "0%",
+            height: "100%",
+            width: "100%"
+          }}
+        >
+          <video
+            src={video_url}
+            style={{ height: "100%", width: "100%" }}
+            loop
+            muted
+            autoPlay
+          />
+        </div>
         <div
           style={{
             position: "absolute",

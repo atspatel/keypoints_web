@@ -26,7 +26,6 @@ class CurefitVideo extends Component {
     create_playlist(workout_data).then(response => {
       if (response.status) {
         const playlist = response.playlist;
-        console.log(playlist);
         this.setState({ workout_data: workout_data, playlist: playlist });
       }
     });

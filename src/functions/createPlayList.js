@@ -24,7 +24,7 @@ export function format_seconds(s, isHour = false) {
 }
 
 export async function get_exc_data() {
-  const api_url = `${config.host}/media_ops/get_data/`;
+  const api_url = `${config.host}/excercise_ops/get_data/`;
   var output = null;
 
   await axios.get(api_url).then(response => {
@@ -34,7 +34,7 @@ export async function get_exc_data() {
 }
 
 export default async function create_playlist(workout) {
-  const api_url = `${config.host}/media_ops/create_playlist/`;
+  const api_url = `${config.host}/excercise_ops/create_playlist/`;
   var output = null;
 
   const data = {

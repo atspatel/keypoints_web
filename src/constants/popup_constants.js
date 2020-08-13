@@ -1,7 +1,5 @@
 import React from "react";
 
-import * as action_constants from "./action_constants";
-
 import CameraPopUp from "../components/CameraPopUp";
 import SpecificationPopUp from "../components/SpecificationPopUp";
 import ImagePopUp from "../components/ImagePopUp";

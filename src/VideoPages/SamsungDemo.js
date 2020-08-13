@@ -140,6 +140,7 @@ class SamsungDemo extends Component {
               position: "absolute",
               margin: 10
             }}
+            alt=""
           />
           <FullScreenHLSVideo
             name={"player1"}
@@ -157,6 +158,7 @@ class SamsungDemo extends Component {
               right: 0,
               margin: 10
             }}
+            alt=""
           />
           <FullScreenHLSVideo
             name={"player2"}

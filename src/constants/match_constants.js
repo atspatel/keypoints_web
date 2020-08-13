@@ -1,6 +1,5 @@
 import * as action_constants from "./action_constants";
 import * as popup_constants from "./popup_constants";
-import * as radius_constants from "./radius_constants";
 
 import * as config from "../config";
 

@@ -5,6 +5,7 @@ import RealmeVideo from "./VideoPages/RealmeVideo";
 import MatchVideo from "./VideoPages/MatchVideo";
 import SamsungDemo from "./VideoPages/SamsungDemo";
 import OximeterVideo, { OximeterEmbedVideo } from "./VideoPages/OximeterVideo";
+import CurefitVideo from "./VideoPages/CurefitVideo";
 
 class AppRoute extends Component {
   render() {
@@ -16,6 +17,7 @@ class AppRoute extends Component {
         <Route path="/embed_oximeter" render={() => <OximeterEmbedVideo />} />
         <Route path="/hotstar" render={() => <MatchVideo />} />
         <Route path="/samsung" render={() => <SamsungDemo />} />
+        <Route path="/curefit" render={() => <CurefitVideo />} />
         <Route render={() => <Redirect to="/sample_video" />} />
       </Switch>
     );

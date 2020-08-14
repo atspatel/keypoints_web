@@ -59,7 +59,7 @@ class SamsungDemo extends Component {
     }
   };
   _onMouseMove = e => {
-    this.state.clicked && this.setState({ x: e.screenX, y: e.screenY - 100 });
+    this.state.clicked && this.setState({ x: e.clientX });
   };
 
   _onTouchMove = e => {
@@ -91,6 +91,7 @@ class SamsungDemo extends Component {
   render() {
     return (
       <div
+        ref={c => (this.container = c)}
         onMouseMove={this._onMouseMove}
         onTouchMove={this._onTouchMove}
         onMouseDown={() => {

@@ -260,20 +260,41 @@ class IEVideo extends Component {
               justifyContent: "center"
             }}
           >
-            <p
+            <div
               style={{
-                color: "white",
-                fontWeight: "bold",
-                borderRadius: 20,
-                // margin: "20px 20px",
-                padding: "20px 20px",
-                backgroundColor: isPushed ? "#DDA6A6" : "#DD0604"
+                display: "flex",
+                flexDirection: "column",
+                padding: "5px 10px",
+                backgroundColor: isPushed ? "#DDA6A6" : "#DD0604",
+                borderRadius: 20
               }}
-              className="centerH"
-              onClick={this.onClickButton}
             >
-              {video_info[buttonObj.p].section}
-            </p>
+              <p
+                style={{
+                  color: "white",
+                  fontWeight: "bold",
+                  fontSize: 18,
+                  margin: 0,
+                  padding: 0
+                }}
+                className="centerH"
+                onClick={this.onClickButton}
+              >
+                {video_info[buttonObj.p].section}
+              </p>
+              <p
+                style={{
+                  alignSelf: "flex-end",
+                  color: "white",
+                  fontWeight: "bold",
+                  fontSize: 12,
+                  margin: 0,
+                  padding: 0
+                }}
+              >
+                {"Watch More (Click to add)"}
+              </p>
+            </div>
           </div>
         )}
       </div>

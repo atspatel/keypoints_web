@@ -9,8 +9,6 @@ import "../css/app.css";
 
 import * as sharechat_constants from "../constants/sharechat/sharechat_constants";
 
-import * as video_001_const from "../constants/sharechat/video_001_const";
-
 const colors = ["#9661BA", "#40C9FF", "#FFA233", "#FF5A7E", "#FFD814"];
 const borderColor = "#494949";
 

@@ -479,6 +479,7 @@ class ShareChatPlaylist extends Component {
           position: "relative"
         }}
         className="centerH"
+        onContextMenu={e => e.preventDefault()}
       >
         <VideoTitle title={title} width={width} />
         {selected_id && (

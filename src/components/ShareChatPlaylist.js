@@ -12,8 +12,6 @@ import * as sharechat_constants from "../constants/sharechat/sharechat_constants
 const colors = ["#9661BA", "#40C9FF", "#FFA233", "#FF5A7E", "#FFD814"];
 const borderColor = "#494949";
 
-const { innerHeight, innerWidth } = window;
-
 class PlaylistButton extends Component {
   state = {
     opacity: 1
@@ -317,7 +315,13 @@ class VideoSection extends Component {
     clearInterval(this.state.intervalId);
   }
   render() {
-    const { playlist, button_size, isSingleAudio, audioFile } = this.props;
+    const {
+      playlist,
+      button_size,
+      isSingleAudio,
+      audioFile,
+      width
+    } = this.props;
     const { selected_id, playedSeconds, paused } = this.state;
     return (
       <div
@@ -367,7 +371,7 @@ class VideoSection extends Component {
         <div
           style={{
             position: "absolute",
-            top: "80%",
+            top: "75%",
             left: 0,
             width: "100%",
             display: "flex",
@@ -423,7 +427,7 @@ class VideoSection extends Component {
                 flex: 1
               }}
             ></div>
-            <div style={{ color: "white", fontSize: "3vw" }}>
+            <div style={{ color: "white", fontSize: 0.035 * width }}>
               {"विडीओ बदलने के लिए बटन क्लिक करे।"}
             </div>
             <div
@@ -452,7 +456,7 @@ class ShareChatPlaylist extends Component {
   componentDidMount() {
     const { clientWidth } = this.container;
     const { playlist } = this.props;
-    const button_size = clientWidth / playlist.length - 10;
+    const button_size = clientWidth / Math.max(playlist.length, 4) - 10;
     this.setState({
       button_size: button_size,
       width: clientWidth,
@@ -471,8 +475,6 @@ class ShareChatPlaylist extends Component {
           width: "100%",
           border: "1px solid black",
           backgroundColor: borderColor,
-          maxHeight: innerHeight,
-          maxWidth: innerWidth,
           overflow: "hidden",
           position: "relative"
         }}
@@ -486,6 +488,7 @@ class ShareChatPlaylist extends Component {
             audioFile={audioFile}
             selected_id={selected_id}
             button_size={button_size}
+            width={width}
           />
         )}
       </div>

@@ -69,7 +69,7 @@ class PreviewThumbnail extends Component {
             onClickDelete();
           }}
         >
-          <NeuButton>
+          <NeuButton style={{ borderRadius: 20, backgroundColor: "#fd3461" }}>
             <DeleteIcon style={{ color: "white" }} />
           </NeuButton>
         </div>
@@ -387,7 +387,12 @@ class CureFitDashboard extends Component {
                           margin: 5
                         }}
                       >
-                        <NeuButton>
+                        <NeuButton
+                          style={{
+                            borderRadius: 20,
+                            backgroundColor: "#fd3461"
+                          }}
+                        >
                           <AddIcon
                             style={{ width: "100%", height: "100%" }}
                             onClick={() => {
@@ -420,7 +425,12 @@ class CureFitDashboard extends Component {
                           margin: 5
                         }}
                       >
-                        <NeuButton>
+                        <NeuButton
+                          style={{
+                            borderRadius: 20,
+                            backgroundColor: "#fd3461"
+                          }}
+                        >
                           <RemoveIcon
                             style={{ width: "100%", height: "100%" }}
                             onClick={() => {
@@ -440,7 +450,12 @@ class CureFitDashboard extends Component {
                           marginTop: 20
                         }}
                       >
-                        <NeuButton>
+                        <NeuButton
+                          style={{
+                            borderRadius: 20,
+                            backgroundColor: "#fd3461"
+                          }}
+                        >
                           <div
                             style={{
                               width: "100%",
@@ -520,7 +535,12 @@ class CureFitDashboard extends Component {
                         position: "relative"
                       }}
                     >
-                      <NeuButton>
+                      <NeuButton
+                        style={{
+                          borderRadius: 20,
+                          backgroundColor: "#fd3461"
+                        }}
+                      >
                         <RemoveIcon
                           style={{ width: "100%", height: "100%" }}
                           onClick={() => {
@@ -541,7 +561,12 @@ class CureFitDashboard extends Component {
                         position: "relative"
                       }}
                     >
-                      <NeuButton>
+                      <NeuButton
+                        style={{
+                          borderRadius: 20,
+                          backgroundColor: "#fd3461"
+                        }}
+                      >
                         <AddIcon
                           style={{ width: "100%", height: "100%" }}
                           onClick={() => {
@@ -594,7 +619,12 @@ class CureFitDashboard extends Component {
                           ]);
                       }}
                     >
-                      <NeuButton>
+                      <NeuButton
+                        style={{
+                          borderRadius: 20,
+                          backgroundColor: "#fd3461"
+                        }}
+                      >
                         <div>Start</div>
                       </NeuButton>
                     </div>

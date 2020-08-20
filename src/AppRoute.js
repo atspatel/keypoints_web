@@ -8,6 +8,8 @@ import OximeterVideo, { OximeterEmbedVideo } from "./VideoPages/OximeterVideo";
 import CurefitVideo from "./VideoPages/CurefitVideo";
 import IEVideo from "./VideoPages/IEVideo";
 
+import ShareChatVideo001 from "./VideoPages/sharechat/ShareChatVideo001";
+
 class AppRoute extends Component {
   render() {
     return (
@@ -20,6 +22,7 @@ class AppRoute extends Component {
         <Route path="/samsung" render={() => <SamsungDemo />} />
         <Route path="/curefit" render={() => <CurefitVideo />} />
         <Route path="/indianexpress" render={() => <IEVideo />} />
+        <Route path="/sharechat_001" render={() => <ShareChatVideo001 />} />
         <Route render={() => <Redirect to="/sample_video" />} />
       </Switch>
     );

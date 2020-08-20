@@ -7,6 +7,7 @@ class NeuButton extends Component {
     buttonClass: "neu"
   };
   render() {
+    const { style } = this.props;
     return (
       <div
         style={{
@@ -14,7 +15,8 @@ class NeuButton extends Component {
           height: "100%",
           display: "flex",
           justifyContent: "center",
-          alignItems: "center"
+          alignItems: "center",
+          ...style
         }}
         className={this.state.buttonClass}
         onMouseDown={() => {
@@ -24,6 +26,12 @@ class NeuButton extends Component {
           this.setState({ buttonClass: "neu" });
         }}
         onMouseLeave={() => {
+          this.setState({ buttonClass: "neu" });
+        }}
+        onTouchStart={() => {
+          this.setState({ buttonClass: "selected-neu" });
+        }}
+        onTouchEnd={() => {
           this.setState({ buttonClass: "neu" });
         }}
       >

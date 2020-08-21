@@ -10,25 +10,25 @@ export const playlist = [
   {
     id: 1,
     button_id: "ballaleshvar_button",
-    src: `${BASE_DIR_video}/ballaleshvar.mp4`,
-    thumbnail: `${BASE_DIR_video}/ballaleshvar_thumb.png`
+    src: `${BASE_DIR_video}/ballaleshvar/ballaleshvar.m3u8`,
+    thumbnail: `${BASE_DIR_video}/ballaleshvar/ballaleshvar_thumb.png`
   },
   {
     id: 2,
     button_id: "udhyan_button",
-    src: `${BASE_DIR_video}/udhyan.mp4`,
-    thumbnail: `${BASE_DIR_video}/udhyan_thumb.png`
+    src: `${BASE_DIR_video}/udhyan/udhyan.m3u8`,
+    thumbnail: `${BASE_DIR_video}/udhyan/udhyan_thumb.png`
   },
   {
     id: 3,
     button_id: "shiddhivinayak_button",
-    src: `${BASE_DIR_video}/shiddhivinayak.mp4`,
-    thumbnail: `${BASE_DIR_video}/shiddhivinayak_thumb.png`
+    src: `${BASE_DIR_video}/shiddhivinayak/shiddhivinayak.m3u8`,
+    thumbnail: `${BASE_DIR_video}/shiddhivinayak/shiddhivinayak_thumb.png`
   },
   {
     id: 4,
     button_id: "khajrana_button",
-    src: `${BASE_DIR_video}/khajrana.mp4`,
-    thumbnail: `${BASE_DIR_video}/khajrana_thumb.png`
+    src: `${BASE_DIR_video}/khajrana/khajrana.m3u8`,
+    thumbnail: `${BASE_DIR_video}/khajrana/khajrana_thumb.png`
   }
 ];

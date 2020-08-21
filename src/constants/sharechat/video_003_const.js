@@ -10,25 +10,25 @@ export const playlist = [
   {
     id: 1,
     button_id: "murti_making_01_button",
-    src: `${BASE_DIR_video}/murti_making_01.mp4`,
-    thumbnail: `${BASE_DIR_video}/murti_making_01_thumb.png`
+    src: `${BASE_DIR_video}/murti_making_01/murti_making_01.m3u8`,
+    thumbnail: `${BASE_DIR_video}/murti_making_01/murti_making_01_thumb.png`
   },
   {
     id: 2,
     button_id: "murti_making_02_button",
-    src: `${BASE_DIR_video}/murti_making_02.mp4`,
-    thumbnail: `${BASE_DIR_video}/murti_making_02_thumb.png`
+    src: `${BASE_DIR_video}/murti_making_02/murti_making_02.m3u8`,
+    thumbnail: `${BASE_DIR_video}/murti_making_02/murti_making_02_thumb.png`
   },
   {
     id: 3,
     button_id: "murti_making_03_button",
-    src: `${BASE_DIR_video}/murti_making_03.mp4`,
-    thumbnail: `${BASE_DIR_video}/murti_making_03_thumb.png`
+    src: `${BASE_DIR_video}/murti_making_03/murti_making_03.m3u8`,
+    thumbnail: `${BASE_DIR_video}/murti_making_03/murti_making_03_thumb.png`
   },
   {
     id: 4,
     button_id: "murti_making_04_button",
-    src: `${BASE_DIR_video}/murti_making_04.mp4`,
-    thumbnail: `${BASE_DIR_video}/murti_making_04_thumb.png`
+    src: `${BASE_DIR_video}/murti_making_04/murti_making_04.m3u8`,
+    thumbnail: `${BASE_DIR_video}/murti_making_04/murti_making_04_thumb.png`
   }
 ];

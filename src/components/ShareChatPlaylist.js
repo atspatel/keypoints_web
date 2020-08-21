@@ -5,6 +5,7 @@ import PlayCircleFilledRoundedIcon from "@material-ui/icons/PlayCircleFilledRoun
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
+import HLSVideo from "./HLSVideo";
 import NeuButton from "./NeuButton";
 import "../css/app.css";
 
@@ -149,21 +150,20 @@ class VideoPlayer extends Component {
           style={{
             position: "absolute",
             height: "100%",
-            width: "100%"
+            width: "100%",
+            backgroundColor: "rgba(0,0,0,0.4)"
           }}
         >
-          <video
-            key={item.id}
-            ref={c => (this.player = c)}
-            src={item.src}
-            preload="auto"
-            muted={isSingleAudio ? true : false}
-            style={{
-              height: "100%",
-              objectFit: "contain",
-              width: "100%",
-              backgroundColor: "rgba(0,0,0,0.4)"
+          <HLSVideo
+            setRef={c => {
+              this.player = c;
             }}
+            src={item.src}
+            poster={item.thumbnail}
+            muted={true}
+            loop={false}
+            autoPlay={false}
+            objectFit="contain"
           />
         </div>
       </div>
@@ -202,7 +202,7 @@ class VideoTitle extends Component {
           style={{
             margin: "0px 10px",
             padding: 0,
-            fontSize: 0.05 * width,
+            fontSize: 0.045 * width,
             color: "white"
           }}
         >
@@ -243,9 +243,11 @@ class VideoSection extends Component {
     if (current_index < playlist.length - 1) {
       this.changeSelectedIndex(playlist[current_index + 1].id, true);
     } else {
+      console.log("here........");
       this.setState({ paused: true }, () => {
         this.changeSelectedIndex(playlist[0].id, false);
         if (this.audio_player) {
+          this.audio_player.pause();
           this.audio_player.currentTime = 0;
         }
       });
@@ -452,16 +454,26 @@ class VideoSection extends Component {
               style={{
                 borderBottom: "1px solid white",
                 borderLeft: "1px solid white",
+                borderBottomLeftRadius: 20,
                 flex: 1
               }}
             ></div>
-            <div style={{ color: "white", fontSize: 0.035 * width }}>
+            <div
+              style={{
+                color: "white",
+                fontSize: 0.035 * width,
+                backgroundColor: `rgba(0,0,0,0.5)`,
+                borderBottom: "1px solid white",
+                padding: 2
+              }}
+            >
               {"विडीओ बदलने के लिए बटन क्लिक करे।"}
             </div>
             <div
               style={{
                 borderBottom: "1px solid white",
                 borderRight: "1px solid white",
+                borderBottomRightRadius: 20,
                 flex: 1
               }}
             ></div>

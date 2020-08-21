@@ -10,25 +10,25 @@ export const playlist = [
   {
     id: 1,
     button_id: "shilpa_button",
-    src: `${BASE_DIR_video}/shilpa.mp4`,
-    thumbnail: `${BASE_DIR_video}/shilpa_thumb.png`
+    src: `${BASE_DIR_video}/shilpa/shilpa.m3u8`,
+    thumbnail: `${BASE_DIR_video}/shilpa/shilpa_thumb.png`
   },
   {
     id: 2,
     button_id: "sonakshi_button",
-    src: `${BASE_DIR_video}/sonakshi.mp4`,
-    thumbnail: `${BASE_DIR_video}/sonakshi_thumb.png`
+    src: `${BASE_DIR_video}/sonakshi/sonakshi.m3u8`,
+    thumbnail: `${BASE_DIR_video}/sonakshi/sonakshi_thumb.png`
   },
   {
     id: 3,
     button_id: "bhai_button",
-    src: `${BASE_DIR_video}/bhai.mp4`,
-    thumbnail: `${BASE_DIR_video}/bhai_thumb.png`
+    src: `${BASE_DIR_video}/bhai/bhai.m3u8`,
+    thumbnail: `${BASE_DIR_video}/bhai/bhai_thumb.png`
   },
   {
     id: 4,
     button_id: "nawaz_button",
-    src: `${BASE_DIR_video}/nawaz.mp4`,
-    thumbnail: `${BASE_DIR_video}/nawaz_thumb.png`
+    src: `${BASE_DIR_video}/nawaz/nawaz.m3u8`,
+    thumbnail: `${BASE_DIR_video}/nawaz/nawaz_thumb.png`
   }
 ];

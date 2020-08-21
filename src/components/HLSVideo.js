@@ -17,14 +17,20 @@ class HLSVideo extends Component {
     }
   }
   render() {
-    const { muted, controls, loop, setRef } = this.props;
+    const { poster, muted, controls, loop, setRef, objectFit } = this.props;
+
     return (
       <video
         ref={c => {
           this.player = c;
           setRef && setRef(c);
         }}
-        style={{ width: "100%", height: "100%", objectFit: "fill" }}
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: objectFit ? objectFit : "fill"
+        }}
+        poster={poster}
         controls={controls}
         muted={muted}
         loop={loop}

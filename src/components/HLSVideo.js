@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import Hls from "hls.js";
 
-var config = {};
-
 class HLSVideo extends Component {
   componentDidMount() {
-    const { src, autoPlay } = this.props;
+    const { src, autoPlay, maxBuffer } = this.props;
+    var config = { maxMaxBufferLength: maxBuffer ? maxBuffer : 300 };
     if (Hls.isSupported()) {
       var video = this.player;
       var hls = new Hls(config);

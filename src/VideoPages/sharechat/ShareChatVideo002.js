@@ -5,7 +5,7 @@ import ShareChatVideo from "./ShareChatVideo";
 
 class ShareChatVideo002 extends Component {
   render() {
-    return <ShareChatVideo video_const={video_const} />;
+    return <ShareChatVideo video_const={video_const} {...this.props} />;
   }
 }
 

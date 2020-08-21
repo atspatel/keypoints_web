@@ -3,9 +3,15 @@ import * as sharechat_constants from "./sharechat_constants";
 const BASE_DIR_video = `${sharechat_constants.BASE_DIR_sharechat}/video_002`;
 
 export const video_id = "celebs_video_002";
-export const title = "गणपति के आने से सब जगह मस्ती का माहौल।";
 export const isSingleAudio = true;
 export const audioFile = `${BASE_DIR_video}/celebs_audio.mp3`;
+
+export const title = {
+  hindi: "गणपति के आने से सब जगह मस्ती का माहौल।",
+  marathi: "गणपतीच्या आगमनाने सर्वत्र गमतीचे वातावरण.",
+  gujarati: "ગણપતિના આગમનથી બધે આનંદનું વાતાવરણ."
+};
+
 export const playlist = [
   {
     id: 1,

@@ -3,9 +3,14 @@ import * as sharechat_constants from "./sharechat_constants";
 const BASE_DIR_video = `${sharechat_constants.BASE_DIR_sharechat}/video_001`;
 
 export const video_id = "shayari_video_001";
-export const title = "गणेश चतुर्थी पर शायरी।";
 export const isSingleAudio = true;
 export const audioFile = `${BASE_DIR_video}/poetry_bg.mp3`;
+
+export const title = {
+  hindi: "गणेश चतुर्थी पर शायरी।",
+  marathi: "गणेश चतुर्थीवर शायरी.",
+  gujarati: "ગણેશ ચતુર્થી પર શાયરી."
+};
 
 export const playlist = [
   {

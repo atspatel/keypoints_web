@@ -16,6 +16,8 @@ import * as sharechat_constants from "../constants/sharechat/sharechat_constants
 const colors = ["#9661BA", "#40C9FF", "#FFA233", "#FF5A7E", "#FFD814"];
 const borderColor = "#494949";
 
+const instruction = sharechat_constants.button_instruction;
+
 class PlaylistButton extends Component {
   state = {
     opacity: 1
@@ -160,6 +162,7 @@ class VideoPlayer extends Component {
             }}
             src={item.src}
             poster={item.thumbnail}
+            maxBuffer={30}
             muted={true}
             loop={false}
             autoPlay={false}
@@ -344,6 +347,7 @@ class VideoSection extends Component {
     const {
       video_id,
       session_id,
+      lang,
       playlist,
       button_size,
       isSingleAudio,
@@ -467,7 +471,7 @@ class VideoSection extends Component {
                 padding: 2
               }}
             >
-              {"विडीओ बदलने के लिए बटन क्लिक करे।"}
+              {instruction[lang] ? instruction[lang] : instruction.hindi}
             </div>
             <div
               style={{
@@ -516,7 +520,15 @@ class ShareChatPlaylist extends Component {
 
   render() {
     const { button_size, width, selected_id, session_id } = this.state;
-    const { video_id, title, isSingleAudio, playlist, audioFile } = this.props;
+    const {
+      video_id,
+      lang,
+      title,
+      isSingleAudio,
+      playlist,
+      audioFile
+    } = this.props;
+    const v_title = lang && title[lang] ? title[lang] : title.hindi;
     return (
       <div
         ref={c => (this.container = c)}
@@ -531,10 +543,11 @@ class ShareChatPlaylist extends Component {
         className="centerH"
         onContextMenu={e => e.preventDefault()}
       >
-        <VideoTitle title={title} width={width} />
+        <VideoTitle title={v_title} width={width} />
         {selected_id && (
           <VideoSection
             video_id={video_id}
+            lang={lang}
             session_id={session_id}
             playlist={playlist}
             isSingleAudio={isSingleAudio}

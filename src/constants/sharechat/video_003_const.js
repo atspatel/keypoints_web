@@ -3,9 +3,15 @@ import * as sharechat_constants from "./sharechat_constants";
 const BASE_DIR_video = `${sharechat_constants.BASE_DIR_sharechat}/video_003`;
 
 export const video_id = "murti_making_video_003";
-export const title = "ऐसे बनाए जाते हैं प्यारे गणपति।";
 export const isSingleAudio = true;
 export const audioFile = `${BASE_DIR_video}/murti_making_audio.mp3`;
+
+export const title = {
+  hindi: "ऐसे बनाए जाते हैं प्यारे गणपति।",
+  marathi: "अशाप्रकारे लाडक्या गणपती तयार केल्या जातात.",
+  gujarati: "આ રીતે પ્રિય ગણપતિ બનાવવામાં આવે છે."
+};
+
 export const playlist = [
   {
     id: 1,

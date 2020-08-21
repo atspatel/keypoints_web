@@ -3,9 +3,15 @@ import * as sharechat_constants from "./sharechat_constants";
 const BASE_DIR_video = `${sharechat_constants.BASE_DIR_sharechat}/video_005`;
 
 export const video_id = "celebs_video_005";
-export const title = "इस तरह लिया सबने गणपति का आशीर्वाद।";
 export const isSingleAudio = true;
 export const audioFile = `${BASE_DIR_video}/ganpati_ki_jay_jay_kr.mp3`;
+
+export const title = {
+  hindi: "इस तरह लिया सबने गणपति का आशीर्वाद।",
+  marathi: "अशा प्रकारे सर्वांनी गणपतीचा आशीर्वाद घेतला.",
+  gujarati: "આ રીતે સૌએ ગણપતિના આશીર્વાદ લીધા."
+};
+
 export const playlist = [
   {
     id: 1,

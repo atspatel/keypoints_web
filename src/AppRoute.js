@@ -27,11 +27,26 @@ class AppRoute extends Component {
         <Route path="/curefit" render={() => <CurefitVideo />} />
         <Route path="/indianexpress" render={() => <IEVideo />} />
 
-        <Route path="/sharechat_001" render={() => <ShareChatVideo001 />} />
-        <Route path="/sharechat_002" render={() => <ShareChatVideo002 />} />
-        <Route path="/sharechat_003" render={() => <ShareChatVideo003 />} />
-        <Route path="/sharechat_004" render={() => <ShareChatVideo004 />} />
-        <Route path="/sharechat_005" render={() => <ShareChatVideo005 />} />
+        <Route
+          path="/sharechat_001"
+          render={props => <ShareChatVideo001 {...props} />}
+        />
+        <Route
+          path="/sharechat_002"
+          render={props => <ShareChatVideo002 {...props} />}
+        />
+        <Route
+          path="/sharechat_003"
+          render={props => <ShareChatVideo003 {...props} />}
+        />
+        <Route
+          path="/sharechat_004"
+          render={props => <ShareChatVideo004 {...props} />}
+        />
+        <Route
+          path="/sharechat_005"
+          render={props => <ShareChatVideo005 {...props} />}
+        />
 
         <Route render={() => <Redirect to="/sample_video" />} />
       </Switch>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 import PlayCircleFilledRoundedIcon from "@material-ui/icons/PlayCircleFilledRounded";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
@@ -6,6 +7,8 @@ import "react-circular-progressbar/dist/styles.css";
 
 import NeuButton from "./NeuButton";
 import "../css/app.css";
+
+import { post_activity } from "../functions/post_activity";
 
 import * as sharechat_constants from "../constants/sharechat/sharechat_constants";
 
@@ -17,10 +20,20 @@ class PlaylistButton extends Component {
     opacity: 1
   };
   onClick = item => {
+    const { video_id, session_id } = this.props;
+    post_activity("click", video_id, item.button_id, session_id);
     this.props.onClick && this.props.onClick(item.id);
   };
   render() {
-    const { bgColor, size, item, isSelected, circularFill } = this.props;
+    const {
+      video_id,
+      session_id,
+      bgColor,
+      size,
+      item,
+      isSelected,
+      circularFill
+    } = this.props;
     const { opacity } = this.state;
     return (
       <div
@@ -207,12 +220,17 @@ class VideoSection extends Component {
     playedSeconds: 0,
     paused: true,
 
-    intervalId: null
+    intervalId: null,
+
+    isFirst: true
   };
 
   playerRef = {};
   changeSelectedIndex = (id, toPlay = true) => {
-    const { selected_id } = this.state;
+    const { selected_id, isFirst } = this.state;
+    if (isFirst) {
+      this.setState({ isFirst: false });
+    }
     if (selected_id !== id || this.playerRef[selected_id].player.paused) {
       this.setState({ selected_id: id }, () => {
         this.onUpdateSelectedId(toPlay);
@@ -253,7 +271,13 @@ class VideoSection extends Component {
   };
 
   togglePlay = () => {
-    const { selected_id } = this.state;
+    const { selected_id, isFirst } = this.state;
+    const { video_id, session_id } = this.props;
+    if (isFirst) {
+      this.setState({ isFirst: false }, () => {
+        post_activity("play", video_id, null, session_id);
+      });
+    }
     if (this.playerRef[selected_id].player.paused) {
       this.setState({ paused: false }, () => {
         this.playerRef[selected_id].player.play();
@@ -316,6 +340,8 @@ class VideoSection extends Component {
   }
   render() {
     const {
+      video_id,
+      session_id,
       playlist,
       button_size,
       isSingleAudio,
@@ -397,6 +423,8 @@ class VideoSection extends Component {
               return (
                 <PlaylistButton
                   key={item.id}
+                  video_id={video_id}
+                  session_id={session_id}
                   bgColor={colors[index]}
                   size={button_size}
                   item={item}
@@ -455,18 +483,28 @@ class ShareChatPlaylist extends Component {
 
   componentDidMount() {
     const { clientWidth } = this.container;
-    const { playlist } = this.props;
+    const { video_id, playlist } = this.props;
     const button_size = clientWidth / Math.max(playlist.length, 4) - 10;
+    const session_id = uuidv4();
     this.setState({
       button_size: button_size,
       width: clientWidth,
-      selected_id: playlist[0].id
+      selected_id: playlist[0].id,
+      session_id: session_id
     });
+
+    post_activity("load", video_id, null, session_id);
+  }
+
+  componentWillUnmount() {
+    const { video_id } = this.props;
+    const { session_id } = this.state;
+    post_activity("unload", video_id, null, session_id);
   }
 
   render() {
-    const { button_size, width, selected_id } = this.state;
-    const { title, isSingleAudio, playlist, audioFile } = this.props;
+    const { button_size, width, selected_id, session_id } = this.state;
+    const { video_id, title, isSingleAudio, playlist, audioFile } = this.props;
     return (
       <div
         ref={c => (this.container = c)}
@@ -484,6 +522,8 @@ class ShareChatPlaylist extends Component {
         <VideoTitle title={title} width={width} />
         {selected_id && (
           <VideoSection
+            video_id={video_id}
+            session_id={session_id}
             playlist={playlist}
             isSingleAudio={isSingleAudio}
             audioFile={audioFile}

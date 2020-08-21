@@ -18,6 +18,7 @@ class ShareChatVideo001 extends Component {
         className="centerH"
       >
         <ShareChatPlaylist
+          video_id={video_const.video_id}
           title={video_const.title}
           isSingleAudio={video_const.isSingleAudio}
           audioFile={video_const.audioFile}

@@ -120,7 +120,11 @@ class PlaylistButton extends Component {
 class VideoPlayer extends Component {
   componentDidMount = () => {
     const { item } = this.props;
-    this.props.setRef(item.id, { div: this.div, player: this.player });
+    this.props.setRef(item.id, {
+      div: this.div,
+      player: this.player,
+      hls: this.hls
+    });
   };
   render() {
     const { item, isSingleAudio } = this.props;
@@ -161,12 +165,16 @@ class VideoPlayer extends Component {
             setRef={c => {
               this.player = c;
             }}
+            setHls={c => {
+              this.hls = c;
+            }}
             src={item.src}
             poster={item.thumbnail}
             maxBuffer={30}
             muted={true}
             loop={false}
             autoPlay={false}
+            autoStartLoad={false}
             objectFit="contain"
           />
         </div>
@@ -305,6 +313,7 @@ class VideoSection extends Component {
       if (parseInt(id) === selected_id) {
         this.playerRef[id].div.style.display = "block";
         this.playerRef[id].player.currentTime = 0;
+        this.playerRef[id].hls.startLoad(-1);
         toPlay &&
           this.setState({ paused: false }, () => {
             this.playerRef[id].player.play();
@@ -312,6 +321,7 @@ class VideoSection extends Component {
       } else {
         this.playerRef[id].div.style.display = "none";
         this.playerRef[id].player.pause();
+        this.playerRef[id].hls.stopLoad();
       }
       return true;
     });

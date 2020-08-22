@@ -3,8 +3,11 @@ import Hls from "hls.js";
 
 class HLSVideo extends Component {
   componentDidMount() {
-    const { src, autoPlay, maxBuffer } = this.props;
-    var config = { maxMaxBufferLength: maxBuffer ? maxBuffer : 300 };
+    const { src, autoPlay, maxBuffer, autoStartLoad, setHls } = this.props;
+    var config = {
+      maxMaxBufferLength: maxBuffer ? maxBuffer : 300,
+      autoStartLoad: autoStartLoad !== undefined ? autoStartLoad : true
+    };
     if (Hls.isSupported()) {
       var video = this.player;
       var hls = new Hls(config);
@@ -13,6 +16,7 @@ class HLSVideo extends Component {
       hls.on(Hls.Events.MANIFEST_PARSED, function() {
         autoPlay && video.play();
       });
+      setHls && setHls(hls);
     }
   }
   render() {

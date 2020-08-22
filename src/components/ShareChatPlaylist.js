@@ -270,6 +270,7 @@ class VideoSection extends Component {
     const { selected_id } = this.state;
     const player = this.playerRef[selected_id].player;
     if (!player.paused) {
+      this.audio_player && this.audio_player.paused && this.audio_player.play();
       const playedSeconds = player.currentTime;
       if (playedSeconds > player.duration - 0.1) {
         this.onEndVideo();
@@ -277,6 +278,8 @@ class VideoSection extends Component {
       this.setState({
         playedSeconds: playedSeconds
       });
+    } else {
+      this.audio_player && this.audio_player.pause();
     }
   };
 
@@ -295,10 +298,12 @@ class VideoSection extends Component {
     if (this.playerRef[selected_id].player.paused) {
       this.setState({ paused: false }, () => {
         this.playerRef[selected_id].player.play();
+        this.audio_player && this.audio_player.play();
       });
     } else {
       this.setState({ paused: true }, () => {
         this.playerRef[selected_id].player.pause();
+        this.audio_player && this.audio_player.pause();
       });
     }
   };

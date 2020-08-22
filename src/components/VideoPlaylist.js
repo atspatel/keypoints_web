@@ -297,7 +297,10 @@ class VideoPlaylist extends Component {
     const { clientWidth } = this.container;
 
     const { video_id, playlist } = this.props;
-    const button_size = clientWidth / Math.max(playlist.length, 4) - 10;
+    const button_size = Math.min(
+      clientWidth / Math.max(playlist.length, 4) - 10,
+      80
+    );
     const session_id = uuidv4();
 
     this.setState(
@@ -379,7 +382,7 @@ class VideoPlaylist extends Component {
           style={{
             position: "absolute",
             bottom: "5%",
-            left: 0,
+            // left: 0,
             width: "100%",
             display: "flex",
             flexDirection: "column",
@@ -388,74 +391,76 @@ class VideoPlaylist extends Component {
             alignItems: "center"
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              flex: 1,
-              justifyContent: "center",
-              alignItems: "center"
-            }}
-          >
-            {playlist.map((item, index) => {
-              const isSelected = selected_id === item.id;
-              const duration = this.playerRef[selected_id]
-                ? this.playerRef[selected_id].player.duration
-                : 0;
-              return (
-                <PlaylistButton
-                  key={item.id}
-                  video_id={video_id}
-                  session_id={session_id}
-                  bgColor={colors[index % colors.length]}
-                  size={button_size}
-                  item={item}
-                  onClick={this.changeSelectedIndex}
-                  isSelected={isSelected ? true : false}
-                  circularFill={
-                    isSelected && duration
-                      ? parseInt((playedSeconds * 100) / duration)
-                      : 100
-                  }
-                />
-              );
-            })}
-          </div>
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              flex: 1,
-              justifyContent: "center",
-              padding: "0px 10px"
-            }}
-          >
+          <div>
             <div
               style={{
-                borderBottom: "1px solid white",
-                borderLeft: "1px solid white",
-                borderBottomLeftRadius: 20,
-                flex: 1
-              }}
-            ></div>
-            <div
-              style={{
-                color: "white",
-                fontSize: Math.min(0.035 * width, 20),
-                backgroundColor: `rgba(0,0,0,0.5)`,
-                borderBottom: "1px solid white",
-                padding: 2
+                display: "flex",
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center"
               }}
             >
-              {instruction[lang] ? instruction[lang] : instruction.hindi}
+              {playlist.map((item, index) => {
+                const isSelected = selected_id === item.id;
+                const duration = this.playerRef[selected_id]
+                  ? this.playerRef[selected_id].player.duration
+                  : 0;
+                return (
+                  <PlaylistButton
+                    key={item.id}
+                    video_id={video_id}
+                    session_id={session_id}
+                    bgColor={colors[index % colors.length]}
+                    size={button_size}
+                    item={item}
+                    onClick={this.changeSelectedIndex}
+                    isSelected={isSelected ? true : false}
+                    circularFill={
+                      isSelected && duration
+                        ? parseInt((playedSeconds * 100) / duration)
+                        : 100
+                    }
+                  />
+                );
+              })}
             </div>
             <div
               style={{
-                borderBottom: "1px solid white",
-                borderRight: "1px solid white",
-                borderBottomRightRadius: 20,
-                flex: 1
+                width: "100%",
+                display: "flex",
+                flex: 1,
+                justifyContent: "center",
+                padding: "0px 10px"
               }}
-            ></div>
+            >
+              <div
+                style={{
+                  borderBottom: "1px solid white",
+                  borderLeft: "1px solid white",
+                  borderBottomLeftRadius: 20,
+                  flex: 1
+                }}
+              ></div>
+              <div
+                style={{
+                  color: "white",
+                  fontSize: Math.min(0.035 * width, 20),
+                  backgroundColor: `rgba(0,0,0,0.5)`,
+                  borderBottom: "1px solid white",
+                  padding: 2
+                }}
+              >
+                {instruction[lang] ? instruction[lang] : instruction.hindi}
+              </div>
+              <div
+                style={{
+                  borderBottom: "1px solid white",
+                  borderRight: "1px solid white",
+                  borderBottomRightRadius: 20,
+                  flex: 1
+                }}
+              ></div>
+            </div>
           </div>
         </div>
       </div>

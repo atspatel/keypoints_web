@@ -9,7 +9,10 @@ export const audioFile = `${BASE_DIR_video}/celebration_aarti.mp3`;
 export const title = {
   hindi: "गणपति के आने से मची है सब तरफ़ धूम।",
   marathi: "गणपतीच्या आगमनाने सर्वत्र वादळ निर्माण केले.",
-  gujarati: "ગણપતિના આગમનથી ચારે બાજુ તોફાન છવાઈ ગયું."
+  gujarati: "ગણપતિના આગમનથી ચારે બાજુ તોફાન છવાઈ ગયું.",
+  tamil: "எவ்விடமும் விநாயகர் இவ்வாறே நிறைந்திருக்கிறார்",
+  telugu: "గణపయ్య రాక ప్రతిచోటా సందడి మొదలైంది.",
+  kannada: "ಗಣಪತಿಯ ಆಗಮನದಿಂದ ಎಲ್ಲೆಡೆ ಸಂಭ್ರಮ."
 };
 
 export const playlist = [

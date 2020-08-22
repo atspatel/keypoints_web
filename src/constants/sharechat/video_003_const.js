@@ -9,7 +9,10 @@ export const audioFile = `${BASE_DIR_video}/murti_making_audio.mp3`;
 export const title = {
   hindi: "ऐसे बनाए जाते हैं प्यारे गणपति।",
   marathi: "अशाप्रकारे लाडक्या गणपती तयार केल्या जातात.",
-  gujarati: "આ રીતે પ્રિય ગણપતિ બનાવવામાં આવે છે."
+  gujarati: "આ રીતે પ્રિય ગણપતિ બનાવવામાં આવે છે.",
+  tamil: "அன்பான கணபதி இவ்வாறு தயாரிக்கப்படுகிறது.",
+  telugu: ".మన బుజ్జి గణపతిని ఈ విధంగా తయారు చేస్తారు.",
+  kannada: "ಪ್ರೀತಿಯ ಗಣಪತಿಯನ್ನು ಈ ರೀತಿ ಮಾಡಲಾಗುತ್ತದೆ."
 };
 
 export const playlist = [

@@ -12,7 +12,6 @@ import "../css/app.css";
 import { post_activity } from "../functions/post_activity";
 
 import * as constants from "../constants/constants";
-import * as sharechat_constants from "../constants/sharechat/sharechat_constants";
 
 const colors = ["#9661BA", "#40C9FF", "#FFA233", "#FF5A7E", "#FFD814"];
 const borderColor = "#494949";
@@ -164,7 +163,7 @@ class VideoPlayer extends Component {
             src={item.src}
             poster={item.thumbnail}
             maxBuffer={30}
-            muted={true}
+            muted={isSingleAudio ? true : false}
             loop={false}
             autoPlay={false}
             objectFit="contain"
@@ -175,49 +174,7 @@ class VideoPlayer extends Component {
   }
 }
 
-class VideoTitle extends Component {
-  render() {
-    const { title, width } = this.props;
-    return (
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          height: "10%",
-          width: "100%",
-          display: "flex",
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "#494949",
-          padding: "2%"
-        }}
-      >
-        <img
-          src={sharechat_constants.sharechat_logo}
-          alt=""
-          style={{
-            height: "100%",
-            objectFit: "contain"
-          }}
-        />
-        <p
-          style={{
-            margin: "0px 10px",
-            padding: 0,
-            fontSize: 0.045 * width,
-            color: "white"
-          }}
-        >
-          {title}
-        </p>
-      </div>
-    );
-  }
-}
-
-class VideoSection extends Component {
+class VideoPlaylist extends Component {
   state = {
     selected_id: null,
     current_index: null,
@@ -225,8 +182,11 @@ class VideoSection extends Component {
     paused: true,
 
     intervalId: null,
+    isFirst: true,
 
-    isFirst: true
+    button_size: 0,
+    width: 0,
+    session_id: null
   };
 
   playerRef = {};
@@ -277,8 +237,8 @@ class VideoSection extends Component {
   };
 
   togglePlay = () => {
-    const { selected_id, isFirst } = this.state;
-    const { video_id, session_id } = this.props;
+    const { selected_id, isFirst, session_id } = this.state;
+    const { video_id } = this.props;
     if (isFirst) {
       this.setState({ isFirst: false }, () => {
         post_activity("play", video_id, null, session_id);
@@ -334,40 +294,54 @@ class VideoSection extends Component {
     }
   }
   componentDidMount() {
-    const { selected_id } = this.props;
-    this.setState({ selected_id: selected_id }, () => {
-      this.onUpdateSelectedId(false);
-    });
+    const { clientWidth } = this.container;
+
+    const { video_id, playlist } = this.props;
+    const button_size = clientWidth / Math.max(playlist.length, 4) - 10;
+    const session_id = uuidv4();
+
+    this.setState(
+      {
+        button_size: button_size,
+        width: clientWidth,
+        session_id: session_id,
+        selected_id: playlist[0].id
+      },
+      () => {
+        this.onUpdateSelectedId(false);
+      }
+    );
+
     var intervalId = setInterval(this.setProgress, 100);
     this.setState({ intervalId: intervalId });
+    post_activity("load", video_id, null, session_id);
   }
+
   componentWillUnmount() {
     clearInterval(this.state.intervalId);
+
+    const { video_id } = this.props;
+    const { session_id } = this.state;
+    post_activity("unload", video_id, null, session_id);
   }
   render() {
-    const {
-      video_id,
-      session_id,
-      lang,
-      playlist,
-      button_size,
-      isSingleAudio,
-      audioFile,
-      width
-    } = this.props;
+    const { video_id, lang, isSingleAudio, playlist, audioFile } = this.props;
+    const { button_size, width, session_id } = this.state;
     const { selected_id, playedSeconds, paused } = this.state;
     return (
       <div
+        ref={c => (this.container = c)}
         style={{
           position: "absolute",
-          top: "10%",
+          top: 0,
           left: 0,
-          height: "90%",
+          height: "100%",
           width: "100%",
           justifyContent: "center",
           alignItems: "center"
         }}
         onClick={this.togglePlay}
+        onContextMenu={e => e.preventDefault()}
       >
         {playlist.map(item => {
           return (
@@ -404,7 +378,7 @@ class VideoSection extends Component {
         <div
           style={{
             position: "absolute",
-            top: "75%",
+            bottom: "5%",
             left: 0,
             width: "100%",
             display: "flex",
@@ -432,7 +406,7 @@ class VideoSection extends Component {
                   key={item.id}
                   video_id={video_id}
                   session_id={session_id}
-                  bgColor={colors[index]}
+                  bgColor={colors[index % colors.length]}
                   size={button_size}
                   item={item}
                   onClick={this.changeSelectedIndex}
@@ -466,7 +440,7 @@ class VideoSection extends Component {
             <div
               style={{
                 color: "white",
-                fontSize: 0.035 * width,
+                fontSize: Math.min(0.035 * width, 20),
                 backgroundColor: `rgba(0,0,0,0.5)`,
                 borderBottom: "1px solid white",
                 padding: 2
@@ -489,78 +463,4 @@ class VideoSection extends Component {
   }
 }
 
-class ShareChatPlaylist extends Component {
-  state = {
-    button_size: 0,
-    width: 0,
-    selected_id: null,
-
-    intervalId: null
-  };
-
-  componentDidMount() {
-    const { clientWidth } = this.container;
-    const { video_id, playlist } = this.props;
-    const button_size = clientWidth / Math.max(playlist.length, 4) - 10;
-    const session_id = uuidv4();
-    this.setState({
-      button_size: button_size,
-      width: clientWidth,
-      selected_id: playlist[0].id,
-      session_id: session_id
-    });
-
-    post_activity("load", video_id, null, session_id);
-  }
-
-  componentWillUnmount() {
-    const { video_id } = this.props;
-    const { session_id } = this.state;
-    post_activity("unload", video_id, null, session_id);
-  }
-
-  render() {
-    const { button_size, width, selected_id, session_id } = this.state;
-    const {
-      video_id,
-      lang,
-      title,
-      isSingleAudio,
-      playlist,
-      audioFile
-    } = this.props;
-    const v_title = lang && title[lang] ? title[lang] : title.hindi;
-    return (
-      <div
-        ref={c => (this.container = c)}
-        style={{
-          height: "100%",
-          width: "100%",
-          border: "1px solid black",
-          backgroundColor: borderColor,
-          overflow: "hidden",
-          position: "relative"
-        }}
-        className="centerH"
-        onContextMenu={e => e.preventDefault()}
-      >
-        <VideoTitle title={v_title} width={width} />
-        {selected_id && (
-          <VideoSection
-            video_id={video_id}
-            lang={lang}
-            session_id={session_id}
-            playlist={playlist}
-            isSingleAudio={isSingleAudio}
-            audioFile={audioFile}
-            selected_id={selected_id}
-            button_size={button_size}
-            width={width}
-          />
-        )}
-      </div>
-    );
-  }
-}
-
-export default ShareChatPlaylist;
+export default VideoPlaylist;

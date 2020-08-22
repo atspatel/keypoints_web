@@ -19,9 +19,3 @@ export const languages = {
   haryanvi: { name: "Haryanvi", text: "हरयाणवी" },
   rajasthani: { name: "Rajasthani", text: "राजस्थानी" }
 };
-
-export const button_instruction = {
-  hindi: "विडीओ बदलने के लिए बटन क्लिक करे।",
-  marathi: "व्हिडिओ बदलण्यासाठी बटणावर क्लिक करा.",
-  gujarati: "વિડિઓ બદલવા માટે બટનને ક્લિક કરો."
-};

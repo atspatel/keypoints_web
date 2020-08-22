@@ -14,6 +14,8 @@ import ShareChatVideo003 from "./VideoPages/sharechat/ShareChatVideo003";
 import ShareChatVideo004 from "./VideoPages/sharechat/ShareChatVideo004";
 import ShareChatVideo005 from "./VideoPages/sharechat/ShareChatVideo005";
 
+import DhoniTribute001 from "./VideoPages/DhoniTribute001";
+
 class AppRoute extends Component {
   render() {
     return (
@@ -26,6 +28,11 @@ class AppRoute extends Component {
         <Route path="/samsung" render={() => <SamsungDemo />} />
         <Route path="/curefit" render={() => <CurefitVideo />} />
         <Route path="/indianexpress" render={() => <IEVideo />} />
+
+        <Route
+          path="/dhoni_tribute"
+          render={props => <DhoniTribute001 {...props} />}
+        />
 
         <Route
           path="/sharechat_001"

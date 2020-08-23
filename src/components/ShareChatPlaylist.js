@@ -270,7 +270,7 @@ class VideoSection extends Component {
     );
   };
   duration_interval = () => {
-    if (!this.audio_player.pause) {
+    if (!this.audio_player.paused) {
       this.post_duration();
     }
   };
@@ -382,14 +382,14 @@ class VideoSection extends Component {
     });
     var intervalId = setInterval(this.setProgress, 100);
 
-    var duration_intervalId = setInterval(this.post_duration, 1000);
+    var duration_intervalId = setInterval(this.duration_interval, 1000);
     this.setState({
       intervalId: intervalId,
       duration_intervalId: duration_intervalId
     });
 
     this.audio_player &&
-      this.audio_player.addEventListener("pause", this.duration_interval);
+      this.audio_player.addEventListener("pause", this.post_duration);
     this.audio_player &&
       this.audio_player.addEventListener("ended", this.update_audioDuration);
   }

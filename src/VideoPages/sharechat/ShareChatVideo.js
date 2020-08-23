@@ -10,9 +10,9 @@ const languages = sharechat_constants.languages;
 
 class ShareChatVideo extends Component {
   render() {
-    const { video_const, location } = this.props;
-    let lang = null;
-    if (location.search) {
+    const { video_const, location, lang_f } = this.props;
+    let lang = lang_f;
+    if (!lang && location.search) {
       const qParams = queryString.parse(location.search);
       lang = qParams.lang && languages[qParams.lang] ? qParams.lang : "hindi";
     }

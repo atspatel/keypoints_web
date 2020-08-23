@@ -96,7 +96,6 @@ class CureFitDashboard extends Component {
   state = {
     selected_key: null,
     sec: 10,
-    PlusClassName: "neu",
     added_workout: [],
     total_time: 0,
     rounds: 1,
@@ -231,6 +230,7 @@ class CureFitDashboard extends Component {
                   onClick={() => this.changeSelectedKey(item.key)}
                 >
                   <div
+                    style={{ borderRadius: 20, backgroundColor: "#fd3461" }}
                     className={
                       item.key === selected_key ? "selected-neu" : "neu"
                     }
@@ -294,6 +294,7 @@ class CureFitDashboard extends Component {
                     onClick={() => this.changeSelectedKey(item.key)}
                   >
                     <div
+                      style={{ borderRadius: 20, backgroundColor: "#fd3461" }}
                       className={
                         item.key === selected_key ? "selected-neu" : "neu"
                       }
@@ -342,7 +343,10 @@ class CureFitDashboard extends Component {
                     alignItems: "center"
                   }}
                 >
-                  <div className="neu" />
+                  <div
+                    className="neu"
+                    style={{ borderRadius: 20, backgroundColor: "#fd3461" }}
+                  />
                   <div
                     style={{
                       position: "absolute",
@@ -488,7 +492,10 @@ class CureFitDashboard extends Component {
                   borderRadius: 10
                 }}
               >
-                <div className="neu" />
+                <div
+                  className="neu"
+                  style={{ borderRadius: 20, backgroundColor: "#fd3461" }}
+                />
                 <div
                   style={{
                     position: "relative",

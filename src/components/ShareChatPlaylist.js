@@ -9,7 +9,7 @@ import HLSVideo from "./HLSVideo";
 import NeuButton from "./NeuButton";
 import "../css/app.css";
 
-import { post_activity } from "../functions/post_activity";
+import { post_activity, post_duration } from "../functions/post_activity";
 
 import * as constants from "../constants/constants";
 import * as sharechat_constants from "../constants/sharechat/sharechat_constants";
@@ -234,7 +234,8 @@ class VideoSection extends Component {
 
     intervalId: null,
 
-    isFirst: true
+    isFirst: true,
+    audioDuration: 0.0
   };
 
   playerRef = {};
@@ -249,13 +250,37 @@ class VideoSection extends Component {
       });
     }
   };
+
+  post_duration = () => {
+    const { video_id, session_id } = this.props;
+    const { audioDuration } = this.state;
+    const total_duration = audioDuration + this.audio_player.currentTime;
+    post_duration(video_id, total_duration, session_id);
+  };
+  update_audioDuration = () => {
+    const { audioDuration } = this.state;
+    this.setState(
+      {
+        audioDuration: audioDuration + this.audio_player.duration
+      },
+      () => {
+        this.audio_player.currentTime = 0;
+        this.audio_player.play();
+      }
+    );
+  };
+  duration_interval = () => {
+    if (!this.audio_player.pause) {
+      this.post_duration();
+    }
+  };
+
   onEndVideo = () => {
     const { playlist } = this.props;
     const { current_index } = this.state;
     if (current_index < playlist.length - 1) {
       this.changeSelectedIndex(playlist[current_index + 1].id, true);
     } else {
-      console.log("here........");
       this.setState({ paused: true }, () => {
         this.changeSelectedIndex(playlist[0].id, false);
         if (this.audio_player) {
@@ -279,7 +304,9 @@ class VideoSection extends Component {
         playedSeconds: playedSeconds
       });
     } else {
-      this.audio_player && this.audio_player.pause();
+      if (this.audio_player && !this.audio_player.paused) {
+        this.audio_player.pause();
+      }
     }
   };
 
@@ -354,10 +381,26 @@ class VideoSection extends Component {
       this.onUpdateSelectedId(false);
     });
     var intervalId = setInterval(this.setProgress, 100);
-    this.setState({ intervalId: intervalId });
+
+    var duration_intervalId = setInterval(this.post_duration, 1000);
+    this.setState({
+      intervalId: intervalId,
+      duration_intervalId: duration_intervalId
+    });
+
+    this.audio_player &&
+      this.audio_player.addEventListener("pause", this.duration_interval);
+    this.audio_player &&
+      this.audio_player.addEventListener("ended", this.update_audioDuration);
   }
   componentWillUnmount() {
     clearInterval(this.state.intervalId);
+    clearInterval(this.state.duration_intervalId);
+    this.post_duration();
+    this.audio_player &&
+      this.audio_player.addEventListener("paused", this.post_duration);
+    this.audio_player &&
+      this.audio_player.removeEventListener("ended", this.update_audioDuration);
   }
   render() {
     const {
@@ -395,7 +438,7 @@ class VideoSection extends Component {
           );
         })}
         {isSingleAudio && (
-          <audio ref={c => (this.audio_player = c)} src={audioFile} loop />
+          <audio ref={c => (this.audio_player = c)} src={audioFile} />
         )}
         {paused && (
           <div

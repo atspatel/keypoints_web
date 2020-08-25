@@ -445,18 +445,25 @@ class VideoSection extends Component {
             style={{
               position: "absolute",
               top: "40%",
-              left: "40%",
-              width: "20%",
+              left: "35%",
+              width: "30%",
               height: "20%",
               display: "flex",
               flex: 1,
               justifyContent: "center",
-              alignItems: "center"
+              alignItems: "center",
+              backgroundColor: "rgba(255,255,255, 0.2)",
+              borderRadius: 20
             }}
           >
-            <PlayCircleFilledRoundedIcon
-              style={{ height: 100, width: 100, color: "#EC6E57" }}
+            <img
+              src={constants.kp_play_icon}
+              style={{ height: "100%", width: "100%", objectFit: "contain" }}
+              alt=""
             />
+            {/* <PlayCircleFilledRoundedIcon
+              style={{ height: 100, width: 100, color: "#EC6E57" }}
+            /> */}
           </div>
         )}
         <div

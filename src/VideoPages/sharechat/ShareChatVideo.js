@@ -31,7 +31,11 @@ class ShareChatVideo extends Component {
           lang={lang}
           title={video_const.title}
           isSingleAudio={video_const.isSingleAudio}
-          audioFile={video_const.audioFile}
+          audioFile={
+            video_const.audioFile[lang]
+              ? video_const.audioFile[lang]
+              : video_const.audioFile.hindi
+          }
           playlist={video_const.playlist}
         />
       </div>

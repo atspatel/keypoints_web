@@ -4,7 +4,7 @@ const BASE_DIR_video = `${sharechat_constants.BASE_DIR_sharechat}/video_008`;
 
 export const video_id = "message_008";
 export const isSingleAudio = true;
-export const audioFile = `${BASE_DIR_video}/message_audio.mp3`;
+export const audioFile = { hindi: `${BASE_DIR_video}/message_audio.mp3` };
 
 export const title = {
   hindi: "राजनेता और मशहूर हस्तियों का देश को संदेश।"

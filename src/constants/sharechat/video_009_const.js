@@ -4,7 +4,7 @@ const BASE_DIR_video = `${sharechat_constants.BASE_DIR_sharechat}/video_009`;
 
 export const video_id = "actress_009";
 export const isSingleAudio = true;
-export const audioFile = `${BASE_DIR_video}/celebration_aarti.mp3`;
+export const audioFile = { hindi: `${BASE_DIR_video}/celebration_aarti.mp3` };
 
 export const title = {
   hindi: "टीवी ऐक्ट्रेस ने कैसे मनायी गणेश चतुर्थी?",

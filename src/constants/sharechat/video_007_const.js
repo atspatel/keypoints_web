@@ -4,7 +4,7 @@ const BASE_DIR_video = `${sharechat_constants.BASE_DIR_sharechat}/video_007`;
 
 export const video_id = "text_hindi_007";
 export const isSingleAudio = true;
-export const audioFile = `${BASE_DIR_video}/text_audio.mp3`;
+export const audioFile = { hindi: `${BASE_DIR_video}/text_audio.mp3` };
 
 export const title = {
   hindi: "जानिए शुभ मुहूर्त, पूजा विधि और जरूरी पूजन सामग्री..."

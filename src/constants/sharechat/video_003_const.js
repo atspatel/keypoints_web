@@ -4,7 +4,7 @@ const BASE_DIR_video = `${sharechat_constants.BASE_DIR_sharechat}/video_003`;
 
 export const video_id = "murti_making_video_003";
 export const isSingleAudio = true;
-export const audioFile = `${BASE_DIR_video}/murti_making_audio.mp3`;
+export const audioFile = { hindi: `${BASE_DIR_video}/murti_making_audio.mp3` };
 
 export const title = {
   hindi: "ऐसे बनाए जाते हैं प्यारे गणपति।",

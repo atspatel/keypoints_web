@@ -4,7 +4,7 @@ const BASE_DIR_video = `${sharechat_constants.BASE_DIR_sharechat}/video_006`;
 
 export const video_id = "text_marathi_006";
 export const isSingleAudio = true;
-export const audioFile = `${BASE_DIR_video}/text_audio.mp3`;
+export const audioFile = { marathi: `${BASE_DIR_video}/text_audio.mp3` };
 
 export const title = {
   marathi:

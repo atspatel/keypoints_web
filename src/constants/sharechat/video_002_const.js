@@ -4,7 +4,7 @@ const BASE_DIR_video = `${sharechat_constants.BASE_DIR_sharechat}/video_002`;
 
 export const video_id = "celebs_video_002";
 export const isSingleAudio = true;
-export const audioFile = `${BASE_DIR_video}/celebs_audio.mp3`;
+export const audioFile = { hindi: `${BASE_DIR_video}/celebs_audio.mp3` };
 
 export const title = {
   hindi: "गणपति के आने से सब जगह मस्ती का माहौल।",

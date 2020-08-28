@@ -19,3 +19,6 @@ export const languages = {
   haryanvi: { name: "Haryanvi", text: "हरयाणवी" },
   rajasthani: { name: "Rajasthani", text: "राजस्थानी" }
 };
+
+export const colors = ["#9661BA", "#40C9FF", "#FFA233", "#FF5A7E", "#FFD814"];
+export const borderColor = "#494949";

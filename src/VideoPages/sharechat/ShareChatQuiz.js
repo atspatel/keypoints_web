@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import SharechatAudioPlaylist from "../../components/SharechatAudioPlaylist";
+import SharechatQuizPlaylist from "../../components/SharechatQuizPlaylist";
 import queryString from "query-string";
 
 import * as sharechat_constants from "../../constants/sharechat/sharechat_constants";
@@ -8,7 +8,7 @@ import "../../css/app.css";
 const { innerHeight, innerWidth } = window;
 const languages = sharechat_constants.languages;
 
-class ShareChatAudio extends Component {
+class SharechatQuiz extends Component {
   render() {
     const { video_const, location, lang_f } = this.props;
     let lang = lang_f;
@@ -26,16 +26,19 @@ class ShareChatAudio extends Component {
         }}
         className="centerH"
       >
-        <SharechatAudioPlaylist
+        <SharechatQuizPlaylist
           video_id={video_const.video_id}
           lang={lang}
           title={video_const.title}
-          video_info={video_const.video_info}
-          playlist={video_const.playlist}
+          isSingleAudio={false}
+          audioFile={null}
+          intro={video_const.intro}
+          playlist={video_const.questions}
+          outro={video_const.outro}
         />
       </div>
     );
   }
 }
 
-export default ShareChatAudio;
+export default SharechatQuiz;

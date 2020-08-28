@@ -399,9 +399,8 @@ class SharechatAudioPlaylist extends Component {
       <div
         ref={c => (this.container = c)}
         style={{
-          height: 720,
-          width: 500,
-          border: "1px solid black",
+          height: "100%",
+          width: "100%",
           position: "relative",
           overflow: "hidden"
         }}

@@ -20,6 +20,8 @@ import ShareChatVideo008 from "./VideoPages/sharechat/ShareChatVideo008";
 import ShareChatVideo009 from "./VideoPages/sharechat/ShareChatVideo009";
 import ShareChatVideo010 from "./VideoPages/sharechat/ShareChatVideo010";
 
+import ShareChatAudio001 from "./VideoPages/sharechat/ShareChatAudio001";
+
 import DhoniTribute001 from "./VideoPages/DhoniTribute001";
 
 class AppRoute extends Component {
@@ -80,6 +82,11 @@ class AppRoute extends Component {
         <Route
           path="/sharechat_010"
           render={props => <ShareChatVideo010 {...props} />}
+        />
+
+        <Route
+          path="/sharechat_audio_001"
+          render={props => <ShareChatAudio001 {...props} />}
         />
 
         <Route render={() => <Redirect to="/sample_video" />} />

@@ -17,3 +17,13 @@ export const button_instruction = {
   telugu: "వీడియోను మార్చడానికి ఈ బటన్‌ను క్లిక్ చేయండి.",
   kannada: "ವೀಡಿಯೊವನ್ನು ಬದಲಾಯಿಸಲು ಬಟನ್ ಕ್ಲಿಕ್ ಮಾಡಿ."
 };
+
+export const button_instruction_audio = {
+  english: "Click on button to change song.",
+  hindi: "गाना बदलने के लिए बटन क्लिक करे।",
+  marathi: "गाणे बदलण्यासाठी बटणावर क्लिक करा.",
+  gujarati: "ગીત બદલવા માટે બટનને ક્લિક કરો.",
+  tamil: "பாடலை மாற்ற பொத்தானைக் கிளிக் செய்க.",
+  telugu: "పాట మార్చడానికి బటన్ పై క్లిక్ చేయండి.",
+  kannada: "ಹಾಡನ್ನು ಬದಲಾಯಿಸಲು ಬಟನ್ ಕ್ಲಿಕ್ ಮಾಡಿ."
+};

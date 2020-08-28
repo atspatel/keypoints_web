@@ -6,7 +6,7 @@ import NeuButton from "./NeuButton";
 import "../css/app.css";
 
 import { post_activity } from "../functions/post_activity";
-const borderColor = "#494949";
+const default_borderColor = "#494949";
 
 export class PlaylistButton extends Component {
   state = {
@@ -25,6 +25,7 @@ export class PlaylistButton extends Component {
       size,
       item,
       isSelected,
+      borderColor,
       circularFill,
       border
     } = this.props;
@@ -77,7 +78,7 @@ export class PlaylistButton extends Component {
                 styles={buildStyles({
                   pathTransition: "none",
                   pathColor: bgColor,
-                  trailColor: borderColor
+                  borderColor: borderColor ? borderColor : default_borderColor
                 })}
               />
             </div>

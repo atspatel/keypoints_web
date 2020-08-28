@@ -398,7 +398,7 @@ class VideoSection extends Component {
     clearInterval(this.state.duration_intervalId);
     this.post_duration();
     this.audio_player &&
-      this.audio_player.addEventListener("paused", this.post_duration);
+      this.audio_player.removeEventListener("paused", this.post_duration);
     this.audio_player &&
       this.audio_player.removeEventListener("ended", this.update_audioDuration);
   }

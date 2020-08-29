@@ -12,7 +12,7 @@ export const audioFile = {
 
 export const title = {
   hindi: "गणपती की जय जय कर",
-  marathi: "गणपती की जय जय कर",
+  marathi: "गणपती की जय जय कार",
   telugu: "గణపతి కి జయ్ జయ్ కర్"
 };
 

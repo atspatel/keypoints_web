@@ -42,7 +42,7 @@ class PlaylistButton extends Component {
     return (
       <div
         style={{
-          flex: 1,
+          // flex: 1,
           height: size,
           width: size,
           borderRadius: size / 2,
@@ -171,7 +171,7 @@ class VideoPlayer extends Component {
             src={item.src}
             poster={item.thumbnail}
             maxBuffer={30}
-            muted={true}
+            muted={isSingleAudio}
             loop={false}
             autoPlay={false}
             autoStartLoad={false}
@@ -270,7 +270,7 @@ class VideoSection extends Component {
     );
   };
   duration_interval = () => {
-    if (!this.audio_player.paused) {
+    if (this.audio_player && !this.audio_player.paused) {
       this.post_duration();
     }
   };

@@ -127,7 +127,7 @@ class VideoPlayer extends Component {
     });
   };
   render() {
-    const { item, isSingleAudio } = this.props;
+    const { item, isSingleAudio, width, lang } = this.props;
     return (
       <div
         ref={c => (this.div = c)}
@@ -178,6 +178,28 @@ class VideoPlayer extends Component {
             objectFit="contain"
           />
         </div>
+        {item.title && (
+          <div
+            style={{
+              position: "absolute",
+              width: "100%",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <p
+              style={{
+                margin: "0px 10px",
+                padding: 0,
+                fontSize: 0.075 * width,
+                color: "white",
+                backgroundColor: "rgba(0,0,0,0.3)"
+              }}
+            >
+              {item.title[lang] ? item.title[lang] : item.title.hindi}
+            </p>
+          </div>
+        )}
       </div>
     );
   }
@@ -432,6 +454,8 @@ class VideoSection extends Component {
             <VideoPlayer
               key={item.id}
               item={item}
+              width={width}
+              lang={lang}
               setRef={this.setRef}
               isSingleAudio={isSingleAudio}
             />

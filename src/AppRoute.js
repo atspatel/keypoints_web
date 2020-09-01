@@ -24,6 +24,12 @@ import ShareChatAudio001 from "./VideoPages/sharechat/ShareChatAudio001";
 
 import ShareChatContent001 from "./VideoPages/sharechat/ShareChatContent001";
 import ShareChatContent002 from "./VideoPages/sharechat/ShareChatContent002";
+import ShareChatContent003 from "./VideoPages/sharechat/ShareChatContent003";
+import ShareChatContent004 from "./VideoPages/sharechat/ShareChatContent004";
+import ShareChatContent005 from "./VideoPages/sharechat/ShareChatContent005";
+import ShareChatContent006 from "./VideoPages/sharechat/ShareChatContent006";
+import ShareChatContent007 from "./VideoPages/sharechat/ShareChatContent007";
+import ShareChatContent008 from "./VideoPages/sharechat/ShareChatContent008";
 
 import ShareChatQuiz001 from "./VideoPages/sharechat/ShareChatQuiz001";
 
@@ -102,6 +108,36 @@ class AppRoute extends Component {
         <Route
           path="/sharechat_content_002"
           render={props => <ShareChatContent002 {...props} />}
+        />
+
+        <Route
+          path="/sharechat_content_003"
+          render={props => <ShareChatContent003 {...props} />}
+        />
+
+        <Route
+          path="/sharechat_content_004"
+          render={props => <ShareChatContent004 {...props} />}
+        />
+
+        <Route
+          path="/sharechat_content_005"
+          render={props => <ShareChatContent005 {...props} />}
+        />
+
+        <Route
+          path="/sharechat_content_006"
+          render={props => <ShareChatContent006 {...props} />}
+        />
+
+        <Route
+          path="/sharechat_content_007"
+          render={props => <ShareChatContent007 {...props} />}
+        />
+
+        <Route
+          path="/sharechat_content_008"
+          render={props => <ShareChatContent008 {...props} />}
         />
 
         <Route

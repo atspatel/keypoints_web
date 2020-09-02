@@ -39,8 +39,17 @@ function open_url(url) {
 }
 
 class PlayerCardPopUp extends Component {
+  state = {
+    div_width: 0
+  };
+
+  componentDidMount() {
+    const { clientWidth } = this.div;
+    this.setState({ div_width: clientWidth });
+  }
   render() {
     const { card } = this.props;
+    const { div_width } = this.state;
     return (
       <div
         style={{
@@ -51,12 +60,13 @@ class PlayerCardPopUp extends Component {
           justifyContent: "center",
           alignItems: "center"
         }}
+        ref={c => (this.div = c)}
       >
         <img
           src={card}
           style={{
-            width: "calc(100% - 10px)",
-            height: "calc(100% - 10px)",
+            width: "100%",
+            height: "100%",
             borderRadius: 20,
             objectFit: "contain"
           }}
@@ -73,7 +83,7 @@ class PlayerCardPopUp extends Component {
           <PlaylistButton
             video_id={video_id}
             key={"share_1"}
-            size={50}
+            size={0.15 * div_width}
             item={{
               thumbnail: image_share_button,
               id: "share1",
@@ -419,7 +429,10 @@ export class TVNineBharat002 extends Component {
                       <span>
                         <span
                           className="info-text"
-                          style={{ color: primary_color }}
+                          style={{
+                            color: primary_color,
+                            fontSize: 0.04 * width
+                          }}
                         >
                           {info_text}
                         </span>
@@ -438,7 +451,7 @@ export class TVNineBharat002 extends Component {
             style={{
               position: "absolute",
               height: "12%",
-              width: `${0.5625 * 12}%`,
+              // width: `${0.5625 * 12}%`,
               margin: "0% 0%",
               top: "80%",
               right: 0
@@ -452,7 +465,7 @@ export class TVNineBharat002 extends Component {
             <PlaylistButton
               video_id={video_id}
               key={"share_2"}
-              size={50}
+              size={0.08 * width}
               item={{
                 thumbnail: share_button,
                 id: "share2",

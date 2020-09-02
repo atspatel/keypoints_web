@@ -94,13 +94,16 @@ export class PlaylistButton extends Component {
             }}
           >
             <img
-              src={item.thumbnail}
+              src={item.media_info.thumbnail}
               alt=""
               style={{
                 height: "100%",
                 width: "100%",
                 borderRadius: "50%",
                 border: border ? `2px solid ${borderColor}` : null
+              }}
+              onDragStart={e => {
+                e.preventDefault();
               }}
             />
           </div>

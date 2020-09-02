@@ -8,6 +8,7 @@ import OximeterVideo, { OximeterEmbedVideo } from "./VideoPages/OximeterVideo";
 import CurefitVideo from "./VideoPages/CurefitVideo";
 import IEVideo from "./VideoPages/IEVideo";
 import { TVNineBharat } from "./components/TVNineBharatPopup";
+import TVNineBharat002 from "./components/TVNineBharat002";
 
 import ShareChatVideo001 from "./VideoPages/sharechat/ShareChatVideo001";
 import ShareChatVideo002 from "./VideoPages/sharechat/ShareChatVideo002";
@@ -48,6 +49,7 @@ class AppRoute extends Component {
         <Route path="/curefit" render={() => <CurefitVideo />} />
         <Route path="/indianexpress" render={() => <IEVideo />} />
         <Route path="/tv9bharat" render={() => <TVNineBharat />} />
+        <Route path="/tv9bharat_002" render={() => <TVNineBharat002 />} />
 
         <Route
           path="/dhoni_tribute"

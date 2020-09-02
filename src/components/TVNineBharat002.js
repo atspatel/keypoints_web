@@ -28,6 +28,7 @@ const share_button = tv9_002_constants.share_button;
 const image_share_button = tv9_002_constants.image_share_button;
 const sm_list = tv9_002_constants.sm_list;
 
+const video_id = tv9_002_constants.video_id;
 const video_url = tv9_002_constants.video_url;
 // const video_thumb = tv9_002_constants.video_thumb;
 const info = tv9_002_constants.info;
@@ -70,9 +71,14 @@ class PlayerCardPopUp extends Component {
           }}
         >
           <PlaylistButton
+            video_id={video_id}
             key={"share_1"}
             size={50}
-            item={{ thumbnail: image_share_button, id: "share1" }}
+            item={{
+              thumbnail: image_share_button,
+              id: "share1",
+              button_id: "share_image"
+            }}
             bgColor={secondary_color}
             onClick={id => open_url(tv9_002_constants.image_whatsapp_url)}
             border={false}
@@ -217,6 +223,7 @@ export class TVNineBharatSMList extends Component {
             {buttonList.map((item, index) => {
               return (
                 <PlaylistButton
+                  video_id={video_id}
                   key={item.id}
                   bgColor={tv9_red}
                   size={button_size}
@@ -442,13 +449,19 @@ export class TVNineBharat002 extends Component {
               open_url(tv9_002_constants.video_whatsapp_url);
             }}
           >
-            <NeuButton style={{ borderRadius: "50%" }}>
-              <img
-                src={share_button}
-                style={{ height: "100%", width: "100%", objectFit: "contain" }}
-                alt=""
-              />
-            </NeuButton>
+            <PlaylistButton
+              video_id={video_id}
+              key={"share_2"}
+              size={50}
+              item={{
+                thumbnail: share_button,
+                id: "share2",
+                button_id: "share_video"
+              }}
+              bgColor={secondary_color}
+              onClick={id => open_url(tv9_002_constants.image_whatsapp_url)}
+              border={false}
+            />
           </div>
           {showPopup && (
             <TVNineBharatPopup

@@ -1,6 +1,5 @@
 import * as config from "../config";
 
-export const video_id = "tv9_demo";
 export const BASE_DIR_tv9 = `${config.BASE_DIR}/tv9_rr`;
 
 export const tv9_logo = `${BASE_DIR_tv9}/tv9_logo.png`;
@@ -9,6 +8,7 @@ export const rr_logo = `${BASE_DIR_tv9}/rr_logo.png`;
 export const share_button = `${BASE_DIR_tv9}/share.png`;
 export const image_share_button = `${BASE_DIR_tv9}/share_1.png`;
 
+export const video_id = "kartik_tyagi";
 export const BASE_DIR_video = `${BASE_DIR_tv9}/kartik_tyagi`;
 export const video_url = `${BASE_DIR_video}/video.mp4`;
 export const video_thumb = `${BASE_DIR_video}/video_thumb.png`;
@@ -24,24 +24,28 @@ export const sm_list = [
   {
     id: 1,
     name: "Facebook",
+    button_id: "facebook",
     thumbnail: `${BASE_DIR_tv9}/facebook.png`,
     url: "https://www.facebook.com/TV9Bharatvarsh/"
   },
   {
     id: 2,
     name: "Instagram",
+    button_id: "instagram",
     thumbnail: `${BASE_DIR_tv9}/instagram.png`,
     url: "https://www.instagram.com/tv9bharatvarsh/?hl=en"
   },
   {
     id: 3,
     name: "Twitter",
+    button_id: "twitter",
     thumbnail: `${BASE_DIR_tv9}/twitter.png`,
     url: "https://twitter.com/TV9Bharatvarsh"
   },
   {
     id: 4,
     name: "Sharechat",
+    button_id: "sharechat",
     thumbnail: `${BASE_DIR_tv9}/sharechat.png`,
     url: "https://sharechat.com/profile/tv9bharatvarsh"
   }

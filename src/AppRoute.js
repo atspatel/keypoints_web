@@ -31,6 +31,13 @@ import ShareChatContent005 from "./VideoPages/sharechat/ShareChatContent005";
 import ShareChatContent006 from "./VideoPages/sharechat/ShareChatContent006";
 import ShareChatContent007 from "./VideoPages/sharechat/ShareChatContent007";
 import ShareChatContent008 from "./VideoPages/sharechat/ShareChatContent008";
+import ShareChatContent009 from "./VideoPages/sharechat/ShareChatContent009";
+import ShareChatContent010 from "./VideoPages/sharechat/ShareChatContent010";
+import ShareChatContent011 from "./VideoPages/sharechat/ShareChatContent011";
+import ShareChatContent012 from "./VideoPages/sharechat/ShareChatContent012";
+import ShareChatContent013 from "./VideoPages/sharechat/ShareChatContent013";
+import ShareChatContent014 from "./VideoPages/sharechat/ShareChatContent014";
+import ShareChatContent015 from "./VideoPages/sharechat/ShareChatContent015";
 
 import ShareChatQuiz001 from "./VideoPages/sharechat/ShareChatQuiz001";
 
@@ -140,6 +147,41 @@ class AppRoute extends Component {
         <Route
           path="/sharechat_content_008"
           render={props => <ShareChatContent008 {...props} />}
+        />
+
+        <Route
+          path="/sharechat_content_009"
+          render={props => <ShareChatContent009 {...props} />}
+        />
+
+        <Route
+          path="/sharechat_content_010"
+          render={props => <ShareChatContent010 {...props} />}
+        />
+
+        <Route
+          path="/sharechat_content_011"
+          render={props => <ShareChatContent011 {...props} />}
+        />
+
+        <Route
+          path="/sharechat_content_012"
+          render={props => <ShareChatContent012 {...props} />}
+        />
+
+        <Route
+          path="/sharechat_content_013"
+          render={props => <ShareChatContent013 {...props} />}
+        />
+
+        <Route
+          path="/sharechat_content_014"
+          render={props => <ShareChatContent014 {...props} />}
+        />
+
+        <Route
+          path="/sharechat_content_015"
+          render={props => <ShareChatContent015 {...props} />}
         />
 
         <Route

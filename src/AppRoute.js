@@ -48,6 +48,10 @@ class AppRoute extends Component {
           path="/sharechat"
           render={props => <ShareChatPlayer {...props} />}
         />
+        <Route
+          path="/sharechat_content_***"
+          render={props => <ShareChatPlayerMapped {...props} />}
+        />
 
         <Route
           path="/dhoni_tribute"
@@ -98,11 +102,6 @@ class AppRoute extends Component {
         <Route
           path="/sharechat_audio_001"
           render={props => <ShareChatAudio001 {...props} />}
-        />
-
-        <Route
-          path="/sharechat_content_***"
-          render={props => <ShareChatPlayerMapped {...props} />}
         />
 
         <Route

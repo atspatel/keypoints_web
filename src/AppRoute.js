@@ -10,6 +10,8 @@ import IEVideo from "./VideoPages/IEVideo";
 import { TVNineBharat } from "./components/TVNineBharatPopup";
 import TVNineBharat002 from "./components/TVNineBharat002";
 
+import ShareChatPlayer from "./VideoPages/sharechat/ShareChatPlayer";
+
 import ShareChatVideo001 from "./VideoPages/sharechat/ShareChatVideo001";
 import ShareChatVideo002 from "./VideoPages/sharechat/ShareChatVideo002";
 import ShareChatVideo003 from "./VideoPages/sharechat/ShareChatVideo003";
@@ -57,6 +59,10 @@ class AppRoute extends Component {
         <Route path="/indianexpress" render={() => <IEVideo />} />
         <Route path="/tv9bharat" render={() => <TVNineBharat />} />
         <Route path="/tv9bharat_002" render={() => <TVNineBharat002 />} />
+        <Route
+          path="/sharechat"
+          render={props => <ShareChatPlayer {...props} />}
+        />
 
         <Route
           path="/dhoni_tribute"

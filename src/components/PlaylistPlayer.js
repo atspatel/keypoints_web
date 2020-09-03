@@ -16,8 +16,6 @@ const borderColor = "#494949";
 
 const instruction = constants.button_instruction;
 
-const playlist_id = "4d004ef0-3220-45ac-8f0c-324f8c5e2fe4";
-
 class VideoPlayer extends Component {
   componentDidMount = () => {
     const { item } = this.props;
@@ -158,17 +156,27 @@ class VideoSection extends Component {
     intervalId: null,
 
     isFirst: true,
-    audioDuration: 0.0
+    audioDuration: 0.0,
+    primaryDuration: 0.0
   };
 
   playerRef = {};
   changeSelectedIndex = (id, toPlay = true) => {
-    console.log(id, this.playerRef);
-    const { selected_id, isFirst } = this.state;
+    const { selected_id, isFirst, primaryDuration } = this.state;
     if (isFirst) {
       this.setState({ isFirst: false });
     }
-    if (selected_id !== id || this.playerRef[selected_id].player.paused) {
+    if (selected_id !== id) {
+      const add_duration = selected_id
+        ? this.playerRef[selected_id].player.currentTime
+        : 0.0;
+      this.setState(
+        { selected_id: id, primaryDuration: add_duration + primaryDuration },
+        () => {
+          this.onUpdateSelectedId(toPlay);
+        }
+      );
+    } else if (this.playerRef[selected_id].player.paused) {
       this.setState({ selected_id: id }, () => {
         this.onUpdateSelectedId(toPlay);
       });
@@ -177,9 +185,18 @@ class VideoSection extends Component {
 
   post_duration = () => {
     const { video_id, session_id } = this.props;
-    const { audioDuration } = this.state;
-    const total_duration = audioDuration + this.secondary_player.currentTime;
-    post_duration(video_id, total_duration, session_id);
+    const { audioDuration, primaryDuration, selected_id } = this.state;
+    const total_duration =
+      audioDuration +
+      (this.secondary_player ? this.secondary_player.currentTime : 0.0);
+
+    const total_duration_1 =
+      primaryDuration +
+      (this.playerRef[selected_id]
+        ? this.playerRef[selected_id].player.currentTime
+        : 0.0);
+
+    post_duration(video_id, total_duration, session_id, total_duration_1);
   };
   update_audioDuration = () => {
     const { audioDuration } = this.state;
@@ -194,7 +211,9 @@ class VideoSection extends Component {
     );
   };
   duration_interval = () => {
-    if (this.secondary_player && !this.secondary_player.paused) {
+    const { selected_id } = this.state;
+    const player = this.playerRef[selected_id].player;
+    if (player && !player.paused) {
       this.post_duration();
     }
   };
@@ -504,7 +523,6 @@ class ShareChatPlaylist extends Component {
   onLoadData = () => {
     const { clientWidth } = this.container;
     const { playlist_data } = this.state;
-    console.log(playlist_data);
     const button_size = Math.min(
       clientWidth / Math.max(playlist_data.primary_list.length, 4) - 10,
       80
@@ -514,7 +532,7 @@ class ShareChatPlaylist extends Component {
   };
 
   componentDidMount() {
-    // const { playlist_id } = this.props;
+    const { playlist_id } = this.props;
     const session_id = uuidv4();
 
     get_playlist_data(playlist_id).then(response => {
@@ -529,29 +547,19 @@ class ShareChatPlaylist extends Component {
   }
 
   componentWillUnmount() {
-    // const { playlist_id } = this.props;
+    const { playlist_id } = this.props;
     const { session_id } = this.state;
     post_activity("unload", playlist_id, null, session_id);
   }
 
   render() {
     const { button_size, width, session_id, playlist_data } = this.state;
-    // const {
-    //   playlist_id
-    //   //   lang,
-    //   //   title,
-    //   //   isSingleAudio,
-    //   //   playlist,
-    //   //   audioFile
-    // } = this.props;
     return (
       <div
         ref={c => (this.container = c)}
         style={{
-          //   height: "100%",
-          //   width: "100%",
-          height: 720,
-          width: 500,
+          height: "100%",
+          width: "100%",
           border: "1px solid black",
           backgroundColor: borderColor,
           overflow: "hidden",

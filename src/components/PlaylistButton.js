@@ -33,7 +33,6 @@ export class PlaylistButton extends Component {
     return (
       <div
         style={{
-          flex: 1,
           height: size,
           width: size,
           borderRadius: size / 2,

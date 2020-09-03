@@ -85,12 +85,14 @@ export class PlaylistButton extends Component {
           )}
           <div
             style={{
-              height: "calc(100% - 10px)",
-              width: "calc(100% - 10px)",
+              // height: "calc(100% - 4px)",
+              // width: "calc(100% - 4px)",
+              height: "85%",
+              width: "85%",
               position: "absolute",
               top: 0,
               left: 0,
-              margin: 5
+              margin: "7.5% 7.5%"
             }}
           >
             <img

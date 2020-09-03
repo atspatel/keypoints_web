@@ -257,16 +257,27 @@ class VideoSection extends Component {
     intervalId: null,
 
     isFirst: true,
-    audioDuration: 0.0
+    audioDuration: 0.0,
+    primaryDuration: 0.0
   };
 
   playerRef = {};
   changeSelectedIndex = (id, toPlay = true) => {
-    const { selected_id, isFirst } = this.state;
+    const { selected_id, isFirst, primaryDuration } = this.state;
     if (isFirst) {
       this.setState({ isFirst: false });
     }
-    if (selected_id !== id || this.playerRef[selected_id].player.paused) {
+    if (selected_id !== id) {
+      const add_duration = selected_id
+        ? this.playerRef[selected_id].player.currentTime
+        : 0.0;
+      this.setState(
+        { selected_id: id, primaryDuration: add_duration + primaryDuration },
+        () => {
+          this.onUpdateSelectedId(toPlay);
+        }
+      );
+    } else if (this.playerRef[selected_id].player.paused) {
       this.setState({ selected_id: id }, () => {
         this.onUpdateSelectedId(toPlay);
       });
@@ -275,9 +286,15 @@ class VideoSection extends Component {
 
   post_duration = () => {
     const { video_id, session_id } = this.props;
-    const { audioDuration } = this.state;
-    const total_duration = audioDuration + this.audio_player.currentTime;
-    post_duration(video_id, total_duration, session_id);
+    const { audioDuration, primaryDuration, selected_id } = this.state;
+    const total_duration =
+      audioDuration + (this.audio_player ? this.audio_player.currentTime : 0.0);
+    const total_duration_1 =
+      primaryDuration +
+      (this.playerRef[selected_id]
+        ? this.playerRef[selected_id].player.currentTime
+        : 0.0);
+    post_duration(video_id, total_duration, session_id, total_duration_1);
   };
   update_audioDuration = () => {
     const { audioDuration } = this.state;
@@ -291,8 +308,11 @@ class VideoSection extends Component {
       }
     );
   };
+
   duration_interval = () => {
-    if (this.audio_player && !this.audio_player.paused) {
+    const { selected_id } = this.state;
+    const player = this.playerRef[selected_id].player;
+    if (player && !player.paused) {
       this.post_duration();
     }
   };

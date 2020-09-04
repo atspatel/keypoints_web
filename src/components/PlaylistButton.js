@@ -14,7 +14,10 @@ export class PlaylistButton extends Component {
   };
   onClick = item => {
     const { video_id, session_id } = this.props;
-    post_activity("click", video_id, item.button_id, session_id);
+    const button_id = item.button_info.id
+      ? item.button_info.name
+      : item.button_id;
+    post_activity("click", video_id, button_id, session_id);
     this.props.onClick && this.props.onClick(item.id);
   };
   render() {

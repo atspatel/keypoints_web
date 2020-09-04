@@ -98,7 +98,7 @@ export class PlaylistButton extends Component {
             }}
           >
             <img
-              src={item.media_info.thumbnail}
+              src={item.media_info ? item.media_info.thumbnail : item.thumbnail}
               alt=""
               style={{
                 height: "100%",

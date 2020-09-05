@@ -38,6 +38,13 @@ import ShareChatContent012 from "./VideoPages/sharechat/ShareChatContent012";
 import ShareChatContent013 from "./VideoPages/sharechat/ShareChatContent013";
 import ShareChatContent014 from "./VideoPages/sharechat/ShareChatContent014";
 import ShareChatContent015 from "./VideoPages/sharechat/ShareChatContent015";
+import ShareChatContent016 from "./VideoPages/sharechat/ShareChatContent016";
+import ShareChatContent017 from "./VideoPages/sharechat/ShareChatContent017";
+import ShareChatContent018 from "./VideoPages/sharechat/ShareChatContent018";
+import ShareChatContent019 from "./VideoPages/sharechat/ShareChatContent019";
+import ShareChatContent020 from "./VideoPages/sharechat/ShareChatContent020";
+import ShareChatContent021 from "./VideoPages/sharechat/ShareChatContent021";
+import ShareChatContent022 from "./VideoPages/sharechat/ShareChatContent022";
 
 import ShareChatQuiz001 from "./VideoPages/sharechat/ShareChatQuiz001";
 
@@ -182,6 +189,35 @@ class AppRoute extends Component {
         <Route
           path="/sharechat_content_015"
           render={props => <ShareChatContent015 {...props} />}
+        />
+
+        <Route
+          path="/sharechat_content_016"
+          render={props => <ShareChatContent016 {...props} />}
+        />
+        <Route
+          path="/sharechat_content_017"
+          render={props => <ShareChatContent017 {...props} />}
+        />
+        <Route
+          path="/sharechat_content_018"
+          render={props => <ShareChatContent018 {...props} />}
+        />
+        <Route
+          path="/sharechat_content_019"
+          render={props => <ShareChatContent019 {...props} />}
+        />
+        <Route
+          path="/sharechat_content_020"
+          render={props => <ShareChatContent020 {...props} />}
+        />
+        <Route
+          path="/sharechat_content_021"
+          render={props => <ShareChatContent021 {...props} />}
+        />
+        <Route
+          path="/sharechat_content_022"
+          render={props => <ShareChatContent022 {...props} />}
         />
 
         <Route

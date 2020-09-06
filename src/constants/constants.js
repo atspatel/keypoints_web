@@ -8,6 +8,8 @@ export const kp_play_icon =
 export const realme_logo = `${config.BASE_DIR}/realme_demo/realme_logo_transparent.png`;
 export const gadgets360_logo = `${config.BASE_DIR}/realme_demo/gadgets360_logo.png`;
 
+export const close_png = `${config.BASE_DIR}/close.png`;
+
 export const button_instruction = {
   english: "Click on button to change video.",
   hindi: "विडीओ बदलने के लिए बटन क्लिक करे।",

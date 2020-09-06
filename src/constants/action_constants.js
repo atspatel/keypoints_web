@@ -17,9 +17,10 @@ export const playerSeekTo = (thisObj, duration, toPlay) => {
 
 export const ACTION = {
   [ACTION_POPUP]: (thisObj, button) => {
-    thisObj.player.pause();
+    const popup_info = popup_constants.POPUP[button.action_id];
+    popup_info.pauseVideo && thisObj.player.pause();
     thisObj.setState({
-      showPopup: popup_constants.POPUP[button.action_id],
+      showPopup: popup_info,
       popup_data: button.data,
       button_id: button.id,
       playing: false

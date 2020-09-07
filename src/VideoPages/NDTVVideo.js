@@ -20,6 +20,7 @@ export class NDTVEmbedVideo extends Component {
           showMenu={false} // TODO :: generalize this
           showInstruction={false}
           showProgressBar={true}
+          timelineMarks={ndtv_constants.marks}
         />
       </>
     );

@@ -7,6 +7,7 @@ import SamsungDemo from "./VideoPages/SamsungDemo";
 import OximeterVideo, { OximeterEmbedVideo } from "./VideoPages/OximeterVideo";
 import CurefitVideo from "./VideoPages/CurefitVideo";
 import IEVideo from "./VideoPages/IEVideo";
+import NDTVVideo from "./VideoPages/NDTVVideo";
 import { TVNineBharat } from "./components/TVNineBharatPopup";
 import TVNineBharat002 from "./components/TVNineBharat002";
 
@@ -42,6 +43,7 @@ class AppRoute extends Component {
         <Route path="/samsung" render={() => <SamsungDemo />} />
         <Route path="/curefit" render={() => <CurefitVideo />} />
         <Route path="/indianexpress" render={() => <IEVideo />} />
+        <Route path="/ndtv" render={() => <NDTVVideo />} />
         <Route path="/tv9bharat" render={() => <TVNineBharat />} />
         <Route path="/tv9bharat_002" render={() => <TVNineBharat002 />} />
         <Route

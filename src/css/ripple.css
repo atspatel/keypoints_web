@@ -1,0 +1,27 @@
+.ripple {
+  background-color: #ddd;
+  border-radius: 20px;
+  pointer-events: none;
+  position: absolute;
+  transform: scale(0);
+  z-index: 1;
+}
+
+.ripple-in {
+  transform: scale(1);
+  transition: transform 1000ms;
+  opacity: 0.7;
+}
+
+.ripple-start {
+  transform: scale(1);
+}
+
+.ripple-end {
+  transform: scale(0);
+  transition: transform 1000ms;
+  opacity: 0.7;
+}
+.ripple-out {
+  transform: scale(0);
+}

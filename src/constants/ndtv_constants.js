@@ -107,7 +107,7 @@ function create_overlay_buttons() {
       id: `share_${item.id}`,
       start: item.start,
       end: item.end,
-      bbox: [0.8, 0.3, 0.1, 0.1],
+      bbox: [0.6, 0.4, 0.1, 0.1],
       button: {
         id: `share_${item.id}`,
         action: action_constants.ACTION_URL,
@@ -120,7 +120,7 @@ function create_overlay_buttons() {
       id: `download_${item.id}`,
       start: item.start,
       end: item.end,
-      bbox: [0.8, 0.2, 0.1, 0.1],
+      bbox: [0.7, 0.4, 0.1, 0.1],
       button: {
         id: `download_${item.id}`,
         action: action_constants.ACTION_DOWNLOAD,

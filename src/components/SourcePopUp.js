@@ -36,7 +36,8 @@ class SourcePopUp extends Component {
           height: "100%",
           width: "100%",
           padding: "5%",
-          position: "absolute"
+          position: "absolute",
+          overflowY: "scroll"
         }}
       >
         <div

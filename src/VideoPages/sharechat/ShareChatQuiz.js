@@ -26,7 +26,7 @@ class SharechatQuiz extends Component {
         }}
         className="centerH"
       >
-        <SharechatQuizPlaylist
+        {/* <SharechatQuizPlaylist
           video_id={video_const.video_id}
           lang={lang}
           title={video_const.title}
@@ -35,7 +35,7 @@ class SharechatQuiz extends Component {
           intro={video_const.intro}
           playlist={video_const.questions}
           outro={video_const.outro}
-        />
+        /> */}
       </div>
     );
   }

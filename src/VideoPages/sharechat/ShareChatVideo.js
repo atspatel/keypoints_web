@@ -26,7 +26,7 @@ class ShareChatVideo extends Component {
         }}
         className="centerH"
       >
-        <ShareChatPlaylist
+        {/* <ShareChatPlaylist
           video_id={video_const.video_id}
           lang={lang}
           title={video_const.title}
@@ -37,7 +37,7 @@ class ShareChatVideo extends Component {
               : video_const.audioFile.hindi
           }
           playlist={video_const.playlist}
-        />
+        /> */}
       </div>
     );
   }

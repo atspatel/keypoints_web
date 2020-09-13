@@ -26,13 +26,13 @@ class ShareChatAudio extends Component {
         }}
         className="centerH"
       >
-        <SharechatAudioPlaylist
+        {/* <SharechatAudioPlaylist
           video_id={video_const.video_id}
           lang={lang}
           title={video_const.title}
           video_info={video_const.video_info}
           playlist={video_const.playlist}
-        />
+        /> */}
       </div>
     );
   }

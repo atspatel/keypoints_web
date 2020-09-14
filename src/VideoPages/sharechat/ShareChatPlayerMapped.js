@@ -25,7 +25,7 @@ class ShareChatPlayerMapped extends Component {
         }}
         className="centerH"
       >
-        <PlaylistPlayer playlist_id={p_id} />
+        {/* <PlaylistPlayer playlist_id={p_id} /> */}
       </div>
     );
   }

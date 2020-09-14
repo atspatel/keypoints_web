@@ -36,8 +36,8 @@ class AppRoute extends Component {
           render={props => <ShareChatPlayer {...props} />}
         />
         <Route
-          path="/sharechat_content_***"
-          render={props => <ShareChatPlayerMapped {...props} />}
+          path="/sharechat_*"
+          render={props => <Redirect to="/sharechat" />}
         />
 
         <Route

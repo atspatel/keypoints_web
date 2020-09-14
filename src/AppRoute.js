@@ -11,6 +11,8 @@ import NDTVVideo from "./VideoPages/NDTVVideo";
 import { TVNineBharat } from "./components/TVNineBharatPopup";
 import TVNineBharat002 from "./components/TVNineBharat002";
 
+import PlaylistVideo from "./VideoPages/PlaylistVideo";
+
 import ShareChatPlayer from "./VideoPages/sharechat/ShareChatPlayer";
 import ShareChatPlayerMapped from "./VideoPages/sharechat/ShareChatPlayerMapped";
 import DhoniTribute001 from "./VideoPages/DhoniTribute001";
@@ -30,6 +32,11 @@ class AppRoute extends Component {
         <Route path="/ndtv" render={() => <NDTVVideo />} />
         <Route path="/tv9bharat" render={() => <TVNineBharat />} />
         <Route path="/tv9bharat_002" render={() => <TVNineBharat002 />} />
+
+        <Route
+          path="/mxplayer"
+          render={props => <PlaylistVideo {...props} />}
+        />
 
         <Route
           path="/sharechat"

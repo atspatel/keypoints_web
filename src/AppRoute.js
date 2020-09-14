@@ -12,22 +12,6 @@ import { TVNineBharat } from "./components/TVNineBharatPopup";
 import TVNineBharat002 from "./components/TVNineBharat002";
 
 import ShareChatPlayer from "./VideoPages/sharechat/ShareChatPlayer";
-
-import ShareChatVideo001 from "./VideoPages/sharechat/ShareChatVideo001";
-import ShareChatVideo002 from "./VideoPages/sharechat/ShareChatVideo002";
-import ShareChatVideo003 from "./VideoPages/sharechat/ShareChatVideo003";
-import ShareChatVideo004 from "./VideoPages/sharechat/ShareChatVideo004";
-import ShareChatVideo005 from "./VideoPages/sharechat/ShareChatVideo005";
-import ShareChatVideo006 from "./VideoPages/sharechat/ShareChatVideo006";
-import ShareChatVideo007 from "./VideoPages/sharechat/ShareChatVideo007";
-import ShareChatVideo008 from "./VideoPages/sharechat/ShareChatVideo008";
-import ShareChatVideo009 from "./VideoPages/sharechat/ShareChatVideo009";
-import ShareChatVideo010 from "./VideoPages/sharechat/ShareChatVideo010";
-
-import ShareChatAudio001 from "./VideoPages/sharechat/ShareChatAudio001";
-
-import ShareChatQuiz001 from "./VideoPages/sharechat/ShareChatQuiz001";
-
 import ShareChatPlayerMapped from "./VideoPages/sharechat/ShareChatPlayerMapped";
 import DhoniTribute001 from "./VideoPages/DhoniTribute001";
 
@@ -46,6 +30,7 @@ class AppRoute extends Component {
         <Route path="/ndtv" render={() => <NDTVVideo />} />
         <Route path="/tv9bharat" render={() => <TVNineBharat />} />
         <Route path="/tv9bharat_002" render={() => <TVNineBharat002 />} />
+
         <Route
           path="/sharechat"
           render={props => <ShareChatPlayer {...props} />}
@@ -58,57 +43,6 @@ class AppRoute extends Component {
         <Route
           path="/dhoni_tribute"
           render={props => <DhoniTribute001 {...props} />}
-        />
-
-        <Route
-          path="/sharechat_001"
-          render={props => <ShareChatVideo001 {...props} />}
-        />
-        <Route
-          path="/sharechat_002"
-          render={props => <ShareChatVideo002 {...props} />}
-        />
-        <Route
-          path="/sharechat_003"
-          render={props => <ShareChatVideo003 {...props} />}
-        />
-        <Route
-          path="/sharechat_004"
-          render={props => <ShareChatVideo004 {...props} />}
-        />
-        <Route
-          path="/sharechat_005"
-          render={props => <ShareChatVideo005 {...props} />}
-        />
-        <Route
-          path="/sharechat_006"
-          render={props => <ShareChatVideo006 {...props} />}
-        />
-        <Route
-          path="/sharechat_007"
-          render={props => <ShareChatVideo007 {...props} />}
-        />
-        <Route
-          path="/sharechat_008"
-          render={props => <ShareChatVideo008 {...props} />}
-        />
-        <Route
-          path="/sharechat_009"
-          render={props => <ShareChatVideo009 {...props} />}
-        />
-        <Route
-          path="/sharechat_010"
-          render={props => <ShareChatVideo010 {...props} />}
-        />
-
-        <Route
-          path="/sharechat_audio_001"
-          render={props => <ShareChatAudio001 {...props} />}
-        />
-
-        <Route
-          path="/sharechat_quiz_001"
-          render={props => <ShareChatQuiz001 {...props} />}
         />
 
         <Route render={() => <Redirect to="/sample_video" />} />

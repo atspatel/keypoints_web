@@ -355,6 +355,7 @@ class VideoSection extends Component {
   }
   render() {
     const {
+      isTitle,
       video_id,
       session_id,
       lang,
@@ -369,9 +370,9 @@ class VideoSection extends Component {
       <div
         style={{
           position: "absolute",
-          top: "10%",
+          top: isTitle ? "10%" : "0%",
           left: 0,
-          height: "90%",
+          height: isTitle ? "90%" : "100%",
           width: "100%",
           justifyContent: "center",
           alignItems: "center"
@@ -487,7 +488,7 @@ class VideoSection extends Component {
               <div
                 style={{
                   color: "white",
-                  fontSize: 0.035 * width,
+                  fontSize: Math.min(0.035 * width, 20),
                   backgroundColor: `rgba(0,0,0,0.5)`,
                   borderBottom: "1px solid white",
                   padding: 2
@@ -554,6 +555,7 @@ class ShareChatPlaylist extends Component {
 
   render() {
     const { button_size, width, session_id, playlist_data } = this.state;
+    const isTitle = playlist_data && playlist_data.title_info;
     return (
       <div
         ref={c => (this.container = c)}
@@ -568,11 +570,12 @@ class ShareChatPlaylist extends Component {
         className="centerH"
         onContextMenu={e => e.preventDefault()}
       >
-        {playlist_data && playlist_data.title_info && (
+        {isTitle && (
           <VideoTitle title_info={playlist_data.title_info} width={width} />
         )}
         {playlist_data && (
           <VideoSection
+            isTitle={isTitle}
             video_id={playlist_data.id}
             session_id={session_id}
             lang={playlist_data.language}

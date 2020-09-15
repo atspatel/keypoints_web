@@ -12,6 +12,7 @@ import { TVNineBharat } from "./components/TVNineBharatPopup";
 import TVNineBharat002 from "./components/TVNineBharat002";
 
 import PlaylistVideo from "./VideoPages/PlaylistVideo";
+import BetterIndiaPlayer from "./VideoPages/BetterIndiaPlayer";
 
 import ShareChatPlayer from "./VideoPages/sharechat/ShareChatPlayer";
 import ShareChatPlayerMapped from "./VideoPages/sharechat/ShareChatPlayerMapped";
@@ -36,6 +37,11 @@ class AppRoute extends Component {
         <Route
           path="/mxplayer"
           render={props => <PlaylistVideo {...props} />}
+        />
+
+        <Route
+          path="/betterindia"
+          render={props => <BetterIndiaPlayer {...props} />}
         />
 
         <Route

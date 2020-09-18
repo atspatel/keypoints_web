@@ -17,6 +17,7 @@ import BetterIndiaPlayer from "./VideoPages/BetterIndiaPlayer";
 import ShareChatPlayer from "./VideoPages/sharechat/ShareChatPlayer";
 import ShareChatPlayerMapped from "./VideoPages/sharechat/ShareChatPlayerMapped";
 import DhoniTribute001 from "./VideoPages/DhoniTribute001";
+import InteractiveAarti from "./components/InteractiveAarti";
 
 class AppRoute extends Component {
   render() {
@@ -60,6 +61,9 @@ class AppRoute extends Component {
           render={props => <DhoniTribute001 {...props} />}
         />
 
+        <Route path="/digital_aarti">
+          <InteractiveAarti isShare={true} />
+        </Route>
         <Route render={() => <Redirect to="/sample_video" />} />
       </Switch>
     );

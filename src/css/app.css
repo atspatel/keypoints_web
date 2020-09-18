@@ -87,3 +87,12 @@ body {
   -webkit-box-orient: vertical;
   word-break: break-all;
 }
+
+.image-shadow {
+  -webkit-filter: drop-shadow(15px 15px 10px #000000);
+  filter: drop-shadow(15px 15px 10px #000000);
+}
+
+.share_icon {
+  margin: 5px 10px;
+}

@@ -1,5 +1,6 @@
 body {
   font-family: "Calibri";
+  color: black;
 }
 .centerH {
   width: fit-content;
@@ -95,4 +96,20 @@ body {
 
 .share_icon {
   margin: 5px 10px;
+}
+
+.p_description {
+  font-size: "1.4vw";
+}
+
+.card_title {
+  padding: 10px 30px;
+  border-radius: 10ch;
+  background-color: #ff6161;
+  color: white;
+  font-weight: bold;
+}
+.class_body {
+  /* margin: 50px 30px; */
+  color: white;
 }

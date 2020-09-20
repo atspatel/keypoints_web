@@ -19,6 +19,8 @@ import ShareChatPlayerMapped from "./VideoPages/sharechat/ShareChatPlayerMapped"
 import DhoniTribute001 from "./VideoPages/DhoniTribute001";
 import InteractiveAarti from "./components/InteractiveAarti";
 
+import LandingPage from "./VideoPages/LandingPage";
+
 class AppRoute extends Component {
   render() {
     return (
@@ -64,7 +66,12 @@ class AppRoute extends Component {
         <Route path="/digital_aarti">
           <InteractiveAarti isShare={true} />
         </Route>
-        <Route render={() => <Redirect to="/sample_video" />} />
+
+        <Route path="/">
+          <LandingPage />
+        </Route>
+
+        <Route render={() => <Redirect to="/" />} />
       </Switch>
     );
   }

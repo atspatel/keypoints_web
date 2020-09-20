@@ -1,0 +1,15 @@
+body {
+  font-family: serif;
+  color: black;
+}
+
+.navbar,
+.navbar-default {
+  background-image: linear-gradient(to bottom, #000 0, #000 100%);
+  padding: 0px 16px 0px 0px;
+}
+
+.nav {
+  font-weight: bold;
+  font-size: 20px;
+}

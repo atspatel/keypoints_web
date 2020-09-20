@@ -316,7 +316,7 @@ export class TVNineBharat002 extends Component {
   }
   render() {
     const { showPopup, s_button_size, paused, showTyping } = this.state;
-    const width = innerWidth < 900 ? innerWidth : 900;
+    const width = Math.min(innerWidth, 900, innerHeight / 0.5625);
     return (
       <div
         ref={c => (this.container = c)}

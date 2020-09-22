@@ -38,6 +38,11 @@ class AppRoute extends Component {
         <Route path="/tv9bharat_002" render={() => <TVNineBharat002 />} />
 
         <Route
+          path="/playlist"
+          render={props => <PlaylistVideo {...props} />}
+        />
+
+        <Route
           path="/mxplayer"
           render={props => <PlaylistVideo {...props} />}
         />

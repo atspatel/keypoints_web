@@ -11,26 +11,23 @@ class WebShareComponent extends Component {
       "https://storage.googleapis.com/kp_videos/ProfilePics/IMG-20200701-WA0013.jpg"
     )
       .then(res => {
-        return res.arrayBuffer();
+        return res.blob();
       })
-      .then(buf => {
-        return new File([buf], "test.jpg", { type: "image/jpg" });
+      .then(blob => {
+        return new File([blob], "test.jpg", { type: blob.type });
       });
   };
   onClick = () => {
-    this.imageUrltoFile().then(file => {
-      console.log(file);
-    });
     if (navigator.share) {
       this.imageUrltoFile().then(file => {
-        const fileArray = Object.freeze([file]);
-        console.log(fileArray);
+        // const fileArray = Object.freeze([file]);
+        // console.log(fileArray);
         navigator
           .share({
             title: "web.dev",
             text: "Check out web.dev.",
             url: "https://web.dev/",
-            files: fileArray
+            files: [file]
           })
           .then(() => console.log("Successful share"))
           .catch(error => console.log(error));

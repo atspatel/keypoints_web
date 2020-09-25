@@ -21,10 +21,12 @@ import InteractiveAarti from "./components/InteractiveAarti";
 
 import LandingPage from "./VideoPages/LandingPage";
 
+import WebShareComponent from "./components/WebShareComponent";
 class AppRoute extends Component {
   render() {
     return (
       <Switch>
+        <Route path="/share" render={() => <WebShareComponent />} />
         <Route path="/sample_video" render={() => <RealmeVideo />} />
         <Route path="/realme" render={() => <RealmeVideo />} />
         <Route path="/oximeter" render={() => <OximeterVideo />} />

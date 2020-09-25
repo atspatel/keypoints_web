@@ -3,6 +3,8 @@ import * as config from "../../config";
 export const BASE_DIR_sharechat = `${config.BASE_DIR}/sharechat_1`;
 export const sharechat_logo = `${BASE_DIR_sharechat}/sharechat.png`;
 
+export const mapping = config.sharechat_mapping;
+
 export const languages = {
   hindi: { name: "Hindi", text: "हिंदी" },
   marathi: { name: "Marathi", text: "मराठी" },

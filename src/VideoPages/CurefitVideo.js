@@ -9,6 +9,7 @@ import create_playlist, {
 
 import HLSPlaylist from "../components/HLSPlaylist";
 
+const { innerHeight, innerWidth } = window;
 class CurefitVideo extends Component {
   state = {
     playlist: null,
@@ -76,10 +77,15 @@ class CurefitVideo extends Component {
   }
   render() {
     const { playlist, exc_data, exc_list, current } = this.state;
+    const width = Math.min(800, innerWidth, innerHeight / 0.5625);
     if (playlist) {
       return (
         <div
-          style={{ height: 450, width: 800, position: "relative" }}
+          style={{
+            height: 0.5625 * width,
+            width: width,
+            position: "relative"
+          }}
           className="centerH"
         >
           <HLSPlaylist
@@ -117,7 +123,10 @@ class CurefitVideo extends Component {
       );
     } else {
       return (
-        <div style={{ height: 450, width: 800 }} className="centerH">
+        <div
+          style={{ height: 0.5625 * width, width: width }}
+          className="centerH"
+        >
           <CureFitDashboard
             onClickStart={this.onClickStart}
             exc_data={exc_data}

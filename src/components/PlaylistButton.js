@@ -14,7 +14,8 @@ export class PlaylistButton extends Component {
   };
   onClick = item => {
     const { video_id, session_id } = this.props;
-    post_activity("click", video_id, item.button_id, session_id);
+    const button_id = item.button_info ? item.button_info.name : item.button_id;
+    post_activity("click", video_id, button_id, session_id);
     this.props.onClick && this.props.onClick(item.id);
   };
   render() {
@@ -33,7 +34,6 @@ export class PlaylistButton extends Component {
     return (
       <div
         style={{
-          flex: 1,
           height: size,
           width: size,
           borderRadius: size / 2,
@@ -96,13 +96,16 @@ export class PlaylistButton extends Component {
             }}
           >
             <img
-              src={item.thumbnail}
+              src={item.media_info ? item.media_info.thumbnail : item.thumbnail}
               alt=""
               style={{
                 height: "100%",
                 width: "100%",
                 borderRadius: "50%",
                 border: border ? `2px solid ${borderColor}` : null
+              }}
+              onDragStart={e => {
+                e.preventDefault();
               }}
             />
           </div>

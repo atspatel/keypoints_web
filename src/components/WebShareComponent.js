@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import imageDataURI from "image-data-uri";
 
 class WebShareComponent extends Component {
+  state = {
+    text: ""
+  };
   onClick = () => {
     if (navigator.share) {
       imageDataURI
@@ -17,7 +20,7 @@ class WebShareComponent extends Component {
               files: [res]
             })
             .then(() => console.log("Successful share"))
-            .catch(error => console.log("Error sharing", error))
+            .catch(error => this.setState({ text: error }))
         );
     } else {
       console.log("not supported");
@@ -27,6 +30,7 @@ class WebShareComponent extends Component {
     return (
       <div>
         <h1 onClick={this.onClick}>Click me</h1>
+        <p>{this.state.text}</p>
       </div>
     );
   }

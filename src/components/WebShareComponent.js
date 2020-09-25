@@ -23,13 +23,14 @@ class WebShareComponent extends Component {
     });
     if (navigator.share) {
       this.imageUrltoFile().then(file => {
-        console.log(file);
+        const fileArray = Object.freeze([file]);
+        console.log(fileArray);
         navigator
           .share({
             title: "web.dev",
             text: "Check out web.dev.",
             url: "https://web.dev/",
-            files: Object.freeze([file])
+            files: fileArray
           })
           .then(() => console.log("Successful share"))
           .catch(error => console.log(error));

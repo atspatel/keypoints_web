@@ -32,13 +32,14 @@ class WebShareComponent extends Component {
           .catch(error => this.setState({ text: error }));
       });
     } else {
-      console.log("not supported");
+      this.setState({ text: "not supported" });
     }
   };
   render() {
     return (
       <div>
         <h1 onClick={this.onClick}>Click me</h1>
+        <div>{this.state.text}</div>
       </div>
     );
   }

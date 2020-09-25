@@ -14,7 +14,7 @@ class WebShareComponent extends Component {
         return res.arrayBuffer();
       })
       .then(buf => {
-        return new File([buf], "test.jpg", { type: "image/jpg" });
+        const file = new File([buf], "test.jpg", { type: "image/jpg" });
       });
   };
   onClick = () => {
@@ -26,7 +26,7 @@ class WebShareComponent extends Component {
             title: "web.dev",
             text: "Check out web.dev.",
             url: "https://web.dev/",
-            files: file
+            file: Object.freeze([file])
           })
           .then(() => console.log("Successful share"))
           .catch(error => this.setState({ text: error }));

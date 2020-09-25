@@ -5,23 +5,32 @@ class WebShareComponent extends Component {
   state = {
     text: ""
   };
+
+  imageUrltoFile = async () => {
+    return fetch(
+      "https://storage.googleapis.com/kp_videos/ProfilePics/IMG-20200701-WA0013.jpg"
+    )
+      .then(res => {
+        return res.arrayBuffer();
+      })
+      .then(buf => {
+        return new File([buf], "test.jpg", { type: "image/jpg" });
+      });
+  };
   onClick = () => {
     if (navigator.share) {
-      imageDataURI
-        .encodeFromURL(
-          "https://storage.googleapis.com/kp_videos/ProfilePics/IMG-20200701-WA0013.jpg"
-        )
-        .then(res =>
-          navigator
-            .share({
-              title: "web.dev",
-              text: "Check out web.dev.",
-              url: "https://web.dev/",
-              files: [res]
-            })
-            .then(() => console.log("Successful share"))
-            .catch(error => this.setState({ text: error }))
-        );
+      this.imageUrltoFile().then(file => {
+        console.log(file);
+        navigator
+          .share({
+            title: "web.dev",
+            text: "Check out web.dev.",
+            url: "https://web.dev/",
+            files: [file]
+          })
+          .then(() => console.log("Successful share"))
+          .catch(error => this.setState({ text: error }));
+      });
     } else {
       console.log("not supported");
     }

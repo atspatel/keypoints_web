@@ -68,15 +68,18 @@ class TVNineMoreSubscription extends Component {
   }
 }
 
-class TVNinePopupForm extends Component {
-  state = {
-    formFilled: false,
+class MobileNumberForm extends Component {
+  render() {
+    return <div></div>;
+  }
+}
 
+class OTPForm extends Component {
+  state = {
     name: { text: "", error: false },
     email: { text: "", error: false },
     phone: { text: "", error: false }
   };
-
   validateForm = () => {
     const { name, email, phone } = this.state;
     let isValid = true;
@@ -102,6 +105,90 @@ class TVNinePopupForm extends Component {
     }
   };
   render() {
+    return (
+      <>
+        <TextField
+          id="name"
+          label="Name"
+          size="small"
+          value={this.state.name.text}
+          error={this.state.name.error}
+          onChange={e =>
+            this.setState({
+              name: { text: e.target.value, error: false }
+            })
+          }
+          variant="outlined"
+          style={{
+            width: "100%",
+            backgroundColor: "white",
+            marginTop: 5
+          }}
+        />
+        <TextField
+          id="email"
+          label="Email"
+          size="small"
+          variant="outlined"
+          type="email"
+          value={this.state.email.text}
+          error={this.state.email.error}
+          onChange={e =>
+            this.setState({
+              email: { text: e.target.value, error: false }
+            })
+          }
+          style={{
+            width: "100%",
+            backgroundColor: "white",
+            marginTop: 5,
+            padding: 0
+          }}
+        />
+        <TextField
+          id="phone"
+          label="Mobile Number"
+          size="small"
+          variant="outlined"
+          type="number"
+          value={this.state.phone.text}
+          error={this.state.phone.error}
+          onChange={e =>
+            this.setState({
+              phone: { text: e.target.value, error: false }
+            })
+          }
+          style={{
+            width: "100%",
+            backgroundColor: "white",
+            marginTop: 5
+          }}
+        />
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={this.onClickSubmit}
+        >
+          Subscribe To Channel
+        </Button>
+      </>
+    );
+  }
+}
+
+class TVNinePopupForm extends Component {
+  state = {
+    otpSent: false,
+    formFilled: false,
+
+    name: { text: "", error: false },
+    email: { text: "", error: false },
+    phone: { text: "", error: false }
+  };
+
+  render() {
+    const { otpSent } = this.state;
+    const { onClick } = this.props;
     return (
       <div
         style={{
@@ -147,6 +234,7 @@ class TVNinePopupForm extends Component {
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="2">
             <div style={{ margin: 10 }}>
+              {/* {otpSent ? <MobileNumberForm /> : <OTPForm onClick={onClick}/>} */}
               <TextField
                 id="name"
                 label="Name"

@@ -26,7 +26,7 @@ class WebShareComponent extends Component {
             title: "web.dev",
             text: "Check out web.dev.",
             url: "https://web.dev/",
-            file: Object.freeze([file])
+            files: Object.freeze([file])
           })
           .then(() => console.log("Successful share"))
           .catch(error => this.setState({ text: error }));

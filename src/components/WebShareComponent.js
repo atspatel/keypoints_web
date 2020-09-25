@@ -14,10 +14,13 @@ class WebShareComponent extends Component {
         return res.arrayBuffer();
       })
       .then(buf => {
-        const file = new File([buf], "test.jpg", { type: "image/jpg" });
+        return new File([buf], "test.jpg", { type: "image/jpg" });
       });
   };
   onClick = () => {
+    this.imageUrltoFile().then(file => {
+      console.log(file);
+    });
     if (navigator.share) {
       this.imageUrltoFile().then(file => {
         console.log(file);
@@ -29,7 +32,7 @@ class WebShareComponent extends Component {
             files: Object.freeze([file])
           })
           .then(() => console.log("Successful share"))
-          .catch(error => this.setState({ text: error.text }));
+          .catch(error => console.log(error));
       });
     } else {
       this.setState({ text: "not supported" });

@@ -39,7 +39,6 @@ class WebShareComponent extends Component {
     return (
       <div>
         <h1 onClick={this.onClick}>Click me</h1>
-        <p>{this.state.text}</p>
       </div>
     );
   }

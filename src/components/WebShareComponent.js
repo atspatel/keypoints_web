@@ -29,7 +29,7 @@ class WebShareComponent extends Component {
             files: Object.freeze([file])
           })
           .then(() => console.log("Successful share"))
-          .catch(error => this.setState({ text: error }));
+          .catch(error => this.setState({ text: error.text }));
       });
     } else {
       this.setState({ text: "not supported" });

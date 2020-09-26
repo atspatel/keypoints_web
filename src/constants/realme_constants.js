@@ -5,7 +5,7 @@ import * as radius_constants from "./radius_constants";
 import * as config from "../config";
 import * as constants from "./constants";
 
-export const contact = "9739908844";
+export const contact = "8953457318";
 
 export const realmeX = "realmeX";
 export const realmeX2 = "realmeX2";

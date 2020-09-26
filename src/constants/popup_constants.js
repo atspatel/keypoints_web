@@ -1,17 +1,22 @@
 import React from "react";
 
 import CameraPopUp from "../components/CameraPopUp";
-import SpecificationPopUp from "../components/SpecificationPopUp";
 import ImagePopUp from "../components/ImagePopUp";
-import SourcePopUp from "../components/SourcePopUp";
+import ImageCarousel from "../components/ImageCarousel";
 import VideoPopUp, { onClosePopUp } from "../components/VideoPopUp";
 
-export const POPUP_HTML = "popup_html";
-export const POPUP_SPECIFICATION = "popup_specification";
+import SourcePopUp from "../components/SourcePopUp";
+import SpecificationPopUp from "../components/SpecificationPopUp";
+
 export const POPUP_CAMERA = "popup_camera";
 export const POPUP_VIDEO = "popup_video";
 export const POPUP_PROCESSOR = "popup_processor";
 export const POPUP_CHART = "popup_chart";
+export const POPUP_IMAGE_CAROUSEL = "popup_image_carousel";
+
+export const POPUP_HTML = "popup_html";
+
+export const POPUP_SPECIFICATION = "popup_specification";
 export const POPUP_SOURCES = "popup_sources";
 
 // Leave 0.08 at bottom for back button
@@ -72,5 +77,13 @@ export const POPUP = {
     inDuration: 0.001,
     bbox: [0.0, 0, 0.4, 0.8],
     component: props => <SourcePopUp {...props} />
+  },
+  [POPUP_IMAGE_CAROUSEL]: {
+    pauseVideo: true,
+    showOverlayButtons: false,
+    showBackButton: true,
+    inDuration: 0.5,
+    bbox: [0.05, 0.05, 0.9, 0.9],
+    component: props => <ImageCarousel {...props} />
   }
 };

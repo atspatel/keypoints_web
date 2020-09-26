@@ -7,7 +7,7 @@ import { Carousel } from "react-responsive-carousel";
 
 class ImageCarousel extends Component {
   render() {
-    const { images } = this.props;
+    const { data } = this.props;
     return (
       <Carousel
         // autoPlay
@@ -16,10 +16,10 @@ class ImageCarousel extends Component {
         showThumbs={false}
         centerMode
         infiniteLoop
-        centerSlidePercentage={90}
+        centerSlidePercentage={data.length === 1 ? 100 : 90}
         style={{ backgroundColor: "white" }}
       >
-        {images.map(item => {
+        {data.map(item => {
           return (
             <div
               className="image-container"
@@ -27,16 +27,18 @@ class ImageCarousel extends Component {
                 backgroundColor: "black",
                 borderRadius: "10px",
                 overflow: "hidden",
-                position: "relative"
+                position: "relative",
+                width: data.length === 1 ? "100%" : "96%",
+                margin: data.length === 1 ? "0% 0%" : "0% 2%"
               }}
             >
               <img
                 src={item.source}
                 style={{
-                  height: "90%",
+                  height: "100%",
                   width: "100%",
                   position: "absolute",
-                  top: "5%",
+                  top: "0%",
                   left: "0%",
                   objectFit: "contain"
                 }}

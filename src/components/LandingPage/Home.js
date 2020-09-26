@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { ParallaxBanner } from "react-scroll-parallax";
 import ScrollAnimation from "react-animate-on-scroll";
 
-import { ImageCarousel, DemoCarousel } from "./ImageCarousel";
+import { DemoCarousel } from "./ImageCarousel";
 import * as constants from "../../constants/landing_page_constants";
 
 import "../../css/app.css";
@@ -95,7 +95,6 @@ class Home extends Component {
                 height: "70%"
               }}
             >
-              {/* <ImageCarousel images={images} /> */}
               <DemoCarousel demos={constants.demos} />
             </div>
           </div>

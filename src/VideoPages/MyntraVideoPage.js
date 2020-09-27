@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import HtmlVideoIdComp from "../components/HtmlVideoIdComp";
 import { Helmet } from "react-helmet";
 
-import * as myntra_constants from "../constants/myntra_constants";
-
 import { get_video_data } from "../functions/mediaPlaylistFunc";
 
 const video_id = "184b0f49-9764-4381-b52c-7879d9aba294";

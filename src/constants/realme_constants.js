@@ -23,7 +23,15 @@ export const phone_info = {
   realmeX: {
     price: "20,999",
     specification: `${BASE_DIR_realme}/${realmeX}/specification.png`,
-    processor: `${BASE_DIR_realme}/${realmeX}/processor.png`,
+    processor: [
+      {
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX}/processor.png`
+        }
+      }
+    ],
+
     color: [
       { id: 1, name: "Polar White" },
       { id: 2, name: "Space Blue" }
@@ -90,49 +98,76 @@ export const phone_info = {
     camera_images: [
       {
         id: 1,
-        source: `${BASE_DIR_realme}/${realmeX}/camera/image1.jpg`,
-        legend: null
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX}/camera/image1.jpg`,
+          title: null
+        }
       },
       {
         id: 2,
-        source: `${BASE_DIR_realme}/${realmeX}/camera/image2.jpg`,
-        legend: "Chorma Boost Bringes Colors to Life"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX}/camera/image2.jpg`,
+          title: "Chorma Boost Bringes Colors to Life"
+        }
       },
       {
         id: 3,
-        source: `${BASE_DIR_realme}/${realmeX}/camera/image3.jpg`,
-        legend: "Chorma Boost Bringes Colors to Life"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX}/camera/image3.jpg`,
+          title: "Chorma Boost Bringes Colors to Life"
+        }
       },
       {
         id: 4,
-        source: `${BASE_DIR_realme}/${realmeX}/camera/image4.jpg`,
-        legend: "Chorma Boost Bringes Colors to Life"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX}/camera/image4.jpg`,
+          title: "Chorma Boost Bringes Colors to Life"
+        }
       },
       {
         id: 5,
-        source: `${BASE_DIR_realme}/${realmeX}/camera/image5.jpg`,
-        legend: "The Next-gen Super Nightscape"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX}/camera/image5.jpg`,
+          title: "The Next-gen Super Nightscape"
+        }
       },
       {
         id: 6,
-        source: `${BASE_DIR_realme}/${realmeX}/camera/image6.jpg`,
-        legend: "The Next-gen Super Nightscape"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX}/camera/image6.jpg`,
+          title: "The Next-gen Super Nightscape"
+        }
       },
       {
         id: 7,
-        source: `${BASE_DIR_realme}/${realmeX}/camera/image7.jpg`,
-        legend:
-          "AI enabled Sony's 16MP camera sensor. 0.74s to pop up for over 200,000 times"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX}/camera/image7.jpg`,
+          title:
+            "AI enabled Sony's 16MP camera sensor. 0.74s to pop up for over 200,000 times"
+        }
       },
       {
         id: 8,
-        source: `${BASE_DIR_realme}/${realmeX}/camera/image8.jpg`,
-        legend: "Studio-style shots with all new five portrait modes"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX}/camera/image8.jpg`,
+          title: "Studio-style shots with all new five portrait modes"
+        }
       },
       {
         id: 9,
-        source: `${BASE_DIR_realme}/${realmeX}/camera/image9.jpg`,
-        legend: "Studio-style shots with all new five portrait modes"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX}/camera/image9.jpg`,
+          title: "Studio-style shots with all new five portrait modes"
+        }
       }
     ],
     buyOptions: [
@@ -156,7 +191,15 @@ export const phone_info = {
   realmeX2: {
     price: "17,999",
     specification: `${BASE_DIR_realme}/${realmeX2}/specification.png`,
-    processor: `${BASE_DIR_realme}/${realmeX2}/processor.png`,
+    processor: [
+      {
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX2}/processor.png`
+        }
+      }
+    ],
+
     color: [
       { id: 1, name: "Pearl Blue" },
       { id: 2, name: "Pearl Green" },
@@ -247,43 +290,67 @@ export const phone_info = {
     camera_images: [
       {
         id: 1,
-        source: `${BASE_DIR_realme}/${realmeX2}/camera/image1.jpg`,
-        legend: "Flagship-level Photography"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX2}/camera/image1.jpg`,
+          title: "Flagship-level Photography"
+        }
       },
       {
         id: 2,
-        source: `${BASE_DIR_realme}/${realmeX2}/camera/image2.jpg`,
-        legend: "4cm Macro Lens"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX2}/camera/image2.jpg`,
+          title: "4cm Macro Lens"
+        }
       },
       {
         id: 3,
-        source: `${BASE_DIR_realme}/${realmeX2}/camera/image3.jpg`,
-        legend: "4cm Macro Lens"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX2}/camera/image3.jpg`,
+          title: "4cm Macro Lens"
+        }
       },
       {
         id: 4,
-        source: `${BASE_DIR_realme}/${realmeX2}/camera/image4.jpg`,
-        legend: "119˚ Ultra Wide-Angle Lens | 4x as Wide as Normal"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX2}/camera/image4.jpg`,
+          title: "119˚ Ultra Wide-Angle Lens | 4x as Wide as Normal"
+        }
       },
       {
         id: 5,
-        source: `${BASE_DIR_realme}/${realmeX2}/camera/image5.jpg`,
-        legend: "Enhanced Portrait Mode"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX2}/camera/image5.jpg`,
+          title: "Enhanced Portrait Mode"
+        }
       },
       {
         id: 6,
-        source: `${BASE_DIR_realme}/${realmeX2}/camera/image6.jpg`,
-        legend: "32MP AI Front Camera"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX2}/camera/image6.jpg`,
+          title: "32MP AI Front Camera"
+        }
       },
       {
         id: 7,
-        source: `${BASE_DIR_realme}/${realmeX2}/camera/image7.jpg`,
-        legend: "Super Nightscape 2.0 Clear Low-light Photos"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX2}/camera/image7.jpg`,
+          title: "Super Nightscape 2.0 Clear Low-light Photos"
+        }
       },
       {
         id: 8,
-        source: `${BASE_DIR_realme}/${realmeX2}/camera/image8.jpg`,
-        legend: null
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX2}/camera/image8.jpg`,
+          title: null
+        }
       }
     ],
     buyOptions: [
@@ -307,7 +374,15 @@ export const phone_info = {
   realmeX2Pro: {
     price: "29,999",
     specification: `${BASE_DIR_realme}/${realmeX2Pro}/specification.png`,
-    processor: `${BASE_DIR_realme}/${realmeX2Pro}/processor.png`,
+    processor: [
+      {
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX2Pro}/processor.png`
+        }
+      }
+    ],
+
     color: [
       { id: 1, name: "Lunar White" },
       { id: 2, name: "Neptune Blue" }
@@ -375,39 +450,60 @@ export const phone_info = {
     camera_images: [
       {
         id: 1,
-        source: `${BASE_DIR_realme}/${realmeX2Pro}/camera/image1.jpg`,
-        legend: null
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX2Pro}/camera/image1.jpg`,
+          title: null
+        }
       },
       {
         id: 2,
-        source: `${BASE_DIR_realme}/${realmeX2Pro}/camera/image2.jpg`,
-        legend:
-          "64MP Sensor Stunningly Sharp Resolution Ultra-detailed Pictures"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX2Pro}/camera/image2.jpg`,
+          title:
+            "64MP Sensor Stunningly Sharp Resolution Ultra-detailed Pictures"
+        }
       },
       {
         id: 3,
-        source: `${BASE_DIR_realme}/${realmeX2Pro}/camera/image3.jpg`,
-        legend: "Up to 20x Hybrid Zoom:: 1x Zoom"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX2Pro}/camera/image3.jpg`,
+          title: "Up to 20x Hybrid Zoom:: 1x Zoom"
+        }
       },
       {
         id: 4,
-        source: `${BASE_DIR_realme}/${realmeX2Pro}/camera/image4.jpg`,
-        legend: "Up to 20x Hybrid Zoom:: 20x Zoom"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX2Pro}/camera/image4.jpg`,
+          title: "Up to 20x Hybrid Zoom:: 20x Zoom"
+        }
       },
       {
         id: 5,
-        source: `${BASE_DIR_realme}/${realmeX2Pro}/camera/image5.jpg`,
-        legend: null
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX2Pro}/camera/image5.jpg`,
+          title: null
+        }
       },
       {
         id: 6,
-        source: `${BASE_DIR_realme}/${realmeX2Pro}/camera/image6.jpg`,
-        legend: "Super Nightscape 2.0"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX2Pro}/camera/image6.jpg`,
+          title: "Super Nightscape 2.0"
+        }
       },
       {
         id: 7,
-        source: `${BASE_DIR_realme}/${realmeX2Pro}/camera/image7.jpg`,
-        legend: "Introducing Selfie Nightscapes"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX2Pro}/camera/image7.jpg`,
+          title: "Introducing Selfie Nightscapes"
+        }
       }
     ],
     buyOptions: [
@@ -431,7 +527,15 @@ export const phone_info = {
   realmeXT: {
     price: "16,999",
     specification: `${BASE_DIR_realme}/${realmeXT}/specification.png`,
-    processor: `${BASE_DIR_realme}/${realmeXT}/processor.png`,
+    processor: [
+      {
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeXT}/processor.png`
+        }
+      }
+    ],
+
     color: [
       { id: 1, name: "Pearl White" },
       { id: 2, name: "Pearl Blue" }
@@ -499,33 +603,51 @@ export const phone_info = {
     camera_images: [
       {
         id: 1,
-        source: `${BASE_DIR_realme}/${realmeXT}/camera/image1.jpg`,
-        legend: null
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeXT}/camera/image1.jpg`,
+          title: null
+        }
       },
       {
         id: 2,
-        source: `${BASE_DIR_realme}/${realmeXT}/camera/image2.jpg`,
-        legend: null
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeXT}/camera/image2.jpg`,
+          title: null
+        }
       },
       {
         id: 3,
-        source: `${BASE_DIR_realme}/${realmeXT}/camera/image3.jpg`,
-        legend: null
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeXT}/camera/image3.jpg`,
+          title: null
+        }
       },
       {
         id: 4,
-        source: `${BASE_DIR_realme}/${realmeXT}/camera/image4.jpg`,
-        legend: null
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeXT}/camera/image4.jpg`,
+          title: null
+        }
       },
       {
         id: 5,
-        source: `${BASE_DIR_realme}/${realmeXT}/camera/image5.jpg`,
-        legend: null
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeXT}/camera/image5.jpg`,
+          title: null
+        }
       },
       {
         id: 6,
-        source: `${BASE_DIR_realme}/${realmeXT}/camera/image6.jpg`,
-        legend: null
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeXT}/camera/image6.jpg`,
+          title: null
+        }
       }
     ],
     buyOptions: [
@@ -549,7 +671,15 @@ export const phone_info = {
   realmeX50Pro: {
     price: "47,999",
     specification: `${BASE_DIR_realme}/${realmeX50Pro}/specification.png`,
-    processor: `${BASE_DIR_realme}/${realmeX50Pro}/processor.png`,
+    processor: [
+      {
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX50Pro}/processor.png`
+        }
+      }
+    ],
+
     color: [
       { id: 1, name: "Moss Green" },
       { id: 2, name: "Rust Red" }
@@ -617,43 +747,67 @@ export const phone_info = {
     camera_images: [
       {
         id: 1,
-        source: `${BASE_DIR_realme}/${realmeX50Pro}/camera/image1.jpg`,
-        legend: null
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX50Pro}/camera/image1.jpg`,
+          title: null
+        }
       },
       {
         id: 2,
-        source: `${BASE_DIR_realme}/${realmeX50Pro}/camera/image2.jpg`,
-        legend: "64MP Quad Camera | 20x Hybrid Zoom"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX50Pro}/camera/image2.jpg`,
+          title: "64MP Quad Camera | 20x Hybrid Zoom"
+        }
       },
       {
         id: 3,
-        source: `${BASE_DIR_realme}/${realmeX50Pro}/camera/image3.jpg`,
-        legend: "Normal Mode"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX50Pro}/camera/image3.jpg`,
+          title: "Normal Mode"
+        }
       },
       {
         id: 4,
-        source: `${BASE_DIR_realme}/${realmeX50Pro}/camera/image4.jpg`,
-        legend: "Ultra 64MP Mode"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX50Pro}/camera/image4.jpg`,
+          title: "Ultra 64MP Mode"
+        }
       },
       {
         id: 5,
-        source: `${BASE_DIR_realme}/${realmeX50Pro}/camera/image5.jpg`,
-        legend: "Ultra-wide Mode"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX50Pro}/camera/image5.jpg`,
+          title: "Ultra-wide Mode"
+        }
       },
       {
         id: 6,
-        source: `${BASE_DIR_realme}/${realmeX50Pro}/camera/image6.jpg`,
-        legend: "Super Nightscape 3.0"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX50Pro}/camera/image6.jpg`,
+          title: "Super Nightscape 3.0"
+        }
       },
       {
         id: 7,
-        source: `${BASE_DIR_realme}/${realmeX50Pro}/camera/image7.jpg`,
-        legend: "Super Nightscape 3.0"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX50Pro}/camera/image7.jpg`,
+          title: "Super Nightscape 3.0"
+        }
       },
       {
         id: 8,
-        source: `${BASE_DIR_realme}/${realmeX50Pro}/camera/image8.jpg`,
-        legend: "Ultra NightScape"
+        media_type: "image",
+        media: {
+          src: `${BASE_DIR_realme}/${realmeX50Pro}/camera/image8.jpg`,
+          title: "Ultra NightScape"
+        }
       }
     ],
     buyOptions: [
@@ -758,8 +912,8 @@ export const overlay_buttons = [
       id: `${realmeX}_camera`,
       shape: radius_constants.RECT,
       action: action_constants.ACTION_POPUP,
-      action_id: popup_constants.POPUP_CAMERA,
-      data: phone_info[realmeX]
+      action_id: popup_constants.POPUP_CAROUSEL,
+      data: phone_info[realmeX].camera_images
     }
   },
   {
@@ -772,8 +926,8 @@ export const overlay_buttons = [
       id: `${realmeXT}_camera`,
       shape: radius_constants.RECT,
       action: action_constants.ACTION_POPUP,
-      action_id: popup_constants.POPUP_CAMERA,
-      data: phone_info[realmeXT]
+      action_id: popup_constants.POPUP_CAROUSEL,
+      data: phone_info[realmeXT].camera_images
     }
   },
   {
@@ -786,8 +940,8 @@ export const overlay_buttons = [
       id: `${realmeX2}_camera`,
       shape: radius_constants.RECT,
       action: action_constants.ACTION_POPUP,
-      action_id: popup_constants.POPUP_CAMERA,
-      data: phone_info[realmeX2]
+      action_id: popup_constants.POPUP_CAROUSEL,
+      data: phone_info[realmeX2].camera_images
     }
   },
   {
@@ -800,8 +954,8 @@ export const overlay_buttons = [
       id: `${realmeX2Pro}_camera`,
       shape: radius_constants.RECT,
       action: action_constants.ACTION_POPUP,
-      action_id: popup_constants.POPUP_CAMERA,
-      data: phone_info[realmeX2Pro]
+      action_id: popup_constants.POPUP_CAROUSEL,
+      data: phone_info[realmeX2Pro].camera_images
     }
   },
   {
@@ -814,8 +968,8 @@ export const overlay_buttons = [
       id: `${realmeX50Pro}_camera`,
       shape: radius_constants.RECT,
       action: action_constants.ACTION_POPUP,
-      action_id: popup_constants.POPUP_CAMERA,
-      data: phone_info[realmeX50Pro]
+      action_id: popup_constants.POPUP_CAROUSEL,
+      data: phone_info[realmeX50Pro].camera_images
     }
   },
 

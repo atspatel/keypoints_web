@@ -1,21 +1,36 @@
 import React, { Component } from "react";
-import HtmlVideoComp from "../components/HtmlVideoComp";
+import HtmlVideoIdComp from "../components/HtmlVideoIdComp";
 import { Helmet } from "react-helmet";
 
 import * as myntra_constants from "../constants/myntra_constants";
 
+import { get_video_data } from "../functions/mediaPlaylistFunc";
+
+const video_id = "184b0f49-9764-4381-b52c-7879d9aba294";
+
 class MyntraVideo extends Component {
+  state = {
+    video_data: null
+  };
+  componentDidMount() {
+    get_video_data(video_id).then(response => {
+      console.log(response.data);
+      this.setState({ video_data: response.data });
+    });
+  }
   render() {
-    return (
-      <HtmlVideoComp
-        video_id={myntra_constants.video_id}
-        video_url={myntra_constants.video_url}
+    const { video_data } = this.state;
+    return video_data ? (
+      <HtmlVideoIdComp
+        video_id={video_data.name}
+        video_url={video_data.media.src}
+        overlay_buttons={video_data.buttons}
         maxWidth={800}
-        overlay_buttons={myntra_constants.overlay_buttons}
         showFullScreen={true}
         showMenu={true} // TODO :: generalize this
-        showInstruction={true}
       />
+    ) : (
+      <div></div>
     );
   }
 }

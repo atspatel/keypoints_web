@@ -1,18 +1,15 @@
 import React from "react";
 
-import CameraPopUp from "../components/CameraPopUp";
-import ImagePopUp from "../components/ImagePopUp";
 import ImageCarousel from "../components/ImageCarousel";
 import VideoPopUp, { onClosePopUp } from "../components/VideoPopUp";
 
 import SourcePopUp from "../components/SourcePopUp";
 import SpecificationPopUp from "../components/SpecificationPopUp";
 
-export const POPUP_CAMERA = "popup_camera";
 export const POPUP_VIDEO = "popup_video";
 export const POPUP_PROCESSOR = "popup_processor";
 export const POPUP_CHART = "popup_chart";
-export const POPUP_IMAGE_CAROUSEL = "popup_image_carousel";
+export const POPUP_CAROUSEL = "mediaCarousel";
 
 export const POPUP_HTML = "popup_html";
 
@@ -37,13 +34,22 @@ export const POPUP = {
     bbox: [0.02, 0.05, 0.9, 0.9],
     component: props => <SpecificationPopUp {...props} />
   },
-  [POPUP_CAMERA]: {
-    pauseVideo: true,
+  [POPUP_SOURCES]: {
+    pauseVideo: false,
     showOverlayButtons: false,
-    showBackButton: true,
-    inDuration: 1,
-    bbox: [0.02, 0.05, 0.9, 0.9],
-    component: props => <CameraPopUp {...props} />
+    showBackButton: false,
+    inDuration: 0.001,
+    bbox: [0.0, 0, 0.4, 0.8],
+    component: props => <SourcePopUp {...props} />
+  },
+
+  [POPUP_CAROUSEL]: {
+    // pauseVideo: true,
+    // showOverlayButtons: false,
+    // showBackButton: true,
+    // inDuration: 0.5,
+    // bbox: [0.05, 0.05, 0.9, 0.9],
+    component: props => <ImageCarousel {...props} />
   },
   [POPUP_PROCESSOR]: {
     pauseVideo: true,
@@ -51,7 +57,7 @@ export const POPUP = {
     showBackButton: true,
     inDuration: 1,
     bbox: [0.24, 0.345, 0.31, 0.68],
-    component: props => <ImagePopUp {...props} />
+    component: props => <ImageCarousel {...props} />
   },
   [POPUP_CHART]: {
     pauseVideo: true,
@@ -59,7 +65,7 @@ export const POPUP = {
     showBackButton: true,
     inDuration: 1,
     bbox: [0.05, 0.2, 0.6, 0.85],
-    component: props => <ImagePopUp {...props} />
+    component: props => <ImageCarousel {...props} />
   },
   [POPUP_VIDEO]: {
     pauseVideo: true,
@@ -69,21 +75,5 @@ export const POPUP = {
     bbox: [0, 0, 1, 1],
     component: props => <VideoPopUp {...props} />,
     onClose: onClosePopUp
-  },
-  [POPUP_SOURCES]: {
-    pauseVideo: false,
-    showOverlayButtons: false,
-    showBackButton: false,
-    inDuration: 0.001,
-    bbox: [0.0, 0, 0.4, 0.8],
-    component: props => <SourcePopUp {...props} />
-  },
-  [POPUP_IMAGE_CAROUSEL]: {
-    pauseVideo: true,
-    showOverlayButtons: false,
-    showBackButton: true,
-    inDuration: 0.5,
-    bbox: [0.05, 0.05, 0.9, 0.9],
-    component: props => <ImageCarousel {...props} />
   }
 };

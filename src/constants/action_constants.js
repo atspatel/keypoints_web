@@ -2,7 +2,7 @@ import * as popup_constants from "./popup_constants";
 
 import { downloadUrl } from "../functions/fileDownload";
 
-export const ACTION_POPUP = "open_popup";
+export const ACTION_POPUP = "openPopup";
 export const ACTION_URL = "open_url";
 export const ACTION_DOWNLOAD = "open_download";
 export const ACTION_SEEK_TO = "seek_to";
@@ -19,14 +19,15 @@ export const playerSeekTo = (thisObj, duration, toPlay) => {
 };
 
 export const ACTION = {
-  [ACTION_POPUP]: (thisObj, button) => {
-    const popup_info = popup_constants.POPUP[button.action_id];
-    popup_info.pauseVideo && thisObj.player.pause();
+  [ACTION_POPUP]: (thisObj, action_data) => {
+    const currentPopup =
+      popup_constants.POPUP[action_data.popup_info.popupType];
+    action_data.popup_info.pauseVideo && thisObj.player.pause();
     thisObj.setState({
-      showPopup: popup_info,
-      popup_data: button.data,
-      button_id: button.id,
-      playing: false
+      currentPopup: currentPopup,
+      popup_info: action_data.popup_info,
+      popup_data: action_data.data,
+      playing: action_data.popup_info.pauseVideo ? false : true
     });
   },
   [ACTION_URL]: (thisObj, button) => {

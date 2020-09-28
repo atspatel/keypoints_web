@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import HLSVideo from "./HLSVideo";
+import BaseVideoPlayer from "./BaseVideoPlayer";
 import PlaylistButton from "./PlaylistButton";
 import "../css/app.css";
 
@@ -44,7 +45,7 @@ class VideoPlayer extends Component {
             position: "absolute",
             height: "100%",
             width: "100%",
-            backgroundImage: `url(${item.media_info.thumbnail})`,
+            backgroundImage: `url(${item.media_info.media.thumbnail})`,
             filter: "blur(5px)",
             backgroundBlendMode: "screen",
             backgroundSize: "cover",
@@ -60,21 +61,20 @@ class VideoPlayer extends Component {
             backgroundColor: "rgba(0,0,0,0.4)"
           }}
         >
-          <HLSVideo
-            setRef={c => {
+          <BaseVideoPlayer
+            source={item.media_info.media.src}
+            thumbnail={item.media_info.media.thumbnail}
+            setPlayerRef={c => {
               this.player = c;
             }}
-            setHls={c => {
+            setHlsRef={c => {
               this.hls = c;
             }}
-            src={item.media_info.src}
-            poster={item.media_info.thumbnail}
             maxBuffer={30}
-            muted={isMuted}
+            isMuted={isMuted}
             loop={false}
             autoPlay={false}
             autoStartLoad={false}
-            objectFit="contain"
           />
         </div>
         {item.title_info && (

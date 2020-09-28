@@ -24,6 +24,8 @@ import * as radius_constants from "../constants/radius_constants";
 import "../css/app.css";
 import { post_activity } from "../functions/post_activity";
 
+import BaseVideoPlayer from "./BaseVideoPlayer";
+
 class HtmlVideoIdComp extends Component {
   state = {
     videoHeight: null,
@@ -185,7 +187,6 @@ class HtmlVideoIdComp extends Component {
         onClick={() => {
           if (button.action && button.action.type) {
             post_activity("click", this.props.video_id, button.action.id);
-            console.log(button.action.data);
             this.setState({ button_id: button.id }, () =>
               action_constants.ACTION[button.action.type](
                 this,
@@ -280,7 +281,6 @@ class HtmlVideoIdComp extends Component {
   };
 
   renderPopUp() {
-    console.log("here....");
     const { currentPopup, popup_info, popup_data } = this.state;
     const { width, height } = this.state;
     return (
@@ -645,25 +645,13 @@ class HtmlVideoIdComp extends Component {
     );
   }
 
-  doClickAction() {
-    console.log(" click");
-  }
-  doDoubleClickAction() {
-    console.log("Double Click");
-  }
-  handleClick = () => {
-    this.timer = setTimeout(function() {
-      if (!this.prevent) {
-        this.doClickAction();
-      }
-      this.prevent = false;
-    }, 200);
+  onMouseEnter = () => {
+    this.setState({ partialControl: false });
   };
-  handleDoubleClick = () => {
-    this.timer && clearTimeout(this.timer);
-    this.prevent = true;
-    this.doDoubleClickAction();
+  onMouseLeave = () => {
+    this.setState({ partialControl: true });
   };
+
   render() {
     const {
       marginTop,
@@ -700,27 +688,13 @@ class HtmlVideoIdComp extends Component {
         }}
       >
         <ResizeObserver onResize={this.updateDimensions}>
-          <video
-            ref={c => (this.player = c)}
-            width="100%"
-            height="100%"
+          <BaseVideoPlayer
+            source={video_url}
+            setPlayerRef={c => (this.player = c)}
             onClick={this.togglePlay}
-            onDoubleClick={() => {
-              this.setState({ partialControl: !this.state.partialControl });
-            }}
-            onMouseEnter={() => {
-              this.setState({ partialControl: false });
-            }}
-            onMouseLeave={() => {
-              this.setState({ partialControl: true });
-            }}
-          >
-            <source
-              src={video_url}
-              type="video/mp4"
-              ref={c => (this.video = c)}
-            />
-          </video>
+            onMouseEnter={this.onMouseEnter}
+            onMouseLeave={this.onMouseLeave}
+          />
         </ResizeObserver>
         <div
           style={{
@@ -728,12 +702,8 @@ class HtmlVideoIdComp extends Component {
             top: marginTop,
             left: marginLeft
           }}
-          onMouseEnter={() => {
-            this.setState({ partialControl: false });
-          }}
-          onMouseLeave={() => {
-            this.setState({ partialControl: true });
-          }}
+          onMouseEnter={this.onMouseEnter}
+          onMouseLeave={this.onMouseLeave}
         >
           {(!currentPopup || popup_info.showOverlayButton) &&
             this.render_overlay_buttons()}

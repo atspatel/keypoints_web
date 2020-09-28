@@ -14,7 +14,7 @@ export class PlaylistButton extends Component {
   };
   onClick = item => {
     const { video_id, session_id } = this.props;
-    const button_id = item.button_info ? item.button_info.name : item.button_id;
+    const button_id = item.button_info ? item.button_info.name : item.id;
     post_activity("click", video_id, button_id, session_id);
     this.props.onClick && this.props.onClick(item.id);
   };
@@ -96,7 +96,7 @@ export class PlaylistButton extends Component {
             }}
           >
             <img
-              src={item.media_info ? item.media_info.thumbnail : item.thumbnail}
+              src={item.media_info ? item.media_info.media.thumbnail : null}
               alt=""
               style={{
                 height: "100%",

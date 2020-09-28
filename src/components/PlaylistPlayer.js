@@ -512,7 +512,7 @@ class VideoSection extends Component {
   }
 }
 
-class ShareChatPlaylist extends Component {
+class PlaylistPlayer extends Component {
   state = {
     button_size: 0,
     width: 0,
@@ -591,4 +591,4 @@ class ShareChatPlaylist extends Component {
   }
 }
 
-export default ShareChatPlaylist;
+export default PlaylistPlayer;

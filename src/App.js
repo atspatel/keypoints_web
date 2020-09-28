@@ -6,8 +6,6 @@ import { Helmet } from "react-helmet";
 
 import * as constants from "./constants/constants";
 
-import MyntraVideo from "./VideoPages/MyntraVideoPage";
-
 function App() {
   return (
     <div className="App">
@@ -31,8 +29,7 @@ function App() {
         <meta property="og:image:width" content="256" />
         <meta property="og:image:height" content="256" />
       </Helmet>
-      {/* <AppRoute /> */}
-      <MyntraVideo />
+      <AppRoute />
     </div>
   );
 }

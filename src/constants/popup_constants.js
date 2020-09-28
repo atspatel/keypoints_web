@@ -6,12 +6,10 @@ import VideoPopUp, { onClosePopUp } from "../components/VideoPopUp";
 import SourcePopUp from "../components/SourcePopUp";
 import SpecificationPopUp from "../components/SpecificationPopUp";
 
-export const POPUP_VIDEO = "popup_video";
-export const POPUP_PROCESSOR = "popup_processor";
-export const POPUP_CHART = "popup_chart";
 export const POPUP_CAROUSEL = "mediaCarousel";
-
 export const POPUP_HTML = "popup_html";
+
+export const POPUP_VIDEO = "popup_video";
 
 export const POPUP_SPECIFICATION = "popup_specification";
 export const POPUP_SOURCES = "popup_sources";
@@ -19,61 +17,59 @@ export const POPUP_SOURCES = "popup_sources";
 // Leave 0.08 at bottom for back button
 export const POPUP = {
   [POPUP_HTML]: {
-    pauseVideo: true,
-    showOverlayButtons: false,
-    showBackButton: true,
-    inDuration: 1,
-    bbox: [0.02, 0.05, 0.9, 0.9],
-    component: null
+    popup_info: {
+      pauseVideo: true,
+      showOverlayButton: false,
+      showCloseButton: true,
+      inDuration: 1,
+      bbox: { top: 0.02, left: 0.05, width: 0.9, height: 0.9 }
+    },
+    popup_comp: {
+      component: null
+    }
   },
-  [POPUP_SPECIFICATION]: {
-    pauseVideo: true,
-    showOverlayButtons: false,
-    showBackButton: true,
-    inDuration: 1,
-    bbox: [0.02, 0.05, 0.9, 0.9],
-    component: props => <SpecificationPopUp {...props} />
-  },
-  [POPUP_SOURCES]: {
-    pauseVideo: false,
-    showOverlayButtons: false,
-    showBackButton: false,
-    inDuration: 0.001,
-    bbox: [0.0, 0, 0.4, 0.8],
-    component: props => <SourcePopUp {...props} />
+  [POPUP_CAROUSEL]: {
+    popup_comp: {
+      component: props => <ImageCarousel {...props} />
+    }
   },
 
-  [POPUP_CAROUSEL]: {
-    // pauseVideo: true,
-    // showOverlayButtons: false,
-    // showBackButton: true,
-    // inDuration: 0.5,
-    // bbox: [0.05, 0.05, 0.9, 0.9],
-    component: props => <ImageCarousel {...props} />
+  [POPUP_SPECIFICATION]: {
+    popup_info: {
+      pauseVideo: true,
+      showOverlayButton: false,
+      showCloseButton: true,
+      inDuration: 1,
+      bbox: { top: 0.02, left: 0.05, width: 0.9, height: 0.9 }
+    },
+    popup_comp: {
+      component: props => <SpecificationPopUp {...props} />
+    }
   },
-  [POPUP_PROCESSOR]: {
-    pauseVideo: true,
-    showOverlayButtons: true,
-    showBackButton: true,
-    inDuration: 1,
-    bbox: [0.24, 0.345, 0.31, 0.68],
-    component: props => <ImageCarousel {...props} />
+  [POPUP_SOURCES]: {
+    popup_info: {
+      pauseVideo: false,
+      showOverlayButton: false,
+      showCloseButton: false,
+      inDuration: 0.001,
+      bbox: { top: 0.0, left: 0.0, width: 0.4, height: 0.8 }
+    },
+    popup_comp: {
+      component: props => <SourcePopUp {...props} />
+    }
   },
-  [POPUP_CHART]: {
-    pauseVideo: true,
-    showOverlayButtons: false,
-    showBackButton: true,
-    inDuration: 1,
-    bbox: [0.05, 0.2, 0.6, 0.85],
-    component: props => <ImageCarousel {...props} />
-  },
+
   [POPUP_VIDEO]: {
-    pauseVideo: true,
-    showOverlayButtons: false,
-    showBackButton: false,
-    inDuration: 0.001,
-    bbox: [0, 0, 1, 1],
-    component: props => <VideoPopUp {...props} />,
-    onClose: onClosePopUp
+    popup_info: {
+      pauseVideo: true,
+      showOverlayButton: false,
+      showCloseButton: false,
+      inDuration: 0.001,
+      bbox: { top: 0, left: 0, width: 1, height: 1 }
+    },
+    popup_comp: {
+      component: props => <VideoPopUp {...props} />,
+      onClose: onClosePopUp
+    }
   }
 };

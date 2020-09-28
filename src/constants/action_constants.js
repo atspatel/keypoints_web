@@ -2,11 +2,11 @@ import * as popup_constants from "./popup_constants";
 
 import { downloadUrl } from "../functions/fileDownload";
 
-export const ACTION_POPUP = "openPopup";
+export const ACTION_POPUP = "open_popup";
+export const ACTION_OPENPOPUP = "openPopup";
 export const ACTION_URL = "open_url";
 export const ACTION_DOWNLOAD = "open_download";
 export const ACTION_SEEK_TO = "seek_to";
-export const ACTION_SEEK_TO_PLAY = "seek_to_play";
 
 export const playerSeekTo = (thisObj, duration, toPlay) => {
   if (thisObj.player) {
@@ -19,9 +19,9 @@ export const playerSeekTo = (thisObj, duration, toPlay) => {
 };
 
 export const ACTION = {
-  [ACTION_POPUP]: (thisObj, action_data) => {
+  [ACTION_OPENPOPUP]: (thisObj, action_data) => {
     const currentPopup =
-      popup_constants.POPUP[action_data.popup_info.popupType];
+      popup_constants.POPUP[action_data.popup_info.popupType].popup_comp;
     action_data.popup_info.pauseVideo && thisObj.player.pause();
     thisObj.setState({
       currentPopup: currentPopup,
@@ -30,17 +30,25 @@ export const ACTION = {
       playing: action_data.popup_info.pauseVideo ? false : true
     });
   },
-  [ACTION_URL]: (thisObj, button) => {
+  [ACTION_POPUP]: (thisObj, action_data) => {
+    const currentPopup =
+      popup_constants.POPUP[action_data.popup_info.popupType];
+    currentPopup.popup_info.pauseVideo && thisObj.player.pause();
+    thisObj.setState({
+      currentPopup: currentPopup.popup_comp,
+      popup_info: currentPopup.popup_info,
+      popup_data: action_data.data,
+      playing: action_data.popup_info.pauseVideo ? false : true
+    });
+  },
+  [ACTION_URL]: (thisObj, url) => {
     thisObj.player.pause();
-    window.open(button.data, "_blank");
+    window.open(url, "_blank");
   },
-  [ACTION_DOWNLOAD]: (thisObj, button) => {
-    downloadUrl(button.data.url, button.data.filename);
+  [ACTION_DOWNLOAD]: (thisObj, action_data) => {
+    downloadUrl(action_data.url, action_data.filename);
   },
-  [ACTION_SEEK_TO]: (thisObj, button) => {
-    playerSeekTo(thisObj, button.data, false);
-  },
-  [ACTION_SEEK_TO_PLAY]: (thisObj, button) => {
-    playerSeekTo(thisObj, button.data, true);
+  [ACTION_SEEK_TO]: (thisObj, data) => {
+    playerSeekTo(thisObj, data.duration, data.toPlay);
   }
 };

@@ -68,22 +68,27 @@ export const source_data = [
 
 const menu_button = {
   id: "menu",
+  name: "popup",
+  shape: null,
   start: 0,
   end: -1,
-  bbox: [0.0, 0.0, 0.1, 0.1],
-  button: {
-    id: "menu",
-    action: action_constants.ACTION_POPUP,
-    action_id: popup_constants.POPUP_SOURCES,
-    data: [
-      { id: 0, url: src_000 },
-      { id: 1, url: src_001 },
-      { id: 2, url: src_002 },
-      { id: 3, url: src_003 },
-      { id: 4, url: src_004 },
-      { id: 5, url: src_005 }
-    ],
-    background: `${BASE_DIR_ndtv}/menu.png`
+  bbox: { top: 0, left: 0.0, width: 0.1, height: 0.1 },
+  background_img: `${BASE_DIR_ndtv}/menu.png`,
+  action: {
+    type: action_constants.ACTION_POPUP,
+    data: {
+      popup_info: {
+        popupType: popup_constants.POPUP_SOURCES
+      },
+      data: [
+        { id: 0, url: src_000 },
+        { id: 1, url: src_001 },
+        { id: 2, url: src_002 },
+        { id: 3, url: src_003 },
+        { id: 4, url: src_004 },
+        { id: 5, url: src_005 }
+      ]
+    }
   }
 };
 
@@ -92,44 +97,44 @@ function create_overlay_buttons() {
   source_data.map(item => {
     const card_button = {
       id: `card_${item.id}`,
+      name: `card_${item.id}`,
+      shape: null,
       start: item.start,
       end: item.end,
-      bbox: [0.1, 0.0, 0.4, 0.7],
-      button: {
-        id: `src_${item.id}`,
-        action: action_constants.ACTION_URL,
-        action_id: item.url,
-        data: item.url,
-        background: item.image
+      background_img: item.image,
+      bbox: { top: 0.1, left: 0.0, width: 0.4, height: 0.7 },
+      action: {
+        type: action_constants.ACTION_URL,
+        data: item.url
       }
     };
     const share_button = {
       id: `share_${item.id}`,
+      name: `share_${item.id}`,
+      shape: null,
       start: item.start,
       end: item.end,
-      bbox: [0.6, 0.4, 0.1, 0.1],
-      button: {
-        id: `share_${item.id}`,
-        action: action_constants.ACTION_URL,
-        action_id: "",
-        data: `https://api.whatsapp.com/send?text=${item.url}&source=&data=&app_absent=`,
-        background: `${BASE_DIR_ndtv}/share.png`
+      bbox: { top: 0.6, left: 0.4, width: 0.1, height: 0.1 },
+      background_img: `${BASE_DIR_ndtv}/share.png`,
+      action: {
+        type: action_constants.ACTION_URL,
+        data: `https://api.whatsapp.com/send?text=${item.url}&source=&data=&app_absent=`
       }
     };
     const download_button = {
       id: `download_${item.id}`,
+      name: `download_${item.id}`,
+      shape: null,
       start: item.start,
       end: item.end,
-      bbox: [0.7, 0.4, 0.1, 0.1],
-      button: {
-        id: `download_${item.id}`,
-        action: action_constants.ACTION_DOWNLOAD,
-        action_id: "",
+      bbox: { top: 0.7, left: 0.4, width: 0.1, height: 0.1 },
+      background_img: `${BASE_DIR_ndtv}/download.png`,
+      action: {
+        type: action_constants.ACTION_DOWNLOAD,
         data: {
           url: item.image,
           filename: `source_${item.id}.png`
-        },
-        background: `${BASE_DIR_ndtv}/download.png`
+        }
       }
     };
     overlay_buttons = [

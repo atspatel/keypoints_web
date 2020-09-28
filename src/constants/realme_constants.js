@@ -834,297 +834,405 @@ export const overlay_buttons = [
   {
     start: 9,
     end: 18,
-    id: realmeX,
-    url: null,
-    bbox: [0.15, 0.04, 0.16, 0.65],
-    button: {
-      id: `${realmeX}_shop1`,
-      shape: radius_constants.RECT,
-      action: action_constants.ACTION_POPUP,
-      action_id: popup_constants.POPUP_SPECIFICATION,
-      data: phone_info[realmeX]
+    id: `${realmeX}_shop1`,
+    name: `${realmeX}_shop1`,
+    shape: radius_constants.RECT,
+    bbox: { top: 0.15, left: 0.04, width: 0.16, height: 0.65 },
+    action: {
+      type: action_constants.ACTION_POPUP,
+      data: {
+        popup_info: {
+          popupType: popup_constants.POPUP_SPECIFICATION
+        },
+        data: phone_info[realmeX]
+      }
     }
   },
   {
     start: 10,
     end: 18,
-    id: realmeXT,
-    url: null,
-    bbox: [0.15, 0.23, 0.16, 0.65],
-    button: {
-      id: `${realmeXT}_shop1`,
-      shape: radius_constants.RECT,
-      action: action_constants.ACTION_POPUP,
-      action_id: popup_constants.POPUP_SPECIFICATION,
-      data: phone_info[realmeXT]
+    id: `${realmeXT}_shop1`,
+    name: `${realmeXT}_shop1`,
+    shape: radius_constants.RECT,
+    bbox: { top: 0.15, left: 0.23, width: 0.16, height: 0.65 },
+    action: {
+      type: action_constants.ACTION_POPUP,
+      data: {
+        popup_info: {
+          popupType: popup_constants.POPUP_SPECIFICATION
+        },
+        data: phone_info[realmeXT]
+      }
     }
   },
   {
     start: 11,
     end: 18,
-    id: realmeX2,
-    url: null,
-    bbox: [0.15, 0.42, 0.16, 0.65],
-    button: {
-      id: `${realmeX2}_shop1`,
-      shape: radius_constants.RECT,
-      action: action_constants.ACTION_POPUP,
-      action_id: popup_constants.POPUP_SPECIFICATION,
-      data: phone_info[realmeX2]
+    id: `${realmeX2}_shop1`,
+    name: `${realmeX2}_shop1`,
+    shape: radius_constants.RECT,
+    bbox: { top: 0.15, left: 0.42, width: 0.16, height: 0.65 },
+    action: {
+      type: action_constants.ACTION_POPUP,
+      data: {
+        popup_info: {
+          popupType: popup_constants.POPUP_SPECIFICATION
+        },
+        data: phone_info[realmeX2]
+      }
     }
   },
   {
     start: 12,
     end: 18,
-    id: realmeX2Pro,
-    url: null,
-    bbox: [0.15, 0.61, 0.16, 0.65],
-    button: {
-      id: `${realmeX2Pro}_shop1`,
-      shape: radius_constants.RECT,
-      action: action_constants.ACTION_POPUP,
-      action_id: popup_constants.POPUP_SPECIFICATION,
-      data: phone_info[realmeX2Pro]
+    id: `${realmeX2Pro}_shop1`,
+    name: `${realmeX2Pro}_shop1`,
+    shape: radius_constants.RECT,
+    bbox: { top: 0.15, left: 0.61, width: 0.16, height: 0.65 },
+    action: {
+      type: action_constants.ACTION_POPUP,
+      data: {
+        popup_info: {
+          popupType: popup_constants.POPUP_SPECIFICATION
+        },
+        data: phone_info[realmeX2Pro]
+      }
     }
   },
   {
     start: 13,
     end: 18,
-    id: realmeX50Pro,
-    url: null,
-    bbox: [0.15, 0.8, 0.16, 0.65],
-    button: {
-      id: `${realmeX50Pro}_shop1`,
-      shape: radius_constants.RECT,
-      action: action_constants.ACTION_POPUP,
-      action_id: popup_constants.POPUP_SPECIFICATION,
-      data: phone_info[realmeX50Pro]
+    id: `${realmeX50Pro}_shop1`,
+    name: `${realmeX50Pro}_shop1`,
+    shape: radius_constants.RECT,
+    bbox: { top: 0.15, left: 0.8, width: 0.16, height: 0.65 },
+    action: {
+      type: action_constants.ACTION_POPUP,
+      data: {
+        popup_info: {
+          popupType: popup_constants.POPUP_SPECIFICATION
+        },
+        data: phone_info[realmeX50Pro]
+      }
     }
   },
 
   {
     start: 21,
     end: 29,
-    id: realmeX,
-    url: null,
-    bbox: [0.05, 0.39, 0.22, 0.25],
-    button: {
-      id: `${realmeX}_camera`,
-      shape: radius_constants.RECT,
-      action: action_constants.ACTION_POPUP,
-      action_id: popup_constants.POPUP_CAROUSEL,
-      data: phone_info[realmeX].camera_images
+    id: `${realmeX}_camera`,
+    name: `${realmeX}_camera`,
+    shape: radius_constants.RECT,
+    bbox: { top: 0.05, left: 0.39, width: 0.22, height: 0.25 },
+    action: {
+      type: action_constants.ACTION_OPENPOPUP,
+      data: {
+        popup_info: {
+          popupType: popup_constants.POPUP_CAROUSEL,
+          pauseVideo: true,
+          showOverlayButton: false,
+          showCloseButton: true,
+          inDuration: 0.5,
+          bbox: { top: 0.05, left: 0.05, width: 0.9, height: 0.9 }
+        },
+        data: phone_info[realmeX].camera_images
+      }
     }
   },
   {
     start: 22,
     end: 29,
-    id: realmeXT,
-    url: null,
-    bbox: [0.28, 0.08, 0.22, 0.25],
-    button: {
-      id: `${realmeXT}_camera`,
-      shape: radius_constants.RECT,
-      action: action_constants.ACTION_POPUP,
-      action_id: popup_constants.POPUP_CAROUSEL,
-      data: phone_info[realmeXT].camera_images
+    id: `${realmeXT}_camera`,
+    name: `${realmeXT}_camera`,
+    shape: radius_constants.RECT,
+    bbox: { top: 0.28, left: 0.08, width: 0.22, height: 0.25 },
+    action: {
+      type: action_constants.ACTION_OPENPOPUP,
+      data: {
+        popup_info: {
+          popupType: popup_constants.POPUP_CAROUSEL,
+          pauseVideo: true,
+          showOverlayButton: false,
+          showCloseButton: true,
+          inDuration: 0.5,
+          bbox: { top: 0.05, left: 0.05, width: 0.9, height: 0.9 }
+        },
+        data: phone_info[realmeXT].camera_images
+      }
     }
   },
   {
     start: 23,
     end: 29,
-    id: realmeX2,
-    url: null,
-    bbox: [0.6, 0.08, 0.22, 0.25],
-    button: {
-      id: `${realmeX2}_camera`,
-      shape: radius_constants.RECT,
-      action: action_constants.ACTION_POPUP,
-      action_id: popup_constants.POPUP_CAROUSEL,
-      data: phone_info[realmeX2].camera_images
+    id: `${realmeX2}_camera`,
+    name: `${realmeX2}_camera`,
+    shape: radius_constants.RECT,
+    bbox: { top: 0.6, left: 0.08, width: 0.22, height: 0.25 },
+    action: {
+      type: action_constants.ACTION_OPENPOPUP,
+      data: {
+        popup_info: {
+          popupType: popup_constants.POPUP_CAROUSEL,
+          pauseVideo: true,
+          showOverlayButton: false,
+          showCloseButton: true,
+          inDuration: 0.5,
+          bbox: { top: 0.05, left: 0.05, width: 0.9, height: 0.9 }
+        },
+        data: phone_info[realmeX2].camera_images
+      }
     }
   },
   {
     start: 24,
     end: 29,
-    id: realmeX2Pro,
-    url: null,
-    bbox: [0.6, 0.72, 0.22, 0.25],
-    button: {
-      id: `${realmeX2Pro}_camera`,
-      shape: radius_constants.RECT,
-      action: action_constants.ACTION_POPUP,
-      action_id: popup_constants.POPUP_CAROUSEL,
-      data: phone_info[realmeX2Pro].camera_images
+    id: `${realmeX2Pro}_camera`,
+    name: `${realmeX2Pro}_camera`,
+    shape: radius_constants.RECT,
+    bbox: { top: 0.6, left: 0.72, width: 0.22, height: 0.25 },
+    action: {
+      type: action_constants.ACTION_OPENPOPUP,
+      data: {
+        popup_info: {
+          popupType: popup_constants.POPUP_CAROUSEL,
+          pauseVideo: true,
+          showOverlayButton: false,
+          showCloseButton: true,
+          inDuration: 0.5,
+          bbox: { top: 0.05, left: 0.05, width: 0.9, height: 0.9 }
+        },
+        data: phone_info[realmeX2Pro].camera_images
+      }
     }
   },
   {
     start: 25,
     end: 29,
-    id: realmeX50Pro,
-    url: null,
-    bbox: [0.28, 0.72, 0.22, 0.25],
-    button: {
-      id: `${realmeX50Pro}_camera`,
-      shape: radius_constants.RECT,
-      action: action_constants.ACTION_POPUP,
-      action_id: popup_constants.POPUP_CAROUSEL,
-      data: phone_info[realmeX50Pro].camera_images
+    id: `${realmeX50Pro}_camera`,
+    name: `${realmeX50Pro}_camera`,
+    shape: radius_constants.RECT,
+    bbox: { top: 0.28, left: 0.72, width: 0.22, height: 0.25 },
+    action: {
+      type: action_constants.ACTION_OPENPOPUP,
+      data: {
+        popup_info: {
+          popupType: popup_constants.POPUP_CAROUSEL,
+          pauseVideo: true,
+          showOverlayButton: false,
+          showCloseButton: true,
+          inDuration: 0.5,
+          bbox: { top: 0.05, left: 0.05, width: 0.9, height: 0.9 }
+        },
+        data: phone_info[realmeX50Pro].camera_images
+      }
     }
   },
 
   {
     start: 33,
     end: 41,
-    id: realmeX,
-    url: null,
-    bbox: [0.05, 0.38, 0.22, 0.18],
-    button: {
-      id: `${realmeX}_processor`,
-      shape: radius_constants.RECT,
-      action: action_constants.ACTION_POPUP,
-      action_id: popup_constants.POPUP_PROCESSOR,
-      data: phone_info[realmeX].processor
+    id: `${realmeX}_processor`,
+    name: `${realmeX}_processor`,
+    shape: radius_constants.RECT,
+    bbox: { top: 0.05, left: 0.38, width: 0.22, height: 0.18 },
+    action: {
+      type: action_constants.ACTION_OPENPOPUP,
+      data: {
+        popup_info: {
+          popupType: popup_constants.POPUP_CAROUSEL,
+          pauseVideo: true,
+          showOverlayButton: true,
+          showCloseButton: true,
+          inDuration: 1,
+          bbox: { top: 0.24, left: 0.345, width: 0.31, height: 0.68 }
+        },
+        data: phone_info[realmeX].processor
+      }
     }
   },
   {
     start: 34,
     end: 41,
-    id: realmeXT,
-    url: null,
-    bbox: [0.28, 0.08, 0.22, 0.18],
-    button: {
-      id: `${realmeXT}_processor`,
-      shape: radius_constants.RECT,
-      action: action_constants.ACTION_POPUP,
-      action_id: popup_constants.POPUP_PROCESSOR,
-      data: phone_info[realmeXT].processor
+    id: `${realmeXT}_processor`,
+    name: `${realmeXT}_processor`,
+    shape: radius_constants.RECT,
+    bbox: { top: 0.28, left: 0.08, width: 0.22, height: 0.18 },
+    action: {
+      type: action_constants.ACTION_OPENPOPUP,
+      data: {
+        popup_info: {
+          popupType: popup_constants.POPUP_CAROUSEL,
+          pauseVideo: true,
+          showOverlayButton: true,
+          showCloseButton: true,
+          inDuration: 1,
+          bbox: { top: 0.24, left: 0.345, width: 0.31, height: 0.68 }
+        },
+        data: phone_info[realmeXT].processor
+      }
     }
   },
   {
     start: 35,
     end: 41,
-    id: realmeX2,
-    url: null,
-    bbox: [0.6, 0.08, 0.22, 0.18],
-    button: {
-      id: `${realmeX2}_processor`,
-      shape: radius_constants.RECT,
-      action: action_constants.ACTION_POPUP,
-      action_id: popup_constants.POPUP_PROCESSOR,
-      data: phone_info[realmeX2].processor
+    id: `${realmeX2}_processor`,
+    name: `${realmeX2}_processor`,
+    shape: radius_constants.RECT,
+    bbox: { top: 0.6, left: 0.08, width: 0.22, height: 0.18 },
+    action: {
+      type: action_constants.ACTION_OPENPOPUP,
+      data: {
+        popup_info: {
+          popupType: popup_constants.POPUP_CAROUSEL,
+          pauseVideo: true,
+          showOverlayButton: true,
+          showCloseButton: true,
+          inDuration: 1,
+          bbox: { top: 0.24, left: 0.345, width: 0.31, height: 0.68 }
+        },
+        data: phone_info[realmeX2].processor
+      }
     }
   },
   {
     start: 36,
     end: 41,
-    id: realmeX2Pro,
-    url: null,
-    bbox: [0.6, 0.71, 0.22, 0.18],
-    button: {
-      id: `${realmeX2Pro}_processor`,
-      shape: radius_constants.RECT,
-      action: action_constants.ACTION_POPUP,
-      action_id: popup_constants.POPUP_PROCESSOR,
-      data: phone_info[realmeX2Pro].processor
+    id: `${realmeX2Pro}_processor`,
+    name: `${realmeX2Pro}_processor`,
+    shape: radius_constants.RECT,
+    bbox: { top: 0.6, left: 0.71, width: 0.22, height: 0.18 },
+    action: {
+      type: action_constants.ACTION_OPENPOPUP,
+      data: {
+        popup_info: {
+          popupType: popup_constants.POPUP_CAROUSEL,
+          pauseVideo: true,
+          showOverlayButton: true,
+          showCloseButton: true,
+          inDuration: 1,
+          bbox: { top: 0.24, left: 0.345, width: 0.31, height: 0.68 }
+        },
+        data: phone_info[realmeX2Pro].processor
+      }
     }
   },
   {
     start: 37,
     end: 41,
-    id: realmeX50Pro,
-    url: null,
-    bbox: [0.28, 0.71, 0.22, 0.18],
-    button: {
-      id: `${realmeX50Pro}_processor`,
-      shape: radius_constants.RECT,
-      action: action_constants.ACTION_POPUP,
-      action_id: popup_constants.POPUP_PROCESSOR,
-      data: phone_info[realmeX50Pro].processor
+    id: `${realmeX50Pro}_processor`,
+    name: `${realmeX50Pro}_processor`,
+    shape: radius_constants.RECT,
+    bbox: { top: 0.28, left: 0.71, width: 0.22, height: 0.18 },
+    action: {
+      type: action_constants.ACTION_OPENPOPUP,
+      data: {
+        popup_info: {
+          popupType: popup_constants.POPUP_CAROUSEL,
+          pauseVideo: true,
+          showOverlayButton: true,
+          showCloseButton: true,
+          inDuration: 1,
+          bbox: { top: 0.24, left: 0.345, width: 0.31, height: 0.68 }
+        },
+        data: phone_info[realmeX50Pro].processor
+      }
     }
   },
   {
     start: 64,
     end: 74,
     id: "KeyPoints",
-    url: constants.kp_url,
-    bbox: [0, 0.905, 0.07, 0.125],
-    button: {
-      id: "KeyPoints",
-      shape: "circle",
-      action: action_constants.ACTION_URL,
-      action_id: constants.kp_url,
+    name: "KeyPoints",
+    shape: radius_constants.CIRCLE,
+    bbox: { top: 0.0, left: 0.905, width: 0.07, height: 0.125 },
+    action: {
+      type: action_constants.ACTION_URL,
       data: constants.kp_url
     }
   },
   {
     start: 65,
     end: 74,
-    id: realmeX,
-    url: null,
-    bbox: [0.15, 0.04, 0.16, 0.65],
-    button: {
-      id: `${realmeX}_shop2`,
-      shape: radius_constants.RECT,
-      action: action_constants.ACTION_POPUP,
-      action_id: popup_constants.POPUP_SPECIFICATION,
-      data: phone_info[realmeX]
+    id: `${realmeX}_shop2`,
+    name: `${realmeX}_shop2`,
+    shape: radius_constants.RECT,
+    bbox: { top: 0.15, left: 0.04, width: 0.16, height: 0.65 },
+    action: {
+      type: action_constants.ACTION_POPUP,
+      data: {
+        popup_info: {
+          popupType: popup_constants.POPUP_SPECIFICATION
+        },
+        data: phone_info[realmeX]
+      }
     }
   },
   {
     start: 66,
     end: 74,
-    id: realmeXT,
-    url: null,
-    bbox: [0.15, 0.23, 0.16, 0.65],
-    button: {
-      id: `${realmeXT}_shop2`,
-      shape: radius_constants.RECT,
-      action: action_constants.ACTION_POPUP,
-      action_id: popup_constants.POPUP_SPECIFICATION,
-      data: phone_info[realmeXT]
+    id: `${realmeXT}_shop2`,
+    name: `${realmeXT}_shop2`,
+    shape: radius_constants.RECT,
+    bbox: { top: 0.15, left: 0.23, width: 0.16, height: 0.65 },
+    action: {
+      type: action_constants.ACTION_POPUP,
+      data: {
+        popup_info: {
+          popupType: popup_constants.POPUP_SPECIFICATION
+        },
+        data: phone_info[realmeXT]
+      }
     }
   },
   {
     start: 67,
     end: 74,
-    id: realmeX2,
-    url: null,
-    bbox: [0.15, 0.42, 0.16, 0.65],
-    button: {
-      id: `${realmeX2}_shop2`,
-      shape: radius_constants.RECT,
-      action: action_constants.ACTION_POPUP,
-      action_id: popup_constants.POPUP_SPECIFICATION,
-      data: phone_info[realmeX2]
+    id: `${realmeX2}_shop2`,
+    name: `${realmeX2}_shop2`,
+    shape: radius_constants.RECT,
+    bbox: { top: 0.15, left: 0.42, width: 0.16, height: 0.65 },
+    action: {
+      type: action_constants.ACTION_POPUP,
+      data: {
+        popup_info: {
+          popupType: popup_constants.POPUP_SPECIFICATION
+        },
+        data: phone_info[realmeX2]
+      }
     }
   },
   {
     start: 68,
     end: 74,
-    id: realmeX2Pro,
-    url: null,
-    bbox: [0.15, 0.61, 0.16, 0.65],
-    button: {
-      id: `${realmeX2Pro}_shop2`,
-      shape: radius_constants.RECT,
-      action: action_constants.ACTION_POPUP,
-      action_id: popup_constants.POPUP_SPECIFICATION,
-      data: phone_info[realmeX2Pro]
+    id: `${realmeX2Pro}_shop2`,
+    name: `${realmeX2Pro}_shop2`,
+    shape: radius_constants.RECT,
+    bbox: { top: 0.15, left: 0.61, width: 0.16, height: 0.65 },
+    action: {
+      type: action_constants.ACTION_POPUP,
+      data: {
+        popup_info: {
+          popupType: popup_constants.POPUP_SPECIFICATION
+        },
+        data: phone_info[realmeX2Pro]
+      }
     }
   },
   {
     start: 69,
     end: 74,
-    id: realmeX50Pro,
-    url: null,
-    bbox: [0.15, 0.8, 0.16, 0.65],
-    button: {
-      id: `${realmeX50Pro}_shop2`,
-      shape: radius_constants.RECT,
-      action: action_constants.ACTION_POPUP,
-      action_id: popup_constants.POPUP_SPECIFICATION,
-      data: phone_info[realmeX50Pro]
+    id: `${realmeX50Pro}_shop2`,
+    name: `${realmeX50Pro}_shop2`,
+    shape: radius_constants.RECT,
+    bbox: { top: 0.15, left: 0.8, width: 0.16, height: 0.65 },
+    action: {
+      type: action_constants.ACTION_POPUP,
+      data: {
+        popup_info: {
+          popupType: popup_constants.POPUP_SPECIFICATION
+        },
+        data: phone_info[realmeX50Pro]
+      }
     }
   }
 ];

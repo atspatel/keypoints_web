@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import HtmlVideoComp from "../components/HtmlVideoComp";
+import HtmlVideoIdComp from "../components/HtmlVideoIdComp";
 import { Helmet } from "react-helmet";
 
 import "../css/app.css";
@@ -10,7 +10,7 @@ export class NDTVEmbedVideo extends Component {
     const { maxWidth } = this.props;
     return (
       <>
-        <HtmlVideoComp
+        <HtmlVideoIdComp
           video_id={ndtv_constants.video_id}
           video_url={ndtv_constants.video_url}
           autoplay={true}

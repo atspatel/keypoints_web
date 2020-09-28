@@ -155,44 +155,46 @@ function modify_buttons_and_marks() {
   match_data.map((item, index) => {
     const inButton = {
       id: `${item.id}_replay`,
+      name: `${item.id}_replay`,
+      shape: null,
       start: item.start,
       end: item.end,
-      bbox: [0.7, 0.85, 0.07, 0.09],
-      button: {
-        id: `${item.id}_replay`,
-        shape: null,
-        action: action_constants.ACTION_POPUP,
-        action_id: popup_constants.POPUP_VIDEO,
-        data: { src: item.source, end: item.end },
-        background: bg_png
+      bbox: { top: 0.7, left: 0.85, width: 0.07, height: 0.09 },
+      background_img: bg_png,
+      action: {
+        type: action_constants.ACTION_POPUP,
+        data: {
+          popup_info: {
+            popupType: popup_constants.POPUP_VIDEO
+          },
+          data: { src: item.source, end: item.end }
+        }
       }
     };
     const statButton = {
       id: `${item.id}_start`,
+      name: `${item.id}_start`,
+      shape: null,
       start: item.start,
       end: item.end,
-      bbox: [0.6, 0.85, 0.07, 0.09],
-      button: {
-        id: `${item.id}_start`,
-        shape: null,
-        action: null,
-        action_id: null,
-        data: { src: item.source, end: item.end },
-        background: stat_png
+      bbox: { top: 0.6, left: 0.85, width: 0.07, height: 0.09 },
+      background_img: stat_png,
+      action: {
+        type: null,
+        data: null
       }
     };
     const analysisButton = {
       id: `${item.id}_analysis`,
+      name: `${item.id}_analysis`,
+      shape: null,
       start: item.start,
       end: item.end,
-      bbox: [0.5, 0.85, 0.07, 0.09],
-      button: {
-        id: `${item.id}_analysis`,
-        shape: null,
-        action: null,
-        action_id: null,
-        data: { src: item.source, end: item.end },
-        background: analysis_png
+      bbox: { top: 0.5, left: 0.85, width: 0.07, height: 0.09 },
+      background_img: analysis_png,
+      action: {
+        type: null,
+        data: null
       }
     };
     overlay_buttons = [

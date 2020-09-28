@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import HtmlVideoComp from "../components/HtmlVideoComp";
+import HtmlVideoIdComp from "../components/HtmlVideoIdComp";
 import { Helmet } from "react-helmet";
 
 import * as realme_constants from "../constants/realme_constants";
@@ -25,7 +25,7 @@ class RealmeVideo extends Component {
           <meta property="og:image:width" content="300" />
           <meta property="og:image:height" content="153" />
         </Helmet>
-        <HtmlVideoComp
+        <HtmlVideoIdComp
           video_id={realme_constants.video_id}
           video_url={realme_constants.video_url}
           overlay_buttons={realme_constants.overlay_buttons}

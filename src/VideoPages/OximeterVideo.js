@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import HtmlVideoComp from "../components/HtmlVideoComp";
+import HtmlVideoIdComp from "../components/HtmlVideoIdComp";
 import { Helmet } from "react-helmet";
 
 import "../css/app.css";
@@ -33,7 +33,7 @@ export class OximeterEmbedVideo extends Component {
           <meta property="og:image:width" content="256" />
           <meta property="og:image:height" content="256" />
         </Helmet>
-        <HtmlVideoComp
+        <HtmlVideoIdComp
           video_id={oximeter_constants.video_id}
           video_url={oximeter_constants.video_url}
           autoplay={true}

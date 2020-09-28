@@ -27,39 +27,51 @@ export const overlay_buttons = [
     id: 1,
     start: 13.5,
     end: 15,
+    id: "oximeter_pause",
+    name: "oximeter_pause",
+    shape: radius_constants.RECT,
+
     pauseVideo: 14,
-    bbox: [0.3, 0.59, 0.25, 0.07],
-    button: {
-      id: "oximeter_pause",
-      shape: radius_constants.RECT,
-      action: action_constants.ACTION_SEEK_TO_PLAY,
-      action_id: 17,
-      data: 17
+    bbox: { top: 0.3, left: 0.59, width: 0.25, height: 0.07 },
+    action: {
+      type: action_constants.ACTION_SEEK_TO,
+      data: {
+        duration: 17,
+        toPlay: true
+      }
     }
   },
   {
-    id: 2,
     start: 17,
     end: 38,
-    bbox: [0.76, 0.07, 0.36, 0.13],
-    button: {
-      id: "oximeter_chart",
-      shape: null,
-      action: action_constants.ACTION_POPUP,
-      action_id: popup_constants.POPUP_CHART,
-      data: chart_url
+    id: "oximeter_chart",
+    name: "oximeter_chart",
+    shape: null,
+    bbox: { top: 0.76, left: 0.07, width: 0.36, height: 0.13 },
+    action: {
+      type: action_constants.ACTION_OPENPOPUP,
+      data: {
+        popup_info: {
+          popupType: popup_constants.POPUP_CAROUSEL,
+          pauseVideo: true,
+          showOverlayButton: false,
+          showCloseButton: true,
+          inDuration: 1,
+          bbox: { top: 0.05, left: 0.2, width: 0.6, height: 0.85 }
+        },
+        data: chart_url
+      }
     }
   },
   {
-    id: 3,
     start: 38,
     end: 52,
-    bbox: [0.74, 0.56, 0.35, 0.13],
-    button: {
-      id: "oximeter_shop1",
-      shape: null,
-      action: action_constants.ACTION_URL,
-      action_id: shop_url,
+    id: "oximeter_shop1",
+    name: "oximeter_shop1",
+    shape: null,
+    bbox: { top: 0.74, left: 0.56, width: 0.35, height: 0.13 },
+    action: {
+      type: action_constants.ACTION_URL,
       data: shop_url
     }
   },

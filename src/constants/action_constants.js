@@ -4,9 +4,9 @@ import { downloadUrl } from "../functions/fileDownload";
 
 export const ACTION_POPUP = "open_popup";
 export const ACTION_OPENPOPUP = "openPopup";
-export const ACTION_URL = "open_url";
+export const ACTION_URL = "openUrl";
 export const ACTION_DOWNLOAD = "open_download";
-export const ACTION_SEEK_TO = "seek_to";
+export const ACTION_SEEK_TO = "seekTo";
 
 export const playerSeekTo = (thisObj, duration, toPlay) => {
   if (thisObj.player) {
@@ -41,9 +41,9 @@ export const ACTION = {
       playing: action_data.popup_info.pauseVideo ? false : true
     });
   },
-  [ACTION_URL]: (thisObj, url) => {
+  [ACTION_URL]: (thisObj, action_data) => {
     thisObj.player.pause();
-    window.open(url, "_blank");
+    window.open(action_data.url, "_blank");
   },
   [ACTION_DOWNLOAD]: (thisObj, action_data) => {
     downloadUrl(action_data.url, action_data.filename);

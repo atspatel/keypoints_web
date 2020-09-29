@@ -49,7 +49,7 @@ class RenderMedia extends Component {
   }
 }
 
-class ImageCarousel extends Component {
+class MediaCarousel extends Component {
   render() {
     const { data } = this.props;
     return (
@@ -85,4 +85,4 @@ class ImageCarousel extends Component {
   }
 }
 
-export default ImageCarousel;
+export default MediaCarousel;

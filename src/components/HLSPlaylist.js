@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Hls from "hls.js";
 
 var config = {};
-class HLSTest extends Component {
+class HLSPlaylist extends Component {
   togglePlay = () => {
     this.player && this.player.paused
       ? this.player.play()
@@ -74,4 +74,4 @@ class HLSTest extends Component {
   }
 }
 
-export default HLSTest;
+export default HLSPlaylist;

@@ -1,6 +1,6 @@
 import React from "react";
 
-import ImageCarousel from "../components/ImageCarousel";
+import MediaCarousel from "../components/MediaCarousel";
 import VideoPopUp, { onClosePopUp } from "../components/VideoPopUp";
 
 import SourcePopUp from "../components/SourcePopUp";
@@ -30,7 +30,7 @@ export const POPUP = {
   },
   [POPUP_CAROUSEL]: {
     popup_comp: {
-      component: props => <ImageCarousel {...props} />
+      component: props => <MediaCarousel {...props} />
     }
   },
 

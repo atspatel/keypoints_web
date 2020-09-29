@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-
-import * as video_const from "../constants/dhoni_tribute_constants";
-import VideoPlaylist from "../components/VideoPlaylist";
+import PlaylistPlayer from "../components/PlaylistPlayer";
 
 import "../css/app.css";
+import * as config from "../config";
+
+const p_id = config.dhoni_tribute_id;
 
 const { innerHeight, innerWidth } = window;
 class DhoniTribute001 extends Component {
@@ -19,13 +20,7 @@ class DhoniTribute001 extends Component {
         }}
         className="centerH"
       >
-        <VideoPlaylist
-          video_id={video_const.video_id}
-          lang={"english"}
-          playlist={video_const.playlist}
-          isSingleAudio={video_const.isSingleAudio}
-          audioFile={video_const.audioFile}
-        />
+        <PlaylistPlayer playlist_id={p_id} />
       </div>
     );
   }

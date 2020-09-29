@@ -467,9 +467,13 @@ export class TVNineBharat002 extends Component {
               key={"share_2"}
               size={0.08 * width}
               item={{
-                thumbnail: share_button,
+                media_info: {
+                  media: {
+                    thumbnail: share_button
+                  }
+                },
                 id: "share2",
-                button_id: "share_video"
+                name: "share_video"
               }}
               bgColor={secondary_color}
               onClick={id => open_url(tv9_002_constants.image_whatsapp_url)}

@@ -22,31 +22,43 @@ export const info = ["Kartik Tyagi", "Hapur Express", "Fastest ball- 145KMPH"];
 
 export const sm_list = [
   {
-    id: 1,
     name: "Facebook",
-    button_id: "facebook",
-    thumbnail: `${BASE_DIR_tv9}/facebook.png`,
+    id: "Facebook",
+    media_info: {
+      media: {
+        thumbnail: `${BASE_DIR_tv9}/facebook.png`
+      }
+    },
     url: "https://www.facebook.com/TV9Bharatvarsh/"
   },
   {
-    id: 2,
     name: "Instagram",
-    button_id: "instagram",
-    thumbnail: `${BASE_DIR_tv9}/instagram.png`,
+    id: "Instagram",
+    media_info: {
+      media: {
+        thumbnail: `${BASE_DIR_tv9}/instagram.png`
+      }
+    },
     url: "https://www.instagram.com/tv9bharatvarsh/?hl=en"
   },
   {
-    id: 3,
     name: "Twitter",
-    button_id: "twitter",
-    thumbnail: `${BASE_DIR_tv9}/twitter.png`,
+    id: "twitter",
+    media_info: {
+      media: {
+        thumbnail: `${BASE_DIR_tv9}/twitter.png`
+      }
+    },
     url: "https://twitter.com/TV9Bharatvarsh"
   },
   {
-    id: 4,
     name: "Sharechat",
-    button_id: "sharechat",
-    thumbnail: `${BASE_DIR_tv9}/sharechat.png`,
+    id: "sharechat",
+    media_info: {
+      media: {
+        thumbnail: `${BASE_DIR_tv9}/sharechat.png`
+      }
+    },
     url: "https://sharechat.com/profile/tv9bharatvarsh"
   }
 ];

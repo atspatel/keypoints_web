@@ -13,23 +13,35 @@ export const channel_list = [
   {
     id: 1,
     name: "Hindi",
-    thumbnail:
-      "https://yt3.ggpht.com/a/AATXAJxEBa-Kew5nP3EziOh5TSPFKHwr-dd76EUSeOgdRA=s288-c-k-c0xffffffff-no-rj-mo",
+    media_info: {
+      media: {
+        thumbnail:
+          "https://yt3.ggpht.com/a/AATXAJxEBa-Kew5nP3EziOh5TSPFKHwr-dd76EUSeOgdRA=s288-c-k-c0xffffffff-no-rj-mo"
+      }
+    },
     url:
       "https://www.youtube.com/channel/UCOutOIcn_oho8pyVN3Ng-Pg?sub_confirmation=1"
   },
   {
     id: 2,
     name: "Telugu",
-    thumbnail:
-      "https://yt3.ggpht.com/a/AATXAJzEPADa47VeuQK8uowDqS6mWa4nfdJjQyCw0Kkd5g=s288-c-k-c0xffffffff-no-rj-mo",
+    media_info: {
+      media: {
+        thumbnail:
+          "https://yt3.ggpht.com/a/AATXAJzEPADa47VeuQK8uowDqS6mWa4nfdJjQyCw0Kkd5g=s288-c-k-c0xffffffff-no-rj-mo"
+      }
+    },
     url: "https://www.youtube.com/user/tv9telugulive?sub_confirmation=1"
   },
   {
     id: 3,
     name: "Gujarati",
-    thumbnail:
-      "https://yt3.ggpht.com/a/AATXAJxNz0QjQu5dVvRJNbpHipsG5eZ2rldV0oU8Fr-olQ=s288-c-k-c0xffffffff-no-rj-mo",
+    media_info: {
+      media: {
+        thumbnail:
+          "https://yt3.ggpht.com/a/AATXAJxNz0QjQu5dVvRJNbpHipsG5eZ2rldV0oU8Fr-olQ=s288-c-k-c0xffffffff-no-rj-mo"
+      }
+    },
     url:
       "https://www.youtube.com/channel/UCeJWZgSMlzqYEDytDnvzHnw?sub_confirmation=1"
   }
@@ -37,27 +49,43 @@ export const channel_list = [
 
 export const sm_list = [
   {
-    id: 1,
+    id: "Facebook",
     name: "Facebook",
-    thumbnail: `${BASE_DIR_tv9}/facebook.png`,
+    media_info: {
+      media: {
+        thumbnail: `${BASE_DIR_tv9}/facebook.png`
+      }
+    },
     url: "https://www.facebook.com/TV9Bharatvarsh/"
   },
   {
-    id: 2,
+    id: "Instagram",
     name: "Instagram",
-    thumbnail: `${BASE_DIR_tv9}/instagram.png`,
+    media_info: {
+      media: {
+        thumbnail: `${BASE_DIR_tv9}/instagram.png`
+      }
+    },
     url: "https://www.instagram.com/tv9bharatvarsh/?hl=en"
   },
   {
-    id: 3,
+    id: "Twitter",
     name: "Twitter",
-    thumbnail: `${BASE_DIR_tv9}/twitter.png`,
+    media_info: {
+      media: {
+        thumbnail: `${BASE_DIR_tv9}/twitter.png`
+      }
+    },
     url: "https://twitter.com/TV9Bharatvarsh"
   },
   {
-    id: 4,
+    id: "Sharechat",
     name: "Sharechat",
-    thumbnail: `${BASE_DIR_tv9}/sharechat.png`,
+    media_info: {
+      media: {
+        thumbnail: `${BASE_DIR_tv9}/sharechat.png`
+      }
+    },
     url: "https://sharechat.com/profile/tv9bharatvarsh"
   }
 ];

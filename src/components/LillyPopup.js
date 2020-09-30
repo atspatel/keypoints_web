@@ -8,6 +8,7 @@ const characters = [
     id: 1,
     name: "Spider-Man",
     img: "./media/lilly/cutout/spiderman.png",
+    h_img: "https://media.giphy.com/media/d68xnF0YQbo42WiKzk/source.gif",
     color: "rgba(43, 55, 132, 0.5)",
     vote: 30
   },
@@ -22,6 +23,8 @@ const characters = [
     id: 3,
     name: "Thanos",
     img: "./media/lilly/cutout/thanos.png",
+    h_img:
+      "https://media.tenor.com/images/5185e189880510119152ade7d0859fcc/tenor.gif",
     color: "rgba(167, 136, 168, 0.5)",
     vote: 20,
     media: [
@@ -70,43 +73,76 @@ const characters = [
 class LillyPopup extends Component {
   state = {
     hovered: 0,
-    selected: 0
+    selected: 0,
+    final: 0
   };
   onClick = item => {
-    const { selected } = this.state;
-    if (item.id === selected) {
-      this.setState({ selected: 0 });
-      document.body.style.backgroundColor = "rgba(0, 0, 0, 1)";
-    } else {
-      this.setState({ selected: item.id });
+    const { selected, final } = this.state;
+    if (final <= 0) {
+      if (item.id === selected) {
+        this.setState({ selected: 0 });
+        document.body.style.backgroundColor = "rgba(0, 0, 0, 1)";
+      } else {
+        this.setState({ selected: item.id });
+        document.body.style.backgroundColor = item.color
+          ? item.color
+          : "rgba(255, 0, 0, 0.5)";
+      }
+    }
+  };
+
+  onSelect = item => {
+    const { final } = this.state;
+    if (final <= 0) {
+      this.setState({ selected: item.id, final: item.id });
       document.body.style.backgroundColor = item.color
         ? item.color
         : "rgba(255, 0, 0, 0.5)";
     }
   };
+
+  onHover = id => {
+    const { final } = this.state;
+    if (final <= 0) {
+      this.setState({ hovered: id });
+    }
+  };
   render() {
-    const { hovered, selected } = this.state;
+    const { hovered, selected, final } = this.state;
     return (
-      <div
-        className="container"
-        onMouseLeave={() => this.setState({ hovered: 0 })}
-      >
+      <div className="container" onMouseLeave={() => this.onHover(0)}>
         {characters.map(item => {
           const isMedia = item.media && item.media.length > 0;
+          const isHovered =
+            hovered === item.id || (hovered === 0 && selected === item.id);
           return (
             <div
               className={classNames("card", {
                 selected: selected === item.id,
-                hovered:
-                  hovered === item.id || (hovered === 0 && selected === item.id)
+                hovered: isHovered,
+                non_final: final > 0 && final !== item.id
               })}
-              onMouseEnter={() => this.setState({ hovered: item.id })}
+              onMouseEnter={() => this.onHover(item.id)}
               //   onClick={}
               onDoubleClick={() => this.onClick(item)}
             >
               <div style={{ flex: 1 }}>
-                <img className="avatar" src={item.img} />
+                <img
+                  className="avatar"
+                  src={isHovered && item.h_img ? item.h_img : item.img}
+                />
               </div>
+              {final <= 0 && (
+                <div
+                  className="card_button"
+                  onClick={e => {
+                    e.stopPropagation();
+                    this.onSelect(item);
+                  }}
+                >
+                  <p className="text">Go with {item.name}</p>
+                </div>
+              )}
               {isMedia && (
                 <div className="hover-content">
                   {item.media.map(media_info => {
@@ -149,18 +185,19 @@ class LillyPopup extends Component {
                   className="result_trail"
                   style={{ height: `${item.vote}%` }}
                 ></div>
-                <div
+                <p
                   style={{
                     color: "yellow",
                     position: "absolute",
                     width: "100%",
                     bottom: `${item.vote}%`,
                     left: 0,
-                    textAlign: "center"
+                    textAlign: "center",
+                    fontSize: "1vw"
                   }}
                 >
                   {item.vote}%
-                </div>
+                </p>
               </div>
             </div>
           );

@@ -667,6 +667,7 @@ class HtmlVideoIdComp extends Component {
       video_url,
       // autoplay,
       // overlay_buttons,
+      showVideoControls,
       showFullScreen,
       showMenu,
       showProgressBar
@@ -714,7 +715,8 @@ class HtmlVideoIdComp extends Component {
             this.renderBackButton()}
 
           {showMenu && this.state.isMenuOpen && this.renderMenu()}
-          {showControl &&
+          {showVideoControls &&
+            showControl &&
             !currentPopup &&
             this.player &&
             this.renderControls(showMenu, showFullScreen, showProgressBar)}

@@ -29,6 +29,7 @@ export class OximeterEmbedVideo extends Component {
         showMenu={false} // TODO :: generalize this
         showInstruction={false}
         endLoop={55.3}
+        showVideoControls={true}
       />
     ) : (
       <div></div>

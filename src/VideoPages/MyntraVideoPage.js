@@ -26,6 +26,7 @@ class MyntraVideo extends Component {
         maxWidth={800}
         showFullScreen={true}
         showMenu={true} // TODO :: generalize this
+        showVideoControls={true}
       />
     ) : (
       <div></div>

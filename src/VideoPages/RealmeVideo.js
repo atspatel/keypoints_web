@@ -32,6 +32,7 @@ class RealmeVideo extends Component {
           showFullScreen={true}
           showMenu={true} // TODO :: generalize this
           showInstruction={true}
+          showVideoControls={true}
         />
       </>
     );

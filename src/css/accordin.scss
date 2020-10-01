@@ -10,6 +10,7 @@
   display: -webkit-box;
   -webkit-line-clamp: 1; /* number of lines to show */
   -webkit-box-orient: vertical;
+  font-family: DIN_Condensed_Bold;
   font-size: 2vw;
 }
 
@@ -58,6 +59,7 @@
       left: 0;
       font-size: 1.4vw;
       white-space: nowrap;
+      font-family: DIN_Condensed_Bold;
     }
     .hover-content {
       display: none;
@@ -118,6 +120,7 @@
       font-size: 1vw;
       font-weight: bold;
       transition: all 1s ease-in-out;
+      font-family: DIN_Condensed_Bold;
     }
 
     &:not(:nth-child(5)) {

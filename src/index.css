@@ -16,3 +16,8 @@ code {
   font-family: "Calibri";
   src: local("Calibri"), url(./fonts/Calibri.ttf) format("truetype");
 }
+@font-face {
+  font-family: "DIN_Condensed_Bold";
+  src: local("DIN_Condensed_Bold"),
+    url(./fonts/DIN_Condensed_Bold.ttf) format("truetype");
+}

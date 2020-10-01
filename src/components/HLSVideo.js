@@ -21,7 +21,6 @@ class HLSVideo extends Component {
   }
   render() {
     const { poster, muted, controls, loop, setRef, objectFit } = this.props;
-
     return (
       <video
         ref={c => {

@@ -10,42 +10,42 @@ const characters = [
     id: 1,
     name: "Ved",
     img: "./media/lilly/cutout/spiderman.png",
-    color: "rgba(43, 55, 132, 0.7)",
+    color: "#EFB61480",
     vote: 30
   },
   {
     id: 2,
     name: "Latika",
     img: "./media/lilly/cutout/carol.png",
-    color: "rgba(14, 74, 106, 0.7)",
+    color: "#0B93B280",
     vote: 10
   },
   {
     id: 3,
     name: "Kapil",
     img: "./media/lilly/cutout/thanos.png",
-    color: "rgba(167, 136, 168, 0.7)",
+    color: "#49397A80",
     vote: 20
   },
   {
     id: 4,
     name: "Ved",
     img: "./media/lilly/cutout/hulk.png",
-    color: "rgba(143,31,144, 0.7)",
+    color: "#37773080",
     vote: 15
   },
   {
     id: 5,
     name: "Latika",
     img: "./media/lilly/cutout/thor.png",
-    color: "rgba(184, 0, 0, 0.7)",
+    color: "#C96B1F80",
     vote: 25
   },
   {
     id: 6,
     name: "Kapil",
     img: "./media/lilly/cutout/thanos.png",
-    color: "rgba(167, 136, 168, 0.7)",
+    color: "#D30B0B80",
     vote: 20
   }
 ];

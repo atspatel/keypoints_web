@@ -96,10 +96,11 @@ class LillyPopup extends Component {
   onSelect = item => {
     const { final } = this.state;
     if (final <= 0) {
-      this.setState({ selected: item.id, final: item.id });
-      document.body.style.backgroundColor = item.color
-        ? item.color
-        : "rgba(255, 0, 0, 0.5)";
+      this.setState({
+        selected: item.id,
+        final: item.id,
+        background_color: item.color ? item.color : black_bg
+      });
     }
   };
 

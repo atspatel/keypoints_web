@@ -41,6 +41,8 @@
     background-color: transparent;
     overflow: hidden;
     transition: all 1s ease-in-out;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 20px;
     .card__head {
       color: black;
       background: rgba(255, 30, 173, 0.75);

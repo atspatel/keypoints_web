@@ -6,67 +6,45 @@ import "../css/accordin.scss";
 const characters = [
   {
     id: 1,
-    name: "Spider-Man",
+    name: "Ved",
     img: "./media/lilly/cutout/spiderman.png",
-    h_img: "https://media.giphy.com/media/d68xnF0YQbo42WiKzk/source.gif",
     color: "rgba(43, 55, 132, 0.5)",
     vote: 30
   },
   {
     id: 2,
-    name: "Carol Danvers",
+    name: "Latika",
     img: "./media/lilly/cutout/carol.png",
     color: "rgba(14, 74, 106, 0.5)",
     vote: 10
   },
   {
     id: 3,
-    name: "Thanos",
+    name: "Kapil",
     img: "./media/lilly/cutout/thanos.png",
-    h_img:
-      "https://media.tenor.com/images/5185e189880510119152ade7d0859fcc/tenor.gif",
     color: "rgba(167, 136, 168, 0.5)",
-    vote: 20,
-    media: [
-      {
-        id: 1,
-        src: "./media/lilly/thanos_image1.jpeg",
-        type: "image"
-      }
-    ]
+    vote: 20
   },
   {
     id: 4,
-    name: "Hulk",
+    name: "Ved",
     img: "./media/lilly/cutout/hulk.png",
     color: "rgba(143,31,144, 0.5)",
-    vote: 15,
-    media: [
-      {
-        id: 1,
-        src: "https://media.giphy.com/media/xT9Igh1S1oGnsbDaFO/giphy.mp4",
-        type: "video"
-      }
-    ]
+    vote: 15
   },
   {
     id: 5,
-    name: "Thor",
+    name: "Latika",
     img: "./media/lilly/cutout/thor.png",
     color: "rgba(184, 0, 0, 0.5)",
-    vote: 25,
-    media: [
-      {
-        id: 1,
-        src: "https://media.giphy.com/media/EOfarA6ZUqzZu/giphy.mp4",
-        type: "video"
-      },
-      {
-        id: 2,
-        src: "https://media.giphy.com/media/Ch1zCx8tu6DQY/giphy.gif",
-        type: "gif"
-      }
-    ]
+    vote: 25
+  },
+  {
+    id: 6,
+    name: "Kapil",
+    img: "./media/lilly/cutout/thanos.png",
+    color: "rgba(167, 136, 168, 0.5)",
+    vote: 20
   }
 ];
 
@@ -116,7 +94,6 @@ class LillyPopup extends Component {
       <div className="main_div" style={{ backgroundColor: background_color }}>
         <div className="container" onMouseLeave={() => this.onHover(0)}>
           {characters.map(item => {
-            const isMedia = item.media && item.media.length > 0;
             const isHovered =
               hovered === item.id || (hovered === 0 && selected === item.id);
             return (
@@ -128,13 +105,16 @@ class LillyPopup extends Component {
                 })}
                 onMouseEnter={() => this.onHover(item.id)}
                 //   onClick={}
-                onDoubleClick={() => this.onClick(item)}
+                // onDoubleClick={() => this.onClick(item)}
               >
-                <div style={{ flex: 1 }}>
-                  <img
-                    className="avatar"
-                    src={isHovered && item.h_img ? item.h_img : item.img}
-                  />
+                <div
+                  style={{
+                    flex: 1,
+                    overflow: "hidden",
+                    position: "relative"
+                  }}
+                >
+                  <img className="avatar" src={item.img} />
                 </div>
                 {final <= 0 && (
                   <div
@@ -144,43 +124,7 @@ class LillyPopup extends Component {
                       this.onSelect(item);
                     }}
                   >
-                    <p className="text_lilly">Go with {item.name}</p>
-                  </div>
-                )}
-                {isMedia && (
-                  <div className="hover-content">
-                    {item.media.map(media_info => {
-                      if (media_info.type === "video") {
-                        return (
-                          <video
-                            src={media_info.src}
-                            style={{
-                              width: "100%",
-                              objectFit: "contain",
-                              margin: "10% 0%",
-                              borderRadius: 10
-                            }}
-                            autoPlay
-                            muted
-                            loop
-                          />
-                        );
-                      } else if (
-                        media_info.type === "gif" ||
-                        media_info.type === "image"
-                      ) {
-                        return (
-                          <img
-                            src={media_info.src}
-                            style={{
-                              width: "100%",
-                              objectFit: "contain",
-                              borderRadius: 10
-                            }}
-                          />
-                        );
-                      }
-                    })}
+                    <p className="text_lilly">+VOTE</p>
                   </div>
                 )}
                 <div className="card__head">{item.name}</div>
@@ -190,14 +134,9 @@ class LillyPopup extends Component {
                     style={{ height: `${item.vote}%` }}
                   ></div>
                   <p
+                    className="text_percentage"
                     style={{
-                      color: "yellow",
-                      position: "absolute",
-                      width: "100%",
-                      bottom: `${item.vote}%`,
-                      left: 0,
-                      textAlign: "center",
-                      fontSize: "1vw"
+                      bottom: `${item.vote}%`
                     }}
                   >
                     {item.vote}%

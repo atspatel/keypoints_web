@@ -70,23 +70,25 @@ const characters = [
   }
 ];
 
+const black_bg = "rgba(0, 0, 0, 1)";
+
 class LillyPopup extends Component {
   state = {
     hovered: 0,
     selected: 0,
-    final: 0
+    final: 0,
+    background_color: black_bg
   };
   onClick = item => {
     const { selected, final } = this.state;
     if (final <= 0) {
       if (item.id === selected) {
-        this.setState({ selected: 0 });
-        document.body.style.backgroundColor = "rgba(0, 0, 0, 1)";
+        this.setState({ selected: 0, background_color: black_bg });
       } else {
-        this.setState({ selected: item.id });
-        document.body.style.backgroundColor = item.color
-          ? item.color
-          : "rgba(255, 0, 0, 0.5)";
+        this.setState({
+          selected: item.id,
+          background_color: item.color ? item.color : black_bg
+        });
       }
     }
   };
@@ -108,100 +110,102 @@ class LillyPopup extends Component {
     }
   };
   render() {
-    const { hovered, selected, final } = this.state;
+    const { hovered, selected, final, background_color } = this.state;
     return (
-      <div className="container" onMouseLeave={() => this.onHover(0)}>
-        {characters.map(item => {
-          const isMedia = item.media && item.media.length > 0;
-          const isHovered =
-            hovered === item.id || (hovered === 0 && selected === item.id);
-          return (
-            <div
-              className={classNames("card", {
-                selected: selected === item.id,
-                hovered: isHovered,
-                non_final: final > 0 && final !== item.id
-              })}
-              onMouseEnter={() => this.onHover(item.id)}
-              //   onClick={}
-              onDoubleClick={() => this.onClick(item)}
-            >
-              <div style={{ flex: 1 }}>
-                <img
-                  className="avatar"
-                  src={isHovered && item.h_img ? item.h_img : item.img}
-                />
-              </div>
-              {final <= 0 && (
-                <div
-                  className="card_button"
-                  onClick={e => {
-                    e.stopPropagation();
-                    this.onSelect(item);
-                  }}
-                >
-                  <p className="text">Go with {item.name}</p>
+      <div className="main_div" style={{ backgroundColor: background_color }}>
+        <div className="container" onMouseLeave={() => this.onHover(0)}>
+          {characters.map(item => {
+            const isMedia = item.media && item.media.length > 0;
+            const isHovered =
+              hovered === item.id || (hovered === 0 && selected === item.id);
+            return (
+              <div
+                className={classNames("card", {
+                  selected: selected === item.id,
+                  hovered: isHovered,
+                  non_final: final > 0 && final !== item.id
+                })}
+                onMouseEnter={() => this.onHover(item.id)}
+                //   onClick={}
+                onDoubleClick={() => this.onClick(item)}
+              >
+                <div style={{ flex: 1 }}>
+                  <img
+                    className="avatar"
+                    src={isHovered && item.h_img ? item.h_img : item.img}
+                  />
                 </div>
-              )}
-              {isMedia && (
-                <div className="hover-content">
-                  {item.media.map(media_info => {
-                    if (media_info.type === "video") {
-                      return (
-                        <video
-                          src={media_info.src}
-                          style={{
-                            width: "100%",
-                            objectFit: "contain",
-                            margin: "10% 0%",
-                            borderRadius: 10
-                          }}
-                          autoPlay
-                          muted
-                          loop
-                        />
-                      );
-                    } else if (
-                      media_info.type === "gif" ||
-                      media_info.type === "image"
-                    ) {
-                      return (
-                        <img
-                          src={media_info.src}
-                          style={{
-                            width: "100%",
-                            objectFit: "contain",
-                            borderRadius: 10
-                          }}
-                        />
-                      );
-                    }
-                  })}
+                {final <= 0 && (
+                  <div
+                    className="card_button"
+                    onClick={e => {
+                      e.stopPropagation();
+                      this.onSelect(item);
+                    }}
+                  >
+                    <p className="text_lilly">Go with {item.name}</p>
+                  </div>
+                )}
+                {isMedia && (
+                  <div className="hover-content">
+                    {item.media.map(media_info => {
+                      if (media_info.type === "video") {
+                        return (
+                          <video
+                            src={media_info.src}
+                            style={{
+                              width: "100%",
+                              objectFit: "contain",
+                              margin: "10% 0%",
+                              borderRadius: 10
+                            }}
+                            autoPlay
+                            muted
+                            loop
+                          />
+                        );
+                      } else if (
+                        media_info.type === "gif" ||
+                        media_info.type === "image"
+                      ) {
+                        return (
+                          <img
+                            src={media_info.src}
+                            style={{
+                              width: "100%",
+                              objectFit: "contain",
+                              borderRadius: 10
+                            }}
+                          />
+                        );
+                      }
+                    })}
+                  </div>
+                )}
+                <div className="card__head">{item.name}</div>
+                <div className="result_bar">
+                  <div
+                    className="result_trail"
+                    style={{ height: `${item.vote}%` }}
+                  ></div>
+                  <p
+                    style={{
+                      color: "yellow",
+                      position: "absolute",
+                      width: "100%",
+                      bottom: `${item.vote}%`,
+                      left: 0,
+                      textAlign: "center",
+                      fontSize: "1vw"
+                    }}
+                  >
+                    {item.vote}%
+                  </p>
                 </div>
-              )}
-              <div className="card__head">{item.name}</div>
-              <div className="result_bar">
-                <div
-                  className="result_trail"
-                  style={{ height: `${item.vote}%` }}
-                ></div>
-                <p
-                  style={{
-                    color: "yellow",
-                    position: "absolute",
-                    width: "100%",
-                    bottom: `${item.vote}%`,
-                    left: 0,
-                    textAlign: "center",
-                    fontSize: "1vw"
-                  }}
-                >
-                  {item.vote}%
-                </p>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     );
   }

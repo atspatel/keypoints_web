@@ -1,56 +1,61 @@
 import React, { Component } from "react";
 import classNames from "classnames";
+import ResizeObserver from "rc-resize-observer";
 
 import "../css/accordin.scss";
 
-const background_image = "./media/lilly/background.jpg";
+const background_image = "./media/lilly/background.png";
+const question = "Who is the killer?";
 
+const { innerHeight, innerWidth } = window;
 const characters = [
   {
     id: 1,
-    name: "Ved",
-    img: "./media/lilly/cutout/spiderman.png",
+    name: "Dev",
+    img: "./media/lilly/cutout/dev.png",
     color: "#EFB61480",
     vote: 30
   },
   {
     id: 2,
-    name: "Latika",
-    img: "./media/lilly/cutout/carol.png",
+    name: "Kabir",
+    img: "./media/lilly/cutout/kabir.png",
     color: "#0B93B280",
     vote: 10
   },
   {
     id: 3,
     name: "Kapil",
-    img: "./media/lilly/cutout/thanos.png",
+    img: "./media/lilly/cutout/kapil.png",
     color: "#49397A80",
     vote: 20
   },
   {
     id: 4,
-    name: "Ved",
-    img: "./media/lilly/cutout/hulk.png",
+    name: "Latika",
+    img: "./media/lilly/cutout/latika.png",
     color: "#37773080",
     vote: 15
   },
   {
     id: 5,
-    name: "Latika",
-    img: "./media/lilly/cutout/thor.png",
+    name: "Meher",
+    img: "./media/lilly/cutout/meher.png",
     color: "#C96B1F80",
-    vote: 25
+    vote: 10
   },
   {
     id: 6,
-    name: "Kapil",
-    img: "./media/lilly/cutout/thanos.png",
+    name: "Neena",
+    img: "./media/lilly/cutout/neena.png",
     color: "#D30B0B80",
     vote: 20
   }
 ];
 
-const black_bg = "rgba(0, 0, 0, 0.7)";
+const black_bg = "rgba(0, 0, 0, 0)";
+
+const ratio = 1.25;
 
 class LillyPopup extends Component {
   state = {
@@ -90,25 +95,68 @@ class LillyPopup extends Component {
       this.setState({ hovered: id });
     }
   };
+  updateDimensions = () => {
+    const { outerHeight, outerWidth } = window;
+    const { innerHeight, innerWidth } = window;
+
+    const { height, width } = this.state;
+
+    let new_h = innerHeight;
+    let new_w = innerWidth;
+    if (innerHeight > outerHeight || innerWidth > outerWidth) {
+      new_h = outerHeight;
+      new_w = outerWidth;
+    }
+    if (height !== new_h || width !== new_w) {
+      this.setState({ height: new_h, width: new_w });
+    }
+    console.log(new_h, new_w);
+  };
+  componentDidMount() {
+    this.updateDimensions();
+    window.addEventListener("resize", this.updateDimensions);
+  }
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateDimensions);
+  }
   render() {
     const { hovered, selected, final, background_color } = this.state;
+    const { width, height } = this.state;
+
+    let container_width = 0.9 * width;
+    let container_height = (0.9 * width) / ratio;
+    if (width && height && (0.9 * width) / (0.85 * height) > ratio) {
+      container_height = 0.85 * height;
+      container_width = ratio * 0.85 * height;
+    }
     return (
       <div
+        ref={c => (this.div = c)}
         style={{
           backgroundImage: `url(${background_image})`,
           backgroundPositon: "center",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
-          backgroundBlendMode: "luminosity"
+          height: height ? height : innerHeight,
+          width: width ? width : innerWidth
         }}
       >
         <div
           className="main_div"
           style={{
+            width: "100%",
+            height: "100%",
             backgroundColor: background_color
           }}
         >
-          <div className="container" onMouseLeave={() => this.onHover(0)}>
+          <div className="quiz_title" style={{ width: "100%", height: "15%" }}>
+            <p className="title_text">{question}</p>
+          </div>
+          <div
+            className="container"
+            style={{ width: container_width, height: container_height }}
+            onMouseLeave={() => this.onHover(0)}
+          >
             {characters.map(item => {
               const isHovered =
                 hovered === item.id || (hovered === 0 && selected === item.id);
@@ -119,7 +167,9 @@ class LillyPopup extends Component {
                     hovered: isHovered,
                     non_final: final > 0 && final !== item.id
                   })}
+                  style={{ backgroundColor: item.color }}
                   onMouseEnter={() => this.onHover(item.id)}
+                  onMouseLeave={() => this.onHover(0)}
                   //   onClick={}
                   // onDoubleClick={() => this.onClick(item)}
                 >
@@ -152,7 +202,7 @@ class LillyPopup extends Component {
                     <p
                       className="text_percentage"
                       style={{
-                        bottom: `${item.vote}%`
+                        top: `${Math.min(100 - item.vote, 95)}%`
                       }}
                     >
                       {item.vote}%
@@ -163,6 +213,7 @@ class LillyPopup extends Component {
             })}
           </div>
         </div>
+        {/* </ResizeObserver> */}
       </div>
     );
   }

@@ -18,38 +18,38 @@ const characters = [
   },
   {
     id: 2,
-    name: "Kabir",
-    img: "./media/lilly/cutout/kabir.png",
-    color: "#0B93B280",
-    vote: 10
-  },
-  {
-    id: 3,
-    name: "Kapil",
-    img: "./media/lilly/cutout/kapil.png",
-    color: "#49397A80",
-    vote: 20
-  },
-  {
-    id: 4,
-    name: "Latika",
-    img: "./media/lilly/cutout/latika.png",
-    color: "#37773080",
-    vote: 15
-  },
-  {
-    id: 5,
     name: "Meher",
     img: "./media/lilly/cutout/meher.png",
     color: "#C96B1F80",
     vote: 10
   },
   {
-    id: 6,
+    id: 3,
+    name: "Latika",
+    img: "./media/lilly/cutout/latika.png",
+    color: "#37773080",
+    vote: 15
+  },
+  {
+    id: 4,
+    name: "Kapil",
+    img: "./media/lilly/cutout/kapil.png",
+    color: "#49397A80",
+    vote: 20
+  },
+  {
+    id: 5,
     name: "Neena",
     img: "./media/lilly/cutout/neena.png",
     color: "#D30B0B80",
     vote: 20
+  },
+  {
+    id: 6,
+    name: "Kabir",
+    img: "./media/lilly/cutout/kabir.png",
+    color: "#0B93B280",
+    vote: 10
   }
 ];
 

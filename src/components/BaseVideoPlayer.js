@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 import HLSVideo from "./HLSVideo";
 
-const source =
-  "https://storage.googleapis.com/kp_videos/media/sharechat_1/content_0829_001/love/love.m3u8";
-const thumbnail =
-  "https://storage.googleapis.com/kp_videos/media/sharechat_1/content_0829_001/love/love_thumb.png";
-
 class BaseVideoPlayer extends Component {
   render() {
     const { source, thumbnail } = this.props;
@@ -14,7 +9,8 @@ class BaseVideoPlayer extends Component {
       setHlsRef,
       onClick,
       onMouseEnter,
-      onMouseLeave
+      onMouseLeave,
+      onLoadedData
     } = this.props;
     const { maxBuffer, isMuted, loop, autoPlay, autoStartLoad } = this.props;
     const isM3u8 = source.endsWith(".m3u8");
@@ -34,6 +30,7 @@ class BaseVideoPlayer extends Component {
           onClick={onClick && onClick}
           onMouseEnter={onMouseEnter && onMouseEnter}
           onMouseLeave={onMouseLeave && onMouseLeave}
+          onLoadedData={onLoadedData && onLoadedData}
         />
       );
     } else {
@@ -45,6 +42,7 @@ class BaseVideoPlayer extends Component {
           onClick={onClick && onClick}
           onMouseEnter={onMouseEnter && onMouseEnter}
           onMouseLeave={onMouseLeave && onMouseLeave}
+          onLoadedData={onLoadedData && onLoadedData}
         >
           <source src={source} type="video/mp4" />
         </video>

@@ -120,6 +120,7 @@ class StackedProgressBar extends Component {
             alignItems: "center",
             margin: "auto auto"
           }}
+          onClick={e => e.stopPropagation()}
         >
           {current && total && (
             <ThemeProvider theme={theme}>

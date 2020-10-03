@@ -8,8 +8,6 @@ import * as constants from "../../constants/landing_page_constants";
 import "../../css/app.css";
 const { innerWidth: width } = window;
 
-const images = constants.image_list;
-
 class Home extends Component {
   render() {
     return (

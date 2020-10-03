@@ -66,6 +66,7 @@ class MediaCarousel extends Component {
         {data.map(item => {
           return (
             <div
+              key={item.id}
               className="image-container"
               style={{
                 backgroundColor: "black",

@@ -25,7 +25,6 @@ class MyntraVideo extends Component {
         overlay_buttons={video_data.buttons}
         maxWidth={800}
         showFullScreen={true}
-        showMenu={true} // TODO :: generalize this
         showVideoControls={true}
       />
     ) : (

@@ -42,7 +42,6 @@ export const ACTION = {
     });
   },
   [ACTION_URL]: (thisObj, action_data) => {
-    thisObj.player.pause();
     window.open(action_data.url, "_blank");
   },
   [ACTION_DOWNLOAD]: (thisObj, action_data) => {

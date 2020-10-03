@@ -19,7 +19,7 @@ import ShareChatPlayerMapped from "./VideoPages/sharechat/ShareChatPlayerMapped"
 import DhoniTribute001 from "./VideoPages/DhoniTribute001";
 import InteractiveAarti from "./components/InteractiveAarti";
 
-import LillyPopup from "./components/LillyPopup";
+import LilyPopup from "./components/LilyPopup";
 
 import LandingPage from "./VideoPages/LandingPage";
 
@@ -27,7 +27,7 @@ class AppRoute extends Component {
   render() {
     return (
       <Switch>
-        <Route path="/lilly" render={() => <LillyPopup />} />
+        <Route path="/lily" render={() => <LilyPopup />} />
         <Route path="/realme" render={() => <RealmeVideo />} />
         <Route path="/oximeter" render={() => <OximeterVideo />} />
         <Route path="/embed_oximeter" render={() => <OximeterEmbedVideo />} />

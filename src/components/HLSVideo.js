@@ -22,6 +22,7 @@ class HLSVideo extends Component {
   render() {
     const { poster, muted, controls, loop, setRef, objectFit } = this.props;
     const { onClick, onMouseEnter, onMouseLeave } = this.props;
+
     return (
       <video
         ref={c => {

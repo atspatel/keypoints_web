@@ -26,7 +26,7 @@ class BaseVideoPlayer extends Component {
           src={source}
           poster={thumbnail}
           maxBuffer={maxBuffer}
-          muted={isMuted}
+          // muted={false}
           loop={loop}
           autoPlay={autoPlay}
           autoStartLoad={autoStartLoad}

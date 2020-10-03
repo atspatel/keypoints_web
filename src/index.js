@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "./fonts/Calibri.ttf";
+import "./fonts/DIN_Condensed_Bold.ttf";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.hydrate(

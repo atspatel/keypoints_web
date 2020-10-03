@@ -85,9 +85,13 @@ class PlayerCardPopUp extends Component {
             key={"share_1"}
             size={0.15 * div_width}
             item={{
-              thumbnail: image_share_button,
+              media_info: {
+                media: {
+                  thumbnail: image_share_button
+                }
+              },
               id: "share1",
-              button_id: "share_image"
+              name: "share_image"
             }}
             bgColor={secondary_color}
             onClick={id => open_url(tv9_002_constants.image_whatsapp_url)}

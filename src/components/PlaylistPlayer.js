@@ -396,7 +396,7 @@ class VideoSection extends Component {
         {isSingleSecondary && (
           <audio
             ref={c => (this.secondary_player = c)}
-            src={secondary_list[0].media_info.src}
+            src={secondary_list[0].media_info.media.src}
           />
         )}
         {paused && (

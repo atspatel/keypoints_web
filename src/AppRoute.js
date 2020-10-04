@@ -28,16 +28,17 @@ class AppRoute extends Component {
     return (
       <Switch>
         <Route path="/lily" render={() => <LilyPopup />} />
-        <Route path="/realme" render={() => <RealmeVideo />} />
-        <Route path="/oximeter" render={() => <OximeterVideo />} />
-        <Route path="/embed_oximeter" render={() => <OximeterEmbedVideo />} />
-        <Route path="/hotstar" render={() => <MatchVideo />} />
         <Route path="/samsung" render={() => <SamsungDemo />} />
         <Route path="/curefit" render={() => <CurefitVideo />} />
         <Route path="/indianexpress" render={() => <IEVideo />} />
-        <Route path="/ndtv" render={() => <NDTVVideo />} />
         <Route path="/tv9bharat" render={() => <TVNineBharat />} />
         <Route path="/tv9bharat_002" render={() => <TVNineBharat002 />} />
+
+        <Route path="/realme" render={() => <RealmeVideo />} />
+        <Route path="/oximeter" render={() => <OximeterVideo />} />
+        <Route path="/embed_oximeter" render={() => <OximeterEmbedVideo />} />
+        <Route path="/ndtv" render={() => <NDTVVideo />} />
+        <Route path="/hotstar" render={() => <MatchVideo />} />
 
         <Route
           path="/playlist"

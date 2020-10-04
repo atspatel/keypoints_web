@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 import HLSVideo from "./HLSVideo";
 
-const source =
-  "https://storage.googleapis.com/kp_videos/media/sharechat_1/content_0829_001/love/love.m3u8";
-const thumbnail =
-  "https://storage.googleapis.com/kp_videos/media/sharechat_1/content_0829_001/love/love_thumb.png";
-
 class BaseVideoPlayer extends Component {
   render() {
     const { source, thumbnail } = this.props;

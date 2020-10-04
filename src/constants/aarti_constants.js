@@ -1,4 +1,6 @@
-const BASE_DIR = "https://storage.googleapis.com/kp_videos/media";
+import * as config from "../config";
+
+const BASE_DIR = config.BASE_DIR;
 const BASE_DIR_aarti = `${BASE_DIR}/aarti`;
 
 export const aarti_url = "http://keypoints.in/digital_aarti";

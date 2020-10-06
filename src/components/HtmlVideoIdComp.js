@@ -665,6 +665,8 @@ class HtmlVideoIdComp extends Component {
     const {
       marginTop,
       marginLeft,
+      height,
+      width,
       currentPopup,
       popup_info,
       popup_data,
@@ -727,12 +729,13 @@ class HtmlVideoIdComp extends Component {
           />
         </ResizeObserver>
         <div
+          className="overlay"
           style={{
             position: "absolute",
             top: marginTop,
-            left: marginLeft
-            // height: "100%",
-            // width: "100%"
+            left: marginLeft,
+            height: height,
+            width: width
           }}
           onMouseEnter={this.onMouseEnter}
           onMouseLeave={this.onMouseLeave}

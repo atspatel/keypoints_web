@@ -4,7 +4,7 @@ import ResizeObserver from "rc-resize-observer";
 
 import "../css/accordin.scss";
 
-const background_image = "./media/lilly/background.png";
+const background_image = "./media/lily/background.png";
 const question = "Who is the killer?";
 
 const { innerHeight, innerWidth } = window;
@@ -12,42 +12,42 @@ const characters = [
   {
     id: 1,
     name: "Dev",
-    img: "./media/lilly/cutout/dev.png",
+    img: "./media/lily/cutout/dev.png",
     color: "#EFB61480",
     vote: 30
   },
   {
     id: 2,
     name: "Meher",
-    img: "./media/lilly/cutout/meher.png",
+    img: "./media/lily/cutout/meher.png",
     color: "#C96B1F80",
     vote: 10
   },
   {
     id: 3,
     name: "Latika",
-    img: "./media/lilly/cutout/latika.png",
+    img: "./media/lily/cutout/latika.png",
     color: "#37773080",
     vote: 15
   },
   {
     id: 4,
     name: "Kapil",
-    img: "./media/lilly/cutout/kapil.png",
+    img: "./media/lily/cutout/kapil.png",
     color: "#49397A80",
     vote: 20
   },
   {
     id: 5,
     name: "Neena",
-    img: "./media/lilly/cutout/neena.png",
+    img: "./media/lily/cutout/neena.png",
     color: "#D30B0B80",
     vote: 20
   },
   {
     id: 6,
     name: "Kabir",
-    img: "./media/lilly/cutout/kabir.png",
+    img: "./media/lily/cutout/kabir.png",
     color: "#0B93B280",
     vote: 10
   }
@@ -57,7 +57,7 @@ const black_bg = "rgba(0, 0, 0, 0)";
 
 const ratio = 1.25;
 
-class LillyPopup extends Component {
+class LilyPopup extends Component {
   state = {
     hovered: 0,
     selected: 0,
@@ -190,7 +190,7 @@ class LillyPopup extends Component {
                         this.onSelect(item);
                       }}
                     >
-                      <p className="text_lilly">+VOTE</p>
+                      <p className="text_lily">+VOTE</p>
                     </div>
                   )}
                   <div className="card__head">{item.name}</div>
@@ -219,4 +219,4 @@ class LillyPopup extends Component {
   }
 }
 
-export default LillyPopup;
+export default LilyPopup;

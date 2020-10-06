@@ -20,7 +20,7 @@ import ShareChatPlayerMapped from "./VideoPages/sharechat/ShareChatPlayerMapped"
 import DhoniTribute001 from "./VideoPages/DhoniTribute001";
 import InteractiveAarti from "./components/InteractiveAarti";
 
-import LillyPopup from "./components/LillyPopup";
+import LilyPopup from "./components/LilyPopup";
 
 import LandingPage from "./VideoPages/LandingPage";
 
@@ -28,19 +28,18 @@ class AppRoute extends Component {
   render() {
     return (
       <Switch>
-        <Route path="/lilly" render={() => <LillyPopup />} />
-        <Route path="/realme" render={() => <RealmeVideo />} />
-
-        <Route path="/oximeter2" render={() => <OximeterVideo2 />} />
-        <Route path="/oximeter" render={() => <OximeterVideo />} />
-        <Route path="/embed_oximeter" render={() => <OximeterEmbedVideo />} />
-        <Route path="/hotstar" render={() => <MatchVideo />} />
+        <Route path="/lily" render={() => <LilyPopup />} />
         <Route path="/samsung" render={() => <SamsungDemo />} />
         <Route path="/curefit" render={() => <CurefitVideo />} />
         <Route path="/indianexpress" render={() => <IEVideo />} />
-        <Route path="/ndtv" render={() => <NDTVVideo />} />
         <Route path="/tv9bharat" render={() => <TVNineBharat />} />
         <Route path="/tv9bharat_002" render={() => <TVNineBharat002 />} />
+
+        <Route path="/realme" render={() => <RealmeVideo />} />
+        <Route path="/oximeter" render={() => <OximeterVideo />} />
+        <Route path="/embed_oximeter" render={() => <OximeterEmbedVideo />} />
+        <Route path="/ndtv" render={() => <NDTVVideo />} />
+        <Route path="/hotstar" render={() => <MatchVideo />} />
 
         <Route
           path="/playlist"

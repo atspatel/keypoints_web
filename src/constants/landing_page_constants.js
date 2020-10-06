@@ -13,7 +13,8 @@ export const demos = [
   { id: 3, source: `/curefit` }
 ];
 
-export const kp_logo = "https://storage.googleapis.com/kp_videos/kp_logo.png";
+export const kp_logo =
+  "https://keypoints-data.s3.ap-south-1.amazonaws.com/kp_logo.png";
 
 export const speed_png = `${BASE_DIR}/landing_page/speed.png`;
 export const integration_png = `${BASE_DIR}/landing_page/integration.png`;

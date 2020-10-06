@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import Hls from "hls.js";
-
-// const BASE_DIR = `./media`;
-const BASE_DIR = `https://storage.googleapis.com/kp_videos/media`;
+import * as config from "../config";
+const BASE_DIR = config.BASE_DIR;
 const url_1080 = `${BASE_DIR}/samsung_demo/videoplayback_1080.m3u8`;
 const url_4320 = `${BASE_DIR}/samsung_demo/videoplayback_4320.m3u8`;
 

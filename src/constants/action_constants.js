@@ -5,7 +5,7 @@ import { downloadUrl } from "../functions/fileDownload";
 export const ACTION_POPUP = "open_popup";
 export const ACTION_OPENPOPUP = "openPopup";
 export const ACTION_URL = "openUrl";
-export const ACTION_DOWNLOAD = "open_download";
+export const ACTION_DOWNLOAD = "download";
 export const ACTION_SEEK_TO = "seekTo";
 
 export const playerSeekTo = (thisObj, duration, toPlay) => {

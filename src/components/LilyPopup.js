@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import classNames from "classnames";
-import ResizeObserver from "rc-resize-observer";
 
+import HtmlVideoIdComp from "./HtmlVideoIdComp";
 import "../css/accordin.scss";
 
 const background_image = "./media/lily/background.png";
 const question = "Who is the killer?";
+
+const video_path = "./media/lily/video/lily_000/lily_000.m3u8";
 
 const { innerHeight, innerWidth } = window;
 const characters = [
@@ -96,21 +98,12 @@ class LilyPopup extends Component {
     }
   };
   updateDimensions = () => {
-    const { outerHeight, outerWidth } = window;
-    const { innerHeight, innerWidth } = window;
-
+    const { clientHeight, clientWidth } = this.div;
     const { height, width } = this.state;
 
-    let new_h = innerHeight;
-    let new_w = innerWidth;
-    if (innerHeight > outerHeight || innerWidth > outerWidth) {
-      new_h = outerHeight;
-      new_w = outerWidth;
+    if (height !== clientHeight || width !== clientWidth) {
+      this.setState({ height: clientHeight, width: clientWidth });
     }
-    if (height !== new_h || width !== new_w) {
-      this.setState({ height: new_h, width: new_w });
-    }
-    console.log(new_h, new_w);
   };
   componentDidMount() {
     this.updateDimensions();
@@ -137,8 +130,8 @@ class LilyPopup extends Component {
           backgroundPositon: "center",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
-          height: height ? height : innerHeight,
-          width: width ? width : innerWidth
+          height: "100%",
+          width: "100%"
         }}
       >
         <div
@@ -213,8 +206,56 @@ class LilyPopup extends Component {
             })}
           </div>
         </div>
-        {/* </ResizeObserver> */}
       </div>
+    );
+  }
+}
+
+export class LilyPopupComp extends Component {
+  state = { height: null, width: null };
+  updateDimensions = () => {
+    const { outerHeight, outerWidth } = window;
+    const { innerHeight, innerWidth } = window;
+
+    const { height, width } = this.state;
+
+    let new_h = innerHeight;
+    let new_w = innerWidth;
+    if (innerHeight > outerHeight || innerWidth > outerWidth) {
+      new_h = outerHeight;
+      new_w = outerWidth;
+    }
+    if (height !== new_h || width !== new_w) {
+      this.setState({ height: new_h, width: new_w });
+    }
+  };
+
+  componentDidMount() {
+    this.updateDimensions();
+    window.addEventListener("resize", this.updateDimensions);
+  }
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateDimensions);
+  }
+
+  render() {
+    const { height, width } = this.state;
+    return (
+      <HtmlVideoIdComp
+        video_id={"lily_000"}
+        video_url={video_path}
+        autoplay={true}
+        maxWidth={width ? width : innerWidth}
+        maxHeight={height ? height : innerHeight}
+        showFullScreen={true}
+        overlay_buttons={[]}
+        isMuted={true}
+        showMenu={false} // TODO :: generalize this
+        showInstruction={false}
+        showProgressBar={true}
+        showVideoControls={true}
+      />
+      // </div>
     );
   }
 }

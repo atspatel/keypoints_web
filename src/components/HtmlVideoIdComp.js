@@ -639,6 +639,9 @@ class HtmlVideoIdComp extends Component {
           justifyContent: "center",
           alignItems: "center"
         }}
+        onClick={e => {
+          e.stopPropagation();
+        }}
       >
         {showProgressBar && this.renderProgressBar()}
         {!partialControl &&
@@ -658,6 +661,8 @@ class HtmlVideoIdComp extends Component {
     const {
       marginTop,
       marginLeft,
+      height,
+      width,
       currentPopup,
       popup_info,
       popup_data,
@@ -718,12 +723,13 @@ class HtmlVideoIdComp extends Component {
           />
         </ResizeObserver>
         <div
+          className="overlay"
           style={{
             position: "absolute",
             top: marginTop,
             left: marginLeft,
-            height: "100%",
-            width: "100%"
+            height: height,
+            width: width
           }}
           onClick={this.togglePlay}
           onMouseEnter={this.onMouseEnter}

@@ -665,8 +665,6 @@ class HtmlVideoIdComp extends Component {
     const {
       marginTop,
       marginLeft,
-      height,
-      width,
       currentPopup,
       popup_info,
       popup_data,
@@ -675,6 +673,7 @@ class HtmlVideoIdComp extends Component {
     const {
       // video_id,
       maxWidth,
+      playerHeight,
       video_url,
       thumbnail,
 
@@ -702,7 +701,7 @@ class HtmlVideoIdComp extends Component {
         className="centerH"
         style={{
           width: "100%",
-          height: "100%",
+          height: playerHeight ? playerHeight : "100%",
           alignItems: "center",
           maxWidth: maxWidth ? maxWidth : null,
           position: "relative",

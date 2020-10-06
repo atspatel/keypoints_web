@@ -105,7 +105,7 @@ function create_overlay_buttons() {
       bbox: { top: 0.1, left: 0.0, width: 0.4, height: 0.7 },
       action: {
         type: action_constants.ACTION_URL,
-        data: item.url
+        data: { url: item.url }
       }
     };
     const share_button = {
@@ -118,7 +118,9 @@ function create_overlay_buttons() {
       background_img: `${BASE_DIR_ndtv}/share.png`,
       action: {
         type: action_constants.ACTION_URL,
-        data: `https://api.whatsapp.com/send?text=${item.url}&source=&data=&app_absent=`
+        data: {
+          url: `https://api.whatsapp.com/send?text=${item.url}&source=&data=&app_absent=`
+        }
       }
     };
     const download_button = {

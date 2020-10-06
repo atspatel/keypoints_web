@@ -12,6 +12,8 @@ import { get_playlist_data } from "../functions/mediaPlaylistFunc";
 import * as constants from "../constants/constants";
 import * as sharechat_constants from "../constants/sharechat/sharechat_constants";
 
+import HtmlVideoIdComp from "./HtmlVideoIdComp";
+
 const colors = ["#9661BA", "#40C9FF", "#FFA233", "#FF5A7E", "#FFD814"];
 const borderColor = "#494949";
 
@@ -61,8 +63,9 @@ class VideoPlayer extends Component {
             backgroundColor: "rgba(0,0,0,0.4)"
           }}
         >
-          <BaseVideoPlayer
-            source={item.media_info.media.src}
+          <HtmlVideoIdComp
+            video_id={item.id}
+            video_url={item.media_info.media.src}
             thumbnail={item.media_info.media.thumbnail}
             setPlayerRef={c => {
               this.player = c;

@@ -5,6 +5,7 @@ import RealmeVideo from "./VideoPages/RealmeVideo";
 import MatchVideo from "./VideoPages/MatchVideo";
 import SamsungDemo from "./VideoPages/SamsungDemo";
 import OximeterVideo, { OximeterEmbedVideo } from "./VideoPages/OximeterVideo";
+import OximeterVideo2 from "./VideoPages/OximeterVideo2";
 import CurefitVideo from "./VideoPages/CurefitVideo";
 import IEVideo from "./VideoPages/IEVideo";
 import NDTVVideo from "./VideoPages/NDTVVideo";

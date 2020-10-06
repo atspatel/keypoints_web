@@ -59,23 +59,25 @@ class HtmlVideoIdComp extends Component {
 
   update_button_list = current => {
     const { overlay_buttons } = this.props;
-    let active_button_list = overlay_buttons.filter(
-      item =>
-        (current >= item.start && current <= item.end) ||
-        (current >= item.start && item.end === -1)
-    );
-    this.setState({ button_list: active_button_list });
+    if (overlay_buttons && overlay_buttons.length > 0) {
+      let active_button_list = overlay_buttons.filter(
+        item =>
+          (current >= item.start && current <= item.end) ||
+          (current >= item.start && item.end === -1)
+      );
+      this.setState({ button_list: active_button_list });
 
-    active_button_list.map(item => {
-      if (
-        item.pauseVideo !== null &&
-        current >= item.pauseVideo &&
-        current <= item.end
-      ) {
-        this.setState({ showControl: false }, () => this.player.pause());
-      }
-      return true;
-    });
+      active_button_list.map(item => {
+        if (
+          item.pauseVideo !== null &&
+          current >= item.pauseVideo &&
+          current <= item.end
+        ) {
+          this.setState({ showControl: false }, () => this.player.pause());
+        }
+        return true;
+      });
+    }
   };
 
   updateDimensions = () => {
@@ -665,8 +667,18 @@ class HtmlVideoIdComp extends Component {
       // video_id,
       maxWidth,
       video_url,
-      // autoplay,
+      thumbnail,
+
+      setPlayerRef,
+      setHlsRef,
+      maxBuffer,
+      isMuted,
+      loop,
+      autoplay,
+      autoStartLoad,
+
       // overlay_buttons,
+      showVideoControls,
       showFullScreen,
       showMenu,
       showProgressBar
@@ -690,18 +702,30 @@ class HtmlVideoIdComp extends Component {
         <ResizeObserver onResize={this.updateDimensions}>
           <BaseVideoPlayer
             source={video_url}
-            setPlayerRef={c => (this.player = c)}
-            onClick={this.togglePlay}
+            setPlayerRef={c => {
+              this.player = c;
+              setPlayerRef && setPlayerRef(c);
+            }}
+            setHlsRef={setHlsRef}
+            // onClick={this.togglePlay}
             onMouseEnter={this.onMouseEnter}
             onMouseLeave={this.onMouseLeave}
+            maxBuffer={maxBuffer}
+            isMuted={isMuted}
+            loop={loop}
+            autoPlay={autoplay}
+            autoStartLoad={autoStartLoad}
           />
         </ResizeObserver>
         <div
           style={{
             position: "absolute",
             top: marginTop,
-            left: marginLeft
+            left: marginLeft,
+            height: "100%",
+            width: "100%"
           }}
+          onClick={this.togglePlay}
           onMouseEnter={this.onMouseEnter}
           onMouseLeave={this.onMouseLeave}
         >
@@ -714,7 +738,8 @@ class HtmlVideoIdComp extends Component {
             this.renderBackButton()}
 
           {showMenu && this.state.isMenuOpen && this.renderMenu()}
-          {showControl &&
+          {showVideoControls &&
+            showControl &&
             !currentPopup &&
             this.player &&
             this.renderControls(showMenu, showFullScreen, showProgressBar)}

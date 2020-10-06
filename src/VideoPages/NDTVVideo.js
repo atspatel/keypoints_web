@@ -21,6 +21,7 @@ export class NDTVEmbedVideo extends Component {
           showInstruction={false}
           showProgressBar={true}
           timelineMarks={ndtv_constants.marks}
+          showVideoControls={true}
         />
       </>
     );

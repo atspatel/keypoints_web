@@ -43,6 +43,7 @@ export class OximeterEmbedVideo extends Component {
           showMenu={false} // TODO :: generalize this
           showInstruction={false}
           endLoop={oximeter_constants.loop_time}
+          showVideoControls={true}
         />
       </>
     );

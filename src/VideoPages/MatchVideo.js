@@ -48,6 +48,7 @@ export class MatchEmbedVideo extends Component {
           maxWidth={maxWidth ? maxWidth : null}
           showFullScreen={true}
           overlay_buttons={match_constants.overlay_buttons}
+          showVideoControls={true}
           showMenu={false} // TODO :: generalize this
           showInstruction={false}
           showProgressBar={true}

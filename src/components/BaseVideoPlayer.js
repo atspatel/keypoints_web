@@ -26,6 +26,9 @@ class BaseVideoPlayer extends Component {
           autoPlay={autoPlay}
           autoStartLoad={autoStartLoad}
           objectFit="contain"
+          onClick={onClick && onClick}
+          onMouseEnter={onMouseEnter && onMouseEnter}
+          onMouseLeave={onMouseLeave && onMouseLeave}
         />
       );
     } else {

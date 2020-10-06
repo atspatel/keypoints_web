@@ -733,9 +733,9 @@ class HtmlVideoIdComp extends Component {
           style={{
             position: "absolute",
             top: marginTop,
-            left: marginLeft,
-            height: height,
-            width: width
+            left: marginLeft
+            // height: height,
+            // width: width
           }}
           onMouseEnter={this.onMouseEnter}
           onMouseLeave={this.onMouseLeave}

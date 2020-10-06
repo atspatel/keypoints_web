@@ -29,7 +29,7 @@ class VideoPlayer extends Component {
     });
   };
   render() {
-    const { item, isMuted, width } = this.props;
+    const { item, isMuted, width, togglePlay } = this.props;
     return (
       <div
         ref={c => (this.div = c)}
@@ -67,6 +67,7 @@ class VideoPlayer extends Component {
             video_id={item.id}
             video_url={item.media_info.media.src}
             thumbnail={item.media_info.media.thumbnail}
+            overlay_buttons={item.media_info.buttons}
             setPlayerRef={c => {
               this.player = c;
             }}
@@ -78,6 +79,7 @@ class VideoPlayer extends Component {
             loop={false}
             autoPlay={false}
             autoStartLoad={false}
+            togglePlay={togglePlay}
           />
         </div>
         {item.title_info && (
@@ -390,6 +392,7 @@ class VideoSection extends Component {
               width={width}
               setRef={this.setRef}
               isMuted={isSingleSecondary}
+              togglePlay={this.togglePlay}
             />
           );
         })}
@@ -420,9 +423,6 @@ class VideoSection extends Component {
               style={{ height: "100%", width: "100%", objectFit: "contain" }}
               alt=""
             />
-            {/* <PlayCircleFilledRoundedIcon
-                style={{ height: 100, width: 100, color: "#EC6E57" }}
-              /> */}
           </div>
         )}
         <div

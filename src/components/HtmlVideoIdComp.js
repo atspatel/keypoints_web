@@ -143,7 +143,6 @@ class HtmlVideoIdComp extends Component {
   };
 
   componentDidMount() {
-    this.updateDimensions();
     this.setState({ isMute: this.player.muted });
     this.player.addEventListener("pause", this.onPause);
     this.player.addEventListener("play", this.onPlay);
@@ -186,7 +185,8 @@ class HtmlVideoIdComp extends Component {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat"
         }}
-        onClick={() => {
+        onClick={e => {
+          e.stopPropagation();
           if (button.action && button.action.type) {
             post_activity("click", this.props.video_id, button.action.id);
             this.setState({ button_id: button.id }, () =>
@@ -229,13 +229,18 @@ class HtmlVideoIdComp extends Component {
   };
 
   togglePlay = () => {
-    if (this.player) {
-      if (this.player.paused) {
-        this.player.play();
-        this.setState({ isPaused: false });
-      } else {
-        this.player.pause();
-        this.setState({ isPaused: true });
+    this.state.currentPopup && this.closePopUp();
+    if (this.props.togglePlay) {
+      this.props.togglePlay();
+    } else {
+      if (this.player) {
+        if (this.player.paused) {
+          this.player.play();
+          this.setState({ isPaused: false });
+        } else {
+          this.player.pause();
+          this.setState({ isPaused: true });
+        }
       }
     }
   };
@@ -305,6 +310,7 @@ class HtmlVideoIdComp extends Component {
               // border: "1px solid black",
               backgroundColor: "rgba(255, 255, 255, 0.9)"
             }}
+            onClick={e => e.stopPropagation()}
           >
             {value < popup_info.bbox.top + 0.01 && (
               <currentPopup.component
@@ -639,6 +645,7 @@ class HtmlVideoIdComp extends Component {
           justifyContent: "center",
           alignItems: "center"
         }}
+        onClick={e => e.stopPropagation()}
       >
         {showProgressBar && this.renderProgressBar()}
         {!partialControl &&
@@ -658,6 +665,8 @@ class HtmlVideoIdComp extends Component {
     const {
       marginTop,
       marginLeft,
+      height,
+      width,
       currentPopup,
       popup_info,
       popup_data,
@@ -684,6 +693,7 @@ class HtmlVideoIdComp extends Component {
       showProgressBar
       // timelineMarks
       // endLoop
+      // togglePlay
     } = this.props;
     return (
       <div
@@ -707,7 +717,7 @@ class HtmlVideoIdComp extends Component {
               setPlayerRef && setPlayerRef(c);
             }}
             setHlsRef={setHlsRef}
-            // onClick={this.togglePlay}
+            onClick={this.togglePlay}
             onMouseEnter={this.onMouseEnter}
             onMouseLeave={this.onMouseLeave}
             maxBuffer={maxBuffer}
@@ -715,17 +725,18 @@ class HtmlVideoIdComp extends Component {
             loop={loop}
             autoPlay={autoplay}
             autoStartLoad={autoStartLoad}
+            onLoadedData={this.updateDimensions}
           />
         </ResizeObserver>
         <div
+          className="overlay"
           style={{
             position: "absolute",
             top: marginTop,
-            left: marginLeft,
-            height: "100%",
-            width: "100%"
+            left: marginLeft
+            // height: height,
+            // width: width
           }}
-          onClick={this.togglePlay}
           onMouseEnter={this.onMouseEnter}
           onMouseLeave={this.onMouseLeave}
         >

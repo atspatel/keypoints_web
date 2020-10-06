@@ -9,7 +9,8 @@ class BaseVideoPlayer extends Component {
       setHlsRef,
       onClick,
       onMouseEnter,
-      onMouseLeave
+      onMouseLeave,
+      onLoadedData
     } = this.props;
     const { maxBuffer, isMuted, loop, autoPlay, autoStartLoad } = this.props;
     const isM3u8 = source.endsWith(".m3u8");
@@ -29,6 +30,7 @@ class BaseVideoPlayer extends Component {
           onClick={onClick && onClick}
           onMouseEnter={onMouseEnter && onMouseEnter}
           onMouseLeave={onMouseLeave && onMouseLeave}
+          onLoadedData={onLoadedData && onLoadedData}
         />
       );
     } else {
@@ -40,6 +42,7 @@ class BaseVideoPlayer extends Component {
           onClick={onClick && onClick}
           onMouseEnter={onMouseEnter && onMouseEnter}
           onMouseLeave={onMouseLeave && onMouseLeave}
+          onLoadedData={onLoadedData && onLoadedData}
         >
           <source src={source} type="video/mp4" />
         </video>

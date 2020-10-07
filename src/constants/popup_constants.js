@@ -5,6 +5,7 @@ import VideoPopUp, { onClosePopUp } from "../components/VideoPopUp";
 
 import SourcePopUp from "../components/SourcePopUp";
 import SpecificationPopUp from "../components/SpecificationPopUp";
+import LilyPopup, { onCloseQuiz } from "../components/LilyPopup";
 
 export const POPUP_CAROUSEL = "mediaCarousel";
 export const POPUP_HTML = "popup_html";
@@ -13,6 +14,7 @@ export const POPUP_VIDEO = "popup_video";
 
 export const POPUP_SPECIFICATION = "popup_specification";
 export const POPUP_SOURCES = "popup_sources";
+export const POPUP_LILY_QUIZ = "popup_lilyQuiz";
 
 // Leave 0.08 at bottom for back button
 export const POPUP = {
@@ -58,7 +60,20 @@ export const POPUP = {
       component: props => <SourcePopUp {...props} />
     }
   },
-
+  [POPUP_LILY_QUIZ]: {
+    popup_info: {
+      pauseVideo: true,
+      showOverlayButton: false,
+      showCloseButton: false,
+      inDuration: 1.5,
+      bbox: { top: 0.0, left: 0.0, width: 1.0, height: 1.0 },
+      background_image: "./media/lily/background.png"
+    },
+    popup_comp: {
+      component: props => <LilyPopup {...props} />,
+      onClose: onCloseQuiz
+    }
+  },
   [POPUP_VIDEO]: {
     popup_info: {
       pauseVideo: true,

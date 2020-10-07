@@ -7,6 +7,7 @@ export const ACTION_OPENPOPUP = "openPopup";
 export const ACTION_URL = "openUrl";
 export const ACTION_DOWNLOAD = "download";
 export const ACTION_SEEK_TO = "seekTo";
+export const ACTION_LILY_QUIZ = "lilyQuiz";
 
 export const playerSeekTo = (thisObj, duration, toPlay) => {
   if (thisObj.player) {
@@ -49,5 +50,17 @@ export const ACTION = {
   },
   [ACTION_SEEK_TO]: (thisObj, data) => {
     playerSeekTo(thisObj, data.duration, data.toPlay);
+  },
+  [ACTION_LILY_QUIZ]: (thisObj, action_data, endTime) => {
+    const currentPopup =
+      popup_constants.POPUP[action_data.popup_info.popupType];
+    thisObj.player.pause();
+    thisObj.setState({
+      currentPopup: currentPopup.popup_comp,
+      popup_info: currentPopup.popup_info,
+      popup_data: action_data.data,
+      popup_anim: "in",
+      playing: false
+    });
   }
 };

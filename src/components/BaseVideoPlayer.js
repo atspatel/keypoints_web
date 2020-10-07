@@ -12,7 +12,14 @@ class BaseVideoPlayer extends Component {
       onMouseLeave,
       onLoadedData
     } = this.props;
-    const { maxBuffer, isMuted, loop, autoPlay, autoStartLoad } = this.props;
+    const {
+      maxBuffer,
+      isMuted,
+      loop,
+      autoPlay,
+      autoStartLoad,
+      style
+    } = this.props;
     const isM3u8 = source.endsWith(".m3u8");
     if (isM3u8) {
       return (
@@ -22,7 +29,7 @@ class BaseVideoPlayer extends Component {
           src={source}
           poster={thumbnail}
           maxBuffer={maxBuffer}
-          // muted={false}
+          muted={isMuted}
           loop={loop}
           autoPlay={autoPlay}
           autoStartLoad={autoStartLoad}
@@ -31,6 +38,7 @@ class BaseVideoPlayer extends Component {
           onMouseEnter={onMouseEnter && onMouseEnter}
           onMouseLeave={onMouseLeave && onMouseLeave}
           onLoadedData={onLoadedData && onLoadedData}
+          style={style}
         />
       );
     } else {
@@ -39,10 +47,12 @@ class BaseVideoPlayer extends Component {
           ref={c => setPlayerRef && setPlayerRef(c)}
           width="100%"
           height="100%"
+          muted={isMuted}
           onClick={onClick && onClick}
           onMouseEnter={onMouseEnter && onMouseEnter}
           onMouseLeave={onMouseLeave && onMouseLeave}
           onLoadedData={onLoadedData && onLoadedData}
+          style={style}
         >
           <source src={source} type="video/mp4" />
         </video>

@@ -34,7 +34,7 @@
 }
 .title_text {
   font-family: DIN_Condensed_Bold;
-  font-size: 5vw;
+  font-size: 3vw;
   color: red;
 }
 
@@ -162,10 +162,27 @@
   .selected {
     height: 90%;
     border: 2px solid white;
+    animation: animate_selected 4s linear infinite;
+    .card__head {
+      color: black;
+      background: rgb(223, 79, 79);
+    }
   }
 
   .non_final {
     opacity: 0.3;
     transition: all 1s ease-in-out;
+  }
+}
+
+@keyframes animate_selected {
+  0% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.05);
+  }
+  100% {
+    transform: scaleY(1);
   }
 }

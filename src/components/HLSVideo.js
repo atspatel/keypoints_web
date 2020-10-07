@@ -20,7 +20,15 @@ class HLSVideo extends Component {
     }
   }
   render() {
-    const { poster, muted, controls, loop, setRef, objectFit } = this.props;
+    const {
+      poster,
+      muted,
+      controls,
+      loop,
+      setRef,
+      objectFit,
+      style
+    } = this.props;
     const { onClick, onMouseEnter, onMouseLeave, onLoadedData } = this.props;
 
     return (
@@ -32,7 +40,8 @@ class HLSVideo extends Component {
         style={{
           width: "100%",
           height: "100%",
-          objectFit: objectFit ? objectFit : "fill"
+          objectFit: objectFit ? objectFit : "fill",
+          ...style
         }}
         poster={poster}
         controls={controls}

@@ -20,7 +20,7 @@ import ShareChatPlayerMapped from "./VideoPages/sharechat/ShareChatPlayerMapped"
 import DhoniTribute001 from "./VideoPages/DhoniTribute001";
 import InteractiveAarti from "./components/InteractiveAarti";
 
-import LilyPopup from "./components/LilyPopup";
+import LilyPopup, { LilyPopupComp } from "./components/LilyPopup";
 
 import LandingPage from "./VideoPages/LandingPage";
 
@@ -28,7 +28,7 @@ class AppRoute extends Component {
   render() {
     return (
       <Switch>
-        <Route path="/lily" render={() => <LilyPopup />} />
+        <Route path="/lily" render={() => <LilyPopupComp />} />
         <Route path="/samsung" render={() => <SamsungDemo />} />
         <Route path="/curefit" render={() => <CurefitVideo />} />
         <Route path="/indianexpress" render={() => <IEVideo />} />

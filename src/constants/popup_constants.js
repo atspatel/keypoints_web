@@ -67,7 +67,8 @@ export const POPUP = {
       showCloseButton: false,
       inDuration: 1.5,
       bbox: { top: 0.0, left: 0.0, width: 1.0, height: 1.0 },
-      background_image: "./media/lily/background.png"
+      background_image:
+        "https://keypoints-data.s3.ap-south-1.amazonaws.com/media/lily/background.png"
     },
     popup_comp: {
       component: props => <LilyPopup {...props} />,

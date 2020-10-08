@@ -6,7 +6,8 @@ import AnimatedProgressProvider from "./AnimatedProgressProvider";
 import { easeCubicOut } from "d3-ease";
 import { post_quiz_answer } from "../functions/lily_functions";
 
-const background_music = "./media/lily/background_music.mp3";
+const background_music =
+  "https://keypoints-data.s3.ap-south-1.amazonaws.com/media/lily/background_music.mp3";
 const black_bg = "rgba(0, 0, 0, 0)";
 const ratio = 1.25;
 

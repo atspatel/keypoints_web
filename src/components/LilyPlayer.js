@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import ResizeObserver from "rc-resize-observer";
-import ReactFitText from "react-fittext";
 
 import AnimatedProgressProvider from "./AnimatedProgressProvider";
 import { easeQuadInOut } from "d3-ease";
@@ -15,28 +14,26 @@ import VolumeOffIcon from "@material-ui/icons/VolumeOff";
 import FullscreenIcon from "@material-ui/icons/Fullscreen";
 import FullscreenExitIcon from "@material-ui/icons/FullscreenExit";
 
-import ListIcon from "@material-ui/icons/List";
-
 import StackedProgressBar, { DurationText } from "./StackedProgressBar";
 
 import * as action_constants from "../constants/action_constants";
 import * as popup_constants from "../constants/popup_constants";
 import * as radius_constants from "../constants/radius_constants";
+
 import "../css/app.css";
 import { post_activity } from "../functions/post_activity";
+import { get_quiz_data } from "../functions/lily_functions";
 
 import BaseVideoPlayer from "./BaseVideoPlayer";
 
-const quiz_info = { id: 1, start: 584, end: 590 };
+const { innerHeight, innerWidth } = window;
 
 class LilyPlayer extends Component {
   state = {
     videoHeight: null,
     videoWidth: null,
-
     marginTop: null,
     marginLeft: null,
-
     height: null,
     width: null,
 
@@ -46,7 +43,6 @@ class LilyPlayer extends Component {
 
     button_list: [],
 
-    isMenuOpen: false,
     isPaused: true,
 
     button_id: null,
@@ -60,8 +56,7 @@ class LilyPlayer extends Component {
 
     partialControl: false,
 
-    quiz: { id: 1, start: 583, end: 591, vote: null },
-    isAnswered: false
+    quiz: null
   };
 
   update_button_list = current => {
@@ -88,25 +83,41 @@ class LilyPlayer extends Component {
   };
 
   checkQuiz = current => {
-    const { quiz, isAnswered } = this.state;
-    if (current > quiz.start && !isAnswered) {
-      const action = {
-        type: action_constants.ACTION_LILY_QUIZ,
-        data: {
-          popup_info: {
-            popupType: popup_constants.POPUP_LILY_QUIZ
-          },
-          data: { end: quiz.end < current ? current : quiz.end }
-        }
-      };
-      action_constants.ACTION[action.type](this, action.data);
+    const { quiz } = this.state;
+    if (quiz) {
+      if (current > quiz.start_time) {
+        const action = {
+          type: action_constants.ACTION_LILY_QUIZ,
+          data: {
+            popup_info: {
+              popupType: popup_constants.POPUP_LILY_QUIZ
+            },
+            data: {
+              end:
+                quiz.end_time === -1
+                  ? -1
+                  : quiz.end_time < current
+                  ? current
+                  : quiz.end_time,
+              video: quiz.credit_video,
+              quiz_type: "credit"
+            }
+          }
+        };
+        action_constants.ACTION[action.type](this, action.data);
+      }
+    } else {
+      const { session_id, episode } = this.props;
+      get_quiz_data(session_id, episode, current).then(response => {
+        this.setState({ quiz: response.data });
+      });
     }
   };
 
   updateDimensions = () => {
     if (this.player) {
       const { videoHeight, videoWidth } = this.player;
-      const { clientHeight, clientWidth } = this.fullscreenDiv;
+      const { clientHeight, clientWidth } = this.player;
 
       if (videoHeight && videoWidth) {
         const ratio = Math.min(
@@ -274,12 +285,11 @@ class LilyPlayer extends Component {
   };
 
   onVote = voted_id => {
-    if (voted_id > 0) {
-      const { quiz, isAnswered } = this.state;
+    if (voted_id) {
+      //   const { quiz, isAnswered } = this.state;
       this.setState(
         {
-          quiz: { ...quiz, vote: voted_id },
-          isAnswered: true,
+          quiz: null,
           popup_anim: "out"
         },
         () => {
@@ -298,18 +308,6 @@ class LilyPlayer extends Component {
     }
   };
 
-  toggleMenu = () => {
-    if (this.state.isMenuOpen) {
-      this.setState({ isMenuOpen: false }, () => {
-        !this.state.isPaused && this.player.play();
-      });
-    } else {
-      this.setState({ isMenuOpen: true }, () => {
-        this.player.pause();
-      });
-    }
-  };
-
   closePopUp = () => {
     const { currentPopup, popup_info, popup_data } = this.state;
     currentPopup.onClose && currentPopup.onClose(this.player, popup_data);
@@ -318,8 +316,7 @@ class LilyPlayer extends Component {
         currentPopup: false,
         popup_info: null,
         popup_data: null,
-        button_id: null,
-        isAnswered: true
+        button_id: null
       },
       () => {
         if (this.state.playedSeconds < this.player.duration - 0.5) {
@@ -331,7 +328,8 @@ class LilyPlayer extends Component {
   };
   renderPopUp() {
     const { currentPopup, popup_info, popup_data, popup_anim } = this.state;
-    const { width, height } = this.state;
+    const { width, height, quiz } = this.state;
+    const { session_id } = this.props;
     return (
       <AnimatedProgressProvider
         easingFunction={easeQuadInOut}
@@ -364,119 +362,14 @@ class LilyPlayer extends Component {
               closePopUp={this.closePopUp}
               onVote={this.onVote}
               inDuration={popup_info.inDuration}
+              video={popup_data.video}
+              quiz={quiz}
               anim_value={value}
+              session={session_id}
             />
           </div>
         )}
       </AnimatedProgressProvider>
-    );
-  }
-  renderMenu() {
-    const { width, height } = this.state;
-    return (
-      <div
-        style={{
-          position: "absolute",
-          top: 0.71 * height,
-          left: 0.85 * width,
-          width: 0.1 * width,
-          height: 0.21 * height,
-
-          display: "flex",
-          flexDirection: "column"
-        }}
-      >
-        <div
-          style={{
-            flex: 1,
-            margin: "1%",
-            width: "100%",
-            borderRadius: 0.01 * width,
-            backgroundColor: "rgba(255, 255, 255, 1)"
-          }}
-          onClick={() =>
-            this.setState({ isMenuOpen: false }, () =>
-              action_constants.playerSeekTo(this, 26)
-            )
-          }
-        >
-          <ReactFitText compressor={0.5}>
-            <p
-              style={{
-                margin: 0,
-                padding: 0,
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            >
-              Camera
-            </p>
-          </ReactFitText>
-        </div>
-        <div
-          style={{
-            flex: 1,
-            margin: "1%",
-            width: "100%",
-            borderRadius: 0.01 * width,
-            backgroundColor: "rgba(255, 255, 255, 1)"
-          }}
-          onClick={() =>
-            this.setState({ isMenuOpen: false }, () =>
-              action_constants.playerSeekTo(this, 38)
-            )
-          }
-        >
-          <ReactFitText compressor={0.5}>
-            <p
-              style={{
-                margin: 0,
-                padding: 0,
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            >
-              Processor
-            </p>
-          </ReactFitText>
-        </div>
-        <div
-          style={{
-            flex: 1,
-            margin: "1%",
-            width: "100%",
-            borderRadius: 0.01 * width,
-            backgroundColor: "rgba(255, 255, 255, 1)"
-          }}
-          onClick={() =>
-            this.setState({ isMenuOpen: false }, () =>
-              action_constants.playerSeekTo(this, 72)
-            )
-          }
-        >
-          <ReactFitText compressor={0.5}>
-            <p
-              style={{
-                margin: 0,
-                padding: 0,
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            >
-              Shop
-            </p>
-          </ReactFitText>
-        </div>
-      </div>
     );
   }
   renderBackButton() {
@@ -585,19 +478,7 @@ class LilyPlayer extends Component {
       </div>
     );
   }
-  renderMenuIcon() {
-    return (
-      <div
-        style={{
-          height: "100%",
-          margin: "0% 2%"
-        }}
-        onClick={this.toggleMenu}
-      >
-        <ListIcon style={{ height: "100%", color: "white" }} />
-      </div>
-    );
-  }
+
   renderVolume() {
     return (
       <div
@@ -665,7 +546,6 @@ class LilyPlayer extends Component {
             display: "flex"
           }}
         >
-          {showMenu && this.renderMenuIcon()}
           {this.renderVolume()}
           {showFullScreen && this.renderFullScreen()}
         </div>
@@ -721,6 +601,7 @@ class LilyPlayer extends Component {
     } = this.state;
     const {
       // video_id,
+      session_id,
       maxWidth,
       playerHeight,
       video_url,
@@ -733,7 +614,6 @@ class LilyPlayer extends Component {
       loop,
       autoplay,
       autoStartLoad,
-
       // overlay_buttons,
       showVideoControls,
       showFullScreen,
@@ -758,37 +638,26 @@ class LilyPlayer extends Component {
           overflow: "hidden"
         }}
       >
-        <div
-          style={{
-            width: width ? width : "100%",
-            height: height ? height : "100%",
-            marginLeft: marginLeft,
-            marginTop: marginTop,
-            position: "relative",
-            alignItems: "center"
-          }}
-        >
-          <ResizeObserver onResize={this.updateDimensions}>
-            <BaseVideoPlayer
-              source={video_url}
-              setPlayerRef={c => {
-                this.player = c;
-                setPlayerRef && setPlayerRef(c);
-              }}
-              setHlsRef={setHlsRef}
-              onClick={this.togglePlay}
-              onMouseEnter={this.onMouseEnter}
-              onMouseLeave={this.onMouseLeave}
-              maxBuffer={maxBuffer}
-              isMuted={isMuted}
-              loop={loop}
-              autoPlay={autoplay}
-              autoStartLoad={autoStartLoad}
-              onLoadedData={this.updateDimensions}
-              style={style}
-            />
-          </ResizeObserver>
-        </div>
+        <ResizeObserver onResize={this.updateDimensions}>
+          <BaseVideoPlayer
+            source={video_url}
+            setPlayerRef={c => {
+              this.player = c;
+              setPlayerRef && setPlayerRef(c);
+            }}
+            setHlsRef={setHlsRef}
+            onClick={this.togglePlay}
+            onMouseEnter={this.onMouseEnter}
+            onMouseLeave={this.onMouseLeave}
+            maxBuffer={maxBuffer}
+            isMuted={isMuted}
+            loop={loop}
+            autoPlay={autoplay}
+            autoStartLoad={autoStartLoad}
+            onLoadedData={this.updateDimensions}
+            style={style}
+          />
+        </ResizeObserver>
         <div
           className="overlay"
           style={{
@@ -808,8 +677,6 @@ class LilyPlayer extends Component {
           {currentPopup &&
             popup_info.showCloseButton &&
             this.renderBackButton()}
-
-          {showMenu && this.state.isMenuOpen && this.renderMenu()}
           {showVideoControls &&
             showControl &&
             !currentPopup &&

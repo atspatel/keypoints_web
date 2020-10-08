@@ -38,6 +38,15 @@
   color: red;
 }
 
+.timer {
+  position: absolute;
+  right: 10%;
+  top: 5%;
+  font-size: #{"max(3vw, 12px)"};
+  font-family: DIN_Condensed_Bold;
+  color: red;
+}
+
 .container {
   display: flex;
   justify-content: center;

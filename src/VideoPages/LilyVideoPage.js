@@ -44,7 +44,7 @@ export class LilyVideoPage extends Component {
       const qParams = queryString.parse(location.search);
       episode = qParams.ep ? qParams.ep : episode;
     }
-    const video_path = `./media/lily/video/e0${episode}/lily_e0${episode}/lily_e0${episode}.m3u8`;
+    const video_path = `https://keypoints-data.s3.ap-south-1.amazonaws.com/media/lily/video/e0${episode}/lily_e0${episode}/lily_e0${episode}.m3u8`;
     return (
       <div style={{ height: 600 }}>
         <LilyPlayer

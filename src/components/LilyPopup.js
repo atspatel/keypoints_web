@@ -17,12 +17,17 @@ export const onCloseQuiz = function(player, popup_data) {
 };
 
 class NextEpPoster extends Component {
+  onClick = () => {
+    const { next_ep } = this.props;
+    window.open(`/lily?ep=${next_ep.ep}`, "_self");
+  };
   render() {
     const { next_ep } = this.props;
     return (
       <img
         src={next_ep.thumbnail}
         style={{ height: "100%", width: "100%", objectFit: "contain" }}
+        onClick={this.onClick}
       />
     );
   }

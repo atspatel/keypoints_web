@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import classNames from "classnames";
 
+import * as config from "../config";
 import "../css/accordin.scss";
 import AnimatedProgressProvider from "./AnimatedProgressProvider";
 import { easeCubicOut } from "d3-ease";
 import { post_quiz_answer } from "../functions/lily_functions";
 
-const background_music =
-  "https://keypoints-data.s3.ap-south-1.amazonaws.com/media/lily/background_music.mp3";
+const background_music = `${config.BASE_DIR}/lily/background_music.mp3`;
 const black_bg = "rgba(0, 0, 0, 0)";
 const ratio = 1.25;
 
@@ -16,11 +16,41 @@ export const onCloseQuiz = function(player, popup_data) {
   player.play();
 };
 
+class NextEpPoster extends Component {
+  render() {
+    const { next_ep } = this.props;
+    return (
+      <img
+        src={next_ep.thumbnail}
+        style={{ height: "100%", width: "100%", objectFit: "contain" }}
+      />
+    );
+  }
+}
+
+class HintVideo extends Component {
+  render() {
+    const { src, onEnded } = this.props;
+    return (
+      <video
+        style={{ height: "100%", width: "100%", objectFit: "contain" }}
+        autoPlay
+        onEnded={onEnded}
+      >
+        <source src={src} type="video/mp4" />
+      </video>
+    );
+  }
+}
+
 class LillyQuiz extends Component {
   state = {
     hovered: 0,
     timer: 15,
-    clock: null
+    clock: null,
+
+    showHintButton: true,
+    showHint: false
   };
   onHover = id => {
     const { final } = this.props;
@@ -30,16 +60,24 @@ class LillyQuiz extends Component {
   };
 
   updateCounter = () => {
-    const { timer, clock } = this.state;
+    const { timer, clock, showHint } = this.state;
 
-    if (timer > 0) {
-      this.setState({ timer: timer - 1 });
-    } else {
-      const { onSelect, selected } = this.props;
-      clearInterval(clock);
-      onSelect(selected);
+    if (!showHint) {
+      if (timer > 0) {
+        this.setState({ timer: timer - 1 });
+      } else {
+        const { onSelect, selected } = this.props;
+        clearInterval(clock);
+        onSelect(selected);
+      }
     }
   };
+  componentDidUpdate() {
+    const { anim_value } = this.props;
+    if (this.audio_player) {
+      this.audio_player.volume = anim_value;
+    }
+  }
 
   componentDidMount() {
     const { quiz } = this.props;
@@ -51,6 +89,14 @@ class LillyQuiz extends Component {
         this.setState({ clock: clock });
       }, 2000);
   }
+  componentWillUnmount() {
+    const { clock } = this.state;
+    clock && clearInterval(clock);
+  }
+
+  onEnded = () => {
+    this.setState({ showHint: false, showHintButton: false });
+  };
   render() {
     const {
       quiz,
@@ -58,12 +104,23 @@ class LillyQuiz extends Component {
       final,
       onSelect,
       container_width,
-      container_height
+      container_height,
+      isBgAudio,
+      anim_value
     } = this.props;
-    const { hovered, timer } = this.state;
-
-    return quiz ? (
+    const { hovered, timer, showHintButton, showHint } = this.state;
+    return showHint ? (
+      <HintVideo src={quiz.hint_video} onEnded={this.onEnded} />
+    ) : quiz ? (
       <>
+        {isBgAudio && (
+          <audio
+            ref={c => (this.audio_player = c)}
+            src={background_music}
+            autoPlay
+            loop
+          ></audio>
+        )}
         <div className="quiz_title" style={{ width: "100%", height: "15%" }}>
           <p className="title_text" style={{ color: "white" }}>
             {quiz.question && quiz.question.part1}&nbsp;
@@ -71,6 +128,18 @@ class LillyQuiz extends Component {
           <p className="title_text">{quiz.question && quiz.question.part2}</p>
         </div>
         {quiz.isTimer && <div className="timer">{timer}</div>}
+        {quiz.hint_video && showHintButton && (
+          <div
+            className="hint_button"
+            onClick={e => {
+              e.stopPropagation();
+              console.log("heree.....");
+              this.setState({ showHint: true, showHintButton: false });
+            }}
+          >
+            <p className="hint_button_text">Hint</p>
+          </div>
+        )}
         <div
           className="container"
           style={{
@@ -95,8 +164,6 @@ class LillyQuiz extends Component {
                 style={{ backgroundColor: item.color }}
                 onMouseEnter={() => this.onHover(item.id)}
                 onMouseLeave={() => this.onHover(0)}
-                //   onClick={}
-                // onDoubleClick={() => this.onClick(item)}
               >
                 <div
                   style={{
@@ -142,25 +209,16 @@ class LillyQuiz extends Component {
   }
 }
 
-class NextEpPoster extends Component {
-  render() {
-    const { next_ep } = this.props;
-    return (
-      <img
-        src={next_ep.thumbnail}
-        style={{ height: "100%", width: "100%", objectFit: "contain" }}
-      />
-    );
-  }
-}
-
 class LilyPopup extends Component {
   state = {
     hovered: 0,
     selected: null,
     final: null,
     background_color: black_bg,
-    showNext: false
+    showNext: false,
+
+    showHintButton: true,
+    showHint: false
   };
   onClick = item => {
     const { selected, final } = this.state;
@@ -206,12 +264,6 @@ class LilyPopup extends Component {
     }
   };
 
-  componentDidUpdate() {
-    const { anim_value } = this.props;
-    if (this.audio_player) {
-      this.audio_player.volume = anim_value;
-    }
-  }
   componentDidMount() {
     this.updateDimensions();
     const { quiz } = this.props;
@@ -228,9 +280,9 @@ class LilyPopup extends Component {
     const { style, onVote, inDuration, anim_value, quiz, session } = this.props;
     let container_width = 0.9 * width;
     let container_height = (0.9 * width) / ratio;
-    if (width && height && (0.9 * width) / (0.85 * height) > ratio) {
-      container_height = 0.85 * height;
-      container_width = ratio * 0.85 * height;
+    if (width && height && (0.9 * width) / (0.75 * height) > ratio) {
+      container_height = 0.75 * height;
+      container_width = ratio * 0.75 * height;
     }
 
     const isCredit =
@@ -259,7 +311,7 @@ class LilyPopup extends Component {
               ...style
             }}
           >
-            {isCredit && (
+            {isCredit ? (
               <div
                 className=""
                 style={{
@@ -280,7 +332,7 @@ class LilyPopup extends Component {
                   <source src={quiz && quiz.credit_video} type="video/mp4" />
                 </video>
               </div>
-            )}
+            ) : null}
             <div
               className="main_div"
               style={{
@@ -290,14 +342,6 @@ class LilyPopup extends Component {
                 right: 0
               }}
             >
-              {!isCredit && (
-                <audio
-                  ref={c => (this.audio_player = c)}
-                  src={background_music}
-                  autoPlay
-                  loop
-                ></audio>
-              )}
               {isNext ? (
                 <NextEpPoster next_ep={quiz.next_ep} />
               ) : (
@@ -308,6 +352,8 @@ class LilyPopup extends Component {
                   onSelect={item => this.onSelect(item, isCredit)}
                   container_width={container_width}
                   container_height={container_height}
+                  isBgAudio={!isCredit}
+                  anim_value={anim_value}
                 />
               )}
             </div>

@@ -47,6 +47,21 @@
   color: red;
 }
 
+.hint_button {
+  position: absolute;
+  right: 10%;
+  bottom: 5%;
+  width: 10%;
+  border-radius: 10px;
+  background-color: red;
+}
+.hint_button_text {
+  margin: 0;
+  font-size: #{"max(2vw, 12px)"};
+  font-family: DIN_Condensed_Bold;
+  color: white;
+}
+
 .container {
   display: flex;
   justify-content: center;

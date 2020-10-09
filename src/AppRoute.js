@@ -24,10 +24,13 @@ import LilyVideoPage from "./VideoPages/LilyVideoPage";
 
 import LandingPage from "./VideoPages/LandingPage";
 
+import RefreshToken from "./components/RefreshToken";
+
 class AppRoute extends Component {
   render() {
     return (
       <Switch>
+        <Route path="/refresh" render={() => <RefreshToken />} />
         <Route path="/samsung" render={() => <SamsungDemo />} />
         <Route path="/curefit" render={() => <CurefitVideo />} />
         <Route path="/indianexpress" render={() => <IEVideo />} />

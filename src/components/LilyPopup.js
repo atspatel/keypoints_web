@@ -244,11 +244,11 @@ class LilyPopup extends Component {
         {
           selected: item,
           final: item,
-          background_color: item.color ? item.color : black_bg
+          background_color: item && item.color ? item.color : black_bg
         },
         () => {
           setTimeout(() => {
-            isCredit ? this.setState({ showNext: true }) : onVote(item.id);
+            isCredit ? this.setState({ showNext: true }) : onVote(item);
           }, 2000);
         }
       );

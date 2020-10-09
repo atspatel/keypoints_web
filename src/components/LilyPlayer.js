@@ -284,21 +284,18 @@ class LilyPlayer extends Component {
     action_constants.playerSeekTo(this, 0, true);
   };
 
-  onVote = voted_id => {
-    if (voted_id) {
-      //   const { quiz, isAnswered } = this.state;
-      this.setState(
-        {
-          quiz: null,
-          popup_anim: "out"
-        },
-        () => {
-          setTimeout(() => {
-            this.closePopUp();
-          }, 2000);
-        }
-      );
-    }
+  onVote = item => {
+    this.setState(
+      {
+        quiz: null,
+        popup_anim: "out"
+      },
+      () => {
+        setTimeout(() => {
+          this.closePopUp();
+        }, 2000);
+      }
+    );
   };
 
   toggleVolume = () => {

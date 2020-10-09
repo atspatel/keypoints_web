@@ -667,6 +667,7 @@ class LilyPlayer extends Component {
             // height: height,
             // width: width
           }}
+          onClick={e => e.stopPropagation()}
           onMouseEnter={this.onMouseEnter}
           onMouseLeave={this.onMouseLeave}
         >

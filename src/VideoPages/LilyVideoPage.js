@@ -27,7 +27,10 @@ const timeline_marks = {
     { value: 523, end: 526 },
     { value: 864, end: 870 }
   ],
-  4: [{ value: 732, end: 735 }]
+  4: [
+    { value: 732, end: 735 },
+    { value: 1046, end: 1050 }
+  ]
 };
 
 const overlay_buttons = {

@@ -6,6 +6,18 @@ import "../css/accordin.scss";
 import AnimatedProgressProvider from "./AnimatedProgressProvider";
 import { easeCubicOut } from "d3-ease";
 import { post_quiz_answer } from "../functions/lily_functions";
+import { downloadUrl } from "../functions/fileDownload";
+
+import { FacebookShareButton } from "react-share";
+
+const correct_card = `${config.BASE_DIR}/lily/lily_correct.png`;
+const wrong_card = `${config.BASE_DIR}/lily/lily_wrong.png`;
+const answer_card = `${config.BASE_DIR}/lily/answer.png`;
+const share_button = `${config.BASE_DIR}/lily/share_button.png`;
+
+const message = "Watch Lily";
+const url = "https://keypoints.in/lily?ep=1";
+const hashtag = "MIDNIGHTLILYCHALLANGE";
 
 const background_music = `${config.BASE_DIR}/lily/background_music.mp3`;
 const black_bg = "rgba(0, 0, 0, 0)";
@@ -139,10 +151,14 @@ class LillyQuiz extends Component {
             onClick={e => {
               e.stopPropagation();
               console.log("heree.....");
-              this.setState({ showHint: true, showHintButton: false });
+              this.setState({
+                showHint: true,
+                showHintButton: false,
+                timer: 15
+              });
             }}
           >
-            <p className="hint_button_text">Hint</p>
+            <p className="hint_button_text">Watch Bonus Clip</p>
           </div>
         )}
         <div
@@ -211,6 +227,63 @@ class LillyQuiz extends Component {
         </div>
       </>
     ) : null;
+  }
+}
+
+class LilyShare extends Component {
+  state = {};
+  render() {
+    const { isCorrect } = this.props;
+    const src = isCorrect ? correct_card : wrong_card;
+    const file_name = isCorrect ? "won.png" : "lose.png";
+    return (
+      <div style={{ display: "flex" }}>
+        <div
+          style={{
+            width: "60%",
+            height: "100%",
+            padding: "5%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <img
+            ref={c => (this.poster = c)}
+            src={src}
+            style={{ width: "100%", objectFit: "contain" }}
+            onClick={() => downloadUrl(src, file_name)}
+          />
+          <FacebookShareButton
+            url={url}
+            quote={message}
+            hashtag={`#${hashtag}`}
+          >
+            <img
+              src={share_button}
+              style={{ width: "100%", marginTop: 10, objectFit: "contain" }}
+            />
+          </FacebookShareButton>
+        </div>
+        <div
+          style={{
+            width: "40%",
+            height: "100%",
+            padding: "2%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <img
+            src={answer_card}
+            style={{ height: "100%", width: "100%", objectFit: "contain" }}
+          />
+        </div>
+      </div>
+    );
   }
 }
 
@@ -347,7 +420,9 @@ class LilyPopup extends Component {
                 right: 0
               }}
             >
-              {isNext ? (
+              {quiz && quiz.isShare ? (
+                <LilyShare isCorrect={quiz.isCorrect} />
+              ) : isNext ? (
                 <NextEpPoster next_ep={quiz.next_ep} />
               ) : (
                 <LillyQuiz

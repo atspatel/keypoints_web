@@ -38,17 +38,17 @@ const overlay_buttons = {
     {
       id: 1,
       start: 133,
-      end: 135,
+      end: 137.5,
       id: "lily_pause",
       name: "lily_pause",
       shape: radius_constants.RECT,
 
-      pauseVideo: 134,
-      bbox: { top: 0.28, left: 0.4, width: 0.25, height: 0.1 },
+      pauseVideo: 137,
+      bbox: { top: 0.28, left: 0.425, width: 0.15, height: 0.1 },
       action: {
         type: action_constants.ACTION_SEEK_TO,
         data: {
-          duration: 136,
+          duration: 138,
           toPlay: true
         }
       }

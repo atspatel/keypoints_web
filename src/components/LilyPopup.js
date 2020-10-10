@@ -170,60 +170,64 @@ class LillyQuiz extends Component {
           }}
           onMouseLeave={() => this.onHover(0)}
         >
-          {quiz.characters.map(item => {
-            const isHovered =
-              hovered === item.id ||
-              (hovered === 0 && selected && selected.id === item.id);
-            return (
-              <div
-                key={item.id}
-                className={classNames("card", {
-                  selected: selected && selected.id === item.id,
-                  hovered: isHovered,
-                  non_final: final && final.id !== item.id
-                })}
-                style={{ backgroundColor: item.color }}
-                onMouseEnter={() => this.onHover(item.id)}
-                onMouseLeave={() => this.onHover(0)}
-              >
+          {quiz.characters &&
+            quiz.characters.map(item => {
+              const isHovered =
+                hovered === item.id ||
+                (hovered === 0 && selected && selected.id === item.id);
+              return (
                 <div
-                  style={{
-                    flex: 1,
-                    overflow: "hidden",
-                    position: "relative"
-                  }}
+                  key={item.id}
+                  className={classNames("card", {
+                    selected: selected && selected.id === item.id,
+                    hovered: isHovered,
+                    non_final: final && final.id !== item.id
+                  })}
+                  style={{ backgroundColor: item.color }}
+                  onMouseEnter={() => this.onHover(item.id)}
+                  onMouseLeave={() => this.onHover(0)}
                 >
-                  <img className="avatar" src={item.thumbnail} />
-                </div>
-                {!final && (
                   <div
-                    className="card_button"
-                    onClick={e => {
-                      e.stopPropagation();
-                      onSelect && onSelect(item);
-                    }}
-                  >
-                    <p className="text_lily">+VOTE</p>
-                  </div>
-                )}
-                <div className="card__head">{item.name}</div>
-                <div className="result_bar">
-                  <div
-                    className="result_trail"
-                    style={{ height: `${item.vote}%` }}
-                  ></div>
-                  <p
-                    className="text_percentage"
                     style={{
-                      top: `${Math.min(100 - (item.vote ? item.vote : 0), 95)}%`
+                      flex: 1,
+                      overflow: "hidden",
+                      position: "relative"
                     }}
                   >
-                    {item.vote ? item.vote : 0}%
-                  </p>
+                    <img className="avatar" src={item.thumbnail} />
+                  </div>
+                  {!final && (
+                    <div
+                      className="card_button"
+                      onClick={e => {
+                        e.stopPropagation();
+                        onSelect && onSelect(item);
+                      }}
+                    >
+                      <p className="text_lily">+VOTE</p>
+                    </div>
+                  )}
+                  <div className="card__head">{item.name}</div>
+                  <div className="result_bar">
+                    <div
+                      className="result_trail"
+                      style={{ height: `${item.vote}%` }}
+                    ></div>
+                    <p
+                      className="text_percentage"
+                      style={{
+                        top: `${Math.min(
+                          100 - (item.vote ? item.vote : 0),
+                          95
+                        )}%`
+                      }}
+                    >
+                      {item.vote ? item.vote : 0}%
+                    </p>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
       </>
     ) : null;

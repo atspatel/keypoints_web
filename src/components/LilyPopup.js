@@ -6,7 +6,7 @@ import "../css/accordin.scss";
 import AnimatedProgressProvider from "./AnimatedProgressProvider";
 import { easeCubicOut } from "d3-ease";
 import { post_quiz_answer } from "../functions/lily_functions";
-import { downloadUrl } from "../functions/fileDownload";
+import { downloadUrl, navigator_share } from "../functions/fileDownload";
 
 import { FacebookShareButton } from "react-share";
 
@@ -259,16 +259,31 @@ class LilyShare extends Component {
             style={{ width: "100%", objectFit: "contain" }}
             onClick={() => downloadUrl(src, file_name)}
           />
-          <FacebookShareButton
-            url={url}
-            quote={message}
-            hashtag={`#${hashtag}`}
-          >
+          {navigator.share ? (
             <img
               src={share_button}
               style={{ width: "100%", marginTop: 10, objectFit: "contain" }}
+              onClick={() =>
+                navigator_share(
+                  url,
+                  "LILY CHALLANGE",
+                  `${message} #${hashtag}`,
+                  src
+                )
+              }
             />
-          </FacebookShareButton>
+          ) : (
+            <FacebookShareButton
+              url={url}
+              quote={message}
+              hashtag={`#${hashtag}`}
+            >
+              <img
+                src={share_button}
+                style={{ width: "100%", marginTop: 10, objectFit: "contain" }}
+              />
+            </FacebookShareButton>
+          )}
         </div>
         <div
           style={{

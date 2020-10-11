@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import imageDataURI from "image-data-uri";
 
 class WebShareComponent extends Component {
   state = {

@@ -3,8 +3,8 @@ import * as config from "../config";
 
 const quiz_time = {
   1: [
-    { t: 584, name: "quiz_e01q01" },
-    { t: 910, name: "quiz_e01q02" }
+    { t: 587, name: "quiz_e01q01" },
+    { t: 912, name: "quiz_e01q02" }
   ],
   2: [
     { t: 559, name: "quiz_e02q03" },

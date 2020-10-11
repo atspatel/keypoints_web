@@ -16,8 +16,8 @@ const session = get_session();
 const timeline_marks = {
   1: [
     { value: 133, end: 135 },
-    { value: 585, end: 590 },
-    { value: 910, end: 920 }
+    { value: 587, end: 590 },
+    { value: 912, end: 920 }
   ],
   2: [
     { value: 559, end: 563 },
@@ -94,7 +94,7 @@ export class LilyVideoPage extends Component {
       const qParams = queryString.parse(location.search);
       episode = qParams.ep ? qParams.ep : episode;
     }
-    const video_path = `${config.BASE_DIR}/lily/video/e0${episode}/lily_e0${episode}/lily_e0${episode}.m3u8`;
+    const video_path = `${config.BASE_DIR}/lily/video/e0${episode}/lily_e0${episode}hd/lily_e0${episode}.m3u8`;
     return (
       <div style={{ height: 600 }}>
         <LilyPlayer

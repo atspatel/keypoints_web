@@ -315,7 +315,8 @@ class LilyPopup extends Component {
     showNext: false,
 
     showHintButton: true,
-    showHint: false
+    showHint: false,
+    showCreditBonus: true
   };
   onClick = item => {
     const { selected, final } = this.state;
@@ -352,6 +353,14 @@ class LilyPopup extends Component {
     }
   };
 
+  onClickCreditBonus = s => {
+    this.setState({ showCreditBonus: false });
+    if (this.creditPlayer) {
+      this.creditPlayer.currentTime = s;
+      this.creditPlayer.play();
+    }
+  };
+
   updateDimensions = () => {
     const { clientHeight, clientWidth } = this.div;
     const { height, width } = this.state;
@@ -372,7 +381,7 @@ class LilyPopup extends Component {
   }
   render() {
     const { selected, final, background_color } = this.state;
-    const { width, height, showNext } = this.state;
+    const { width, height, showNext, showCreditBonus } = this.state;
 
     const { style, onVote, inDuration, anim_value, quiz, session } = this.props;
     let container_width = 0.9 * width;
@@ -384,6 +393,8 @@ class LilyPopup extends Component {
 
     const isCredit =
       quiz && quiz.quiz_type === "credit" && quiz.credit_video ? true : false;
+    const isCreditBonus =
+      quiz && quiz.quiz_type === "credit" && quiz.skip_dur ? true : false;
     const isNext = showNext && quiz && quiz.next_ep;
     return (
       <AnimatedProgressProvider
@@ -422,12 +433,30 @@ class LilyPopup extends Component {
                 }}
               >
                 <video
+                  ref={c => (this.creditPlayer = c)}
                   style={{ height: "100%", width: "100%", objectFit: "cover" }}
                   autoPlay
                   onEnded={() => console.log("ended")}
                 >
                   <source src={quiz && quiz.credit_video} type="video/mp4" />
                 </video>
+                {isCreditBonus && showCreditBonus && (
+                  <div
+                    className="hint_button"
+                    style={{ width: "20%" }}
+                    onClick={e => {
+                      e.stopPropagation();
+                      quiz && this.onClickCreditBonus(quiz.skip_dur);
+                    }}
+                  >
+                    <p
+                      className="hint_button_text"
+                      style={{ fontSize: "1.5vw" }}
+                    >
+                      Watch Bonus Clip
+                    </p>
+                  </div>
+                )}
               </div>
             ) : null}
             <div

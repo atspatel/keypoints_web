@@ -1,5 +1,5 @@
 export function downloadUrl(url, name = "file") {
-  fetch(url).then(response => {
+  fetch(`${url}?x-origin=keypoints`).then(response => {
     response.blob().then(blob => {
       let url = window.URL.createObjectURL(blob);
       let a = document.createElement("a");

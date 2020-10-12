@@ -85,7 +85,7 @@ class LilyPlayer extends Component {
   checkQuiz = current => {
     const { quiz } = this.state;
     if (quiz) {
-      console.log("isQuiz: yes :: ", quiz.start_time, current);
+      // console.log("isQuiz: yes :: ", quiz.start_time, current);
       if (current > quiz.start_time) {
         const action = {
           type: action_constants.ACTION_LILY_QUIZ,

@@ -28,8 +28,9 @@ export async function get_quiz_data(session_id, episode, time) {
       quiz_name = item.name;
     }
   });
+  console.log("info", time, episode, quiz_name);
   if (quiz_name) {
-    const api_url = `${config.host}/lily/quiz?quiz_id=${quiz_name}&session=${session_id}`;
+    const api_url = `${config.host}/lily/quiz/?quiz_id=${quiz_name}&session=${session_id}`;
     var output = null;
     await axios.get(api_url).then(response => {
       output = response.data;

@@ -8,7 +8,7 @@ import SpecificationPopUp from "../components/SpecificationPopUp";
 import LilyPopup, { onCloseQuiz } from "../components/LilyPopup";
 
 export const POPUP_CAROUSEL = "mediaCarousel";
-export const POPUP_HTML = "popup_html";
+export const POPUP_HTML = "popupHtml";
 
 export const POPUP_VIDEO = "popup_video";
 

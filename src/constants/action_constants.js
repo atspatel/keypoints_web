@@ -2,8 +2,8 @@ import * as popup_constants from "./popup_constants";
 
 import { downloadUrl } from "../functions/fileDownload";
 
-export const ACTION_POPUP = "open_popup";
-export const ACTION_OPENPOPUP = "openPopup";
+export const ACTION_POPUP = "open_popup"; // TODO: remove this and dependency
+export const ACTION_OPEN_POPUP = "openPopup";
 export const ACTION_URL = "openUrl";
 export const ACTION_DOWNLOAD = "download";
 export const ACTION_SEEK_TO = "seekTo";
@@ -20,7 +20,7 @@ export const playerSeekTo = (thisObj, duration, toPlay) => {
 };
 
 export const ACTION = {
-  [ACTION_OPENPOPUP]: (thisObj, action_data) => {
+  [ACTION_OPEN_POPUP]: (thisObj, action_data) => {
     const currentPopup =
       popup_constants.POPUP[action_data.popup_info.popupType].popup_comp;
     action_data.popup_info.pauseVideo && thisObj.player.pause();

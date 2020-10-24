@@ -4,6 +4,7 @@ import RadiusDiv from "../components/RadiusDiv";
 import RadiusDivCircle from "../components/RadiusDivCircle";
 
 export const RECT = "rect";
+export const SQUARE = "square";
 export const CIRCLE = "circle";
 
 export const RADIUS = {
@@ -13,6 +14,10 @@ export const RADIUS = {
   },
   [RECT]: {
     shape: "rect",
+    component: props => <RadiusDiv {...props} />
+  },
+  [SQUARE]: {
+    shape: "square",
     component: props => <RadiusDiv {...props} />
   }
 };

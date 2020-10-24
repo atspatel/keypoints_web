@@ -14,14 +14,14 @@ function App() {
         <meta property="og:type" content="website" />
 
         <title>Keypoints</title>
-        <meta name="description" content="Short Intretive Video Platform" />
+        <meta name="description" content="Short Intrective Video Platform" />
 
         <meta property="og:url" content={constants.kp_url} />
         <meta property="og:site_name" content="KeyPoints" />
         <meta property="og:title" content="Keypoints" />
         <meta
           property="og:description"
-          content="Short Intretive Video Platform"
+          content="Short Intrective Video Platform"
         />
 
         <meta property="og:image" content={constants.kp_logo} />

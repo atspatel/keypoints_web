@@ -1,0 +1,13 @@
+.width-animation {
+  animation: arrowWidth 2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes arrowWidth {
+  from {
+    width: 0%;
+  }
+  to {
+    top: 100%;
+  }
+}

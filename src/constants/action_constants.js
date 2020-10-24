@@ -1,9 +1,13 @@
 import * as popup_constants from "./popup_constants";
 
-export const ACTION_POPUP = "open_popup";
-export const ACTION_URL = "open_url";
-export const ACTION_SEEK_TO = "seek_to";
-export const ACTION_SEEK_TO_PLAY = "seek_to_play";
+import { downloadUrl } from "../functions/fileDownload";
+
+export const ACTION_POPUP = "open_popup"; // TODO: remove this and dependency
+export const ACTION_OPEN_POPUP = "openPopup";
+export const ACTION_URL = "openUrl";
+export const ACTION_DOWNLOAD = "download";
+export const ACTION_SEEK_TO = "seekTo";
+export const ACTION_LILY_QUIZ = "lilyQuiz";
 
 export const playerSeekTo = (thisObj, duration, toPlay) => {
   if (thisObj.player) {
@@ -16,23 +20,47 @@ export const playerSeekTo = (thisObj, duration, toPlay) => {
 };
 
 export const ACTION = {
-  [ACTION_POPUP]: (thisObj, button) => {
-    thisObj.player.pause();
+  [ACTION_OPEN_POPUP]: (thisObj, action_data) => {
+    const currentPopup =
+      popup_constants.POPUP[action_data.popup_info.popupType].popup_comp;
+    action_data.popup_info.pauseVideo && thisObj.player.pause();
     thisObj.setState({
-      showPopup: popup_constants.POPUP[button.action_id],
-      popup_data: button.data,
-      button_id: button.id,
-      playing: false
+      currentPopup: currentPopup,
+      popup_info: action_data.popup_info,
+      popup_data: action_data.data,
+      playing: action_data.popup_info.pauseVideo ? false : true
     });
   },
-  [ACTION_URL]: (thisObj, button) => {
+  [ACTION_POPUP]: (thisObj, action_data) => {
+    const currentPopup =
+      popup_constants.POPUP[action_data.popup_info.popupType];
+    currentPopup.popup_info.pauseVideo && thisObj.player.pause();
+    thisObj.setState({
+      currentPopup: currentPopup.popup_comp,
+      popup_info: currentPopup.popup_info,
+      popup_data: action_data.data,
+      playing: action_data.popup_info.pauseVideo ? false : true
+    });
+  },
+  [ACTION_URL]: (thisObj, action_data) => {
+    window.open(action_data.url, "_blank");
+  },
+  [ACTION_DOWNLOAD]: (thisObj, action_data) => {
+    downloadUrl(action_data.url, action_data.filename);
+  },
+  [ACTION_SEEK_TO]: (thisObj, data) => {
+    playerSeekTo(thisObj, data.duration, data.toPlay);
+  },
+  [ACTION_LILY_QUIZ]: (thisObj, action_data, endTime) => {
+    const currentPopup =
+      popup_constants.POPUP[action_data.popup_info.popupType];
     thisObj.player.pause();
-    window.open(button.data, "_blank");
-  },
-  [ACTION_SEEK_TO]: (thisObj, button) => {
-    playerSeekTo(thisObj, button.data, false);
-  },
-  [ACTION_SEEK_TO_PLAY]: (thisObj, button) => {
-    playerSeekTo(thisObj, button.data, true);
+    thisObj.setState({
+      currentPopup: currentPopup.popup_comp,
+      popup_info: currentPopup.popup_info,
+      popup_data: action_data.data,
+      popup_anim: "in",
+      playing: false
+    });
   }
 };

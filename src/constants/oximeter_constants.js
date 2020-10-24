@@ -49,7 +49,7 @@ export const overlay_buttons = [
     shape: null,
     bbox: { top: 0.76, left: 0.07, width: 0.36, height: 0.13 },
     action: {
-      type: action_constants.ACTION_OPENPOPUP,
+      type: action_constants.ACTION_POPUP,
       data: {
         popup_info: {
           popupType: popup_constants.POPUP_CAROUSEL,

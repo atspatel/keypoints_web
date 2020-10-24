@@ -925,7 +925,7 @@ export const overlay_buttons = [
     shape: radius_constants.RECT,
     bbox: { top: 0.05, left: 0.39, width: 0.22, height: 0.25 },
     action: {
-      type: action_constants.ACTION_OPENPOPUP,
+      type: action_constants.ACTION_POPUP,
       data: {
         popup_info: {
           popupType: popup_constants.POPUP_CAROUSEL,
@@ -947,7 +947,7 @@ export const overlay_buttons = [
     shape: radius_constants.RECT,
     bbox: { top: 0.28, left: 0.08, width: 0.22, height: 0.25 },
     action: {
-      type: action_constants.ACTION_OPENPOPUP,
+      type: action_constants.ACTION_POPUP,
       data: {
         popup_info: {
           popupType: popup_constants.POPUP_CAROUSEL,
@@ -969,7 +969,7 @@ export const overlay_buttons = [
     shape: radius_constants.RECT,
     bbox: { top: 0.6, left: 0.08, width: 0.22, height: 0.25 },
     action: {
-      type: action_constants.ACTION_OPENPOPUP,
+      type: action_constants.ACTION_POPUP,
       data: {
         popup_info: {
           popupType: popup_constants.POPUP_CAROUSEL,
@@ -991,7 +991,7 @@ export const overlay_buttons = [
     shape: radius_constants.RECT,
     bbox: { top: 0.6, left: 0.72, width: 0.22, height: 0.25 },
     action: {
-      type: action_constants.ACTION_OPENPOPUP,
+      type: action_constants.ACTION_POPUP,
       data: {
         popup_info: {
           popupType: popup_constants.POPUP_CAROUSEL,
@@ -1013,7 +1013,7 @@ export const overlay_buttons = [
     shape: radius_constants.RECT,
     bbox: { top: 0.28, left: 0.72, width: 0.22, height: 0.25 },
     action: {
-      type: action_constants.ACTION_OPENPOPUP,
+      type: action_constants.ACTION_POPUP,
       data: {
         popup_info: {
           popupType: popup_constants.POPUP_CAROUSEL,
@@ -1036,7 +1036,7 @@ export const overlay_buttons = [
     shape: radius_constants.RECT,
     bbox: { top: 0.05, left: 0.38, width: 0.22, height: 0.18 },
     action: {
-      type: action_constants.ACTION_OPENPOPUP,
+      type: action_constants.ACTION_POPUP,
       data: {
         popup_info: {
           popupType: popup_constants.POPUP_CAROUSEL,
@@ -1058,7 +1058,7 @@ export const overlay_buttons = [
     shape: radius_constants.RECT,
     bbox: { top: 0.28, left: 0.08, width: 0.22, height: 0.18 },
     action: {
-      type: action_constants.ACTION_OPENPOPUP,
+      type: action_constants.ACTION_POPUP,
       data: {
         popup_info: {
           popupType: popup_constants.POPUP_CAROUSEL,
@@ -1080,7 +1080,7 @@ export const overlay_buttons = [
     shape: radius_constants.RECT,
     bbox: { top: 0.6, left: 0.08, width: 0.22, height: 0.18 },
     action: {
-      type: action_constants.ACTION_OPENPOPUP,
+      type: action_constants.ACTION_POPUP,
       data: {
         popup_info: {
           popupType: popup_constants.POPUP_CAROUSEL,
@@ -1102,7 +1102,7 @@ export const overlay_buttons = [
     shape: radius_constants.RECT,
     bbox: { top: 0.6, left: 0.71, width: 0.22, height: 0.18 },
     action: {
-      type: action_constants.ACTION_OPENPOPUP,
+      type: action_constants.ACTION_POPUP,
       data: {
         popup_info: {
           popupType: popup_constants.POPUP_CAROUSEL,
@@ -1124,7 +1124,7 @@ export const overlay_buttons = [
     shape: radius_constants.RECT,
     bbox: { top: 0.28, left: 0.71, width: 0.22, height: 0.18 },
     action: {
-      type: action_constants.ACTION_OPENPOPUP,
+      type: action_constants.ACTION_POPUP,
       data: {
         popup_info: {
           popupType: popup_constants.POPUP_CAROUSEL,

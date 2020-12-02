@@ -16,8 +16,8 @@ const colors = [
 class ColorBarPlayer extends Component {
   render() {
     const { location } = this.props;
-    let p_id = "5afc9113-d9cf-4164-a185-1f4456a1731d"; //localhost
-    // let p_id = "80674f5e-3465-45a2-9447-3d8480452a57"; // live
+    // let p_id = "5afc9113-d9cf-4164-a185-1f4456a1731d"; //localhost
+    let p_id = "80674f5e-3465-45a2-9447-3d8480452a57"; // live
     if (location && location.search) {
       const qParams = queryString.parse(location.search);
       p_id = qParams.p_id ? qParams.p_id : p_id;
@@ -36,14 +36,6 @@ class ColorBarPlayer extends Component {
           playlist_id={p_id}
           hideInstruction={true}
           colors={colors}
-        />
-        <Iframe
-          url="https://www.colorbarcosmetics.com/morning-muse"
-          width="100%"
-          height="450px"
-          id="colorbar"
-          display="initial"
-          position="relative"
         />
       </div>
     );

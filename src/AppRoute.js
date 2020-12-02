@@ -14,6 +14,7 @@ import TVNineBharat002 from "./components/TVNineBharat002";
 
 import PlaylistVideo from "./VideoPages/PlaylistVideo";
 import BetterIndiaPlayer from "./VideoPages/BetterIndiaPlayer";
+import ColorBarPlayer from "./VideoPages/ColorBarPlayer";
 
 import ShareChatPlayer from "./VideoPages/sharechat/ShareChatPlayer";
 import ShareChatPlayerMapped from "./VideoPages/sharechat/ShareChatPlayerMapped";
@@ -59,6 +60,11 @@ class AppRoute extends Component {
         <Route
           path="/betterindia"
           render={props => <BetterIndiaPlayer {...props} />}
+        />
+
+        <Route
+          path="/colorbar"
+          render={props => <ColorBarPlayer {...props} />}
         />
 
         <Route

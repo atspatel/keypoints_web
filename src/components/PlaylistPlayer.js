@@ -368,7 +368,8 @@ class VideoSection extends Component {
       button_size,
       isSingleSecondary,
       secondary_list,
-      width
+      width,
+      hideInstruction
     } = this.props;
     const { selected_id, playedSeconds, paused } = this.state;
     return (
@@ -428,7 +429,7 @@ class VideoSection extends Component {
         <div
           style={{
             position: "absolute",
-            top: "75%",
+            top: hideInstruction ? "85%" : "75%",
             left: 0,
             width: "100%",
             display: "flex",
@@ -471,43 +472,45 @@ class VideoSection extends Component {
                 );
               })}
             </div>
-            <div
-              style={{
-                width: "100%",
-                display: "flex",
-                flex: 1,
-                justifyContent: "center",
-                padding: "0px 10px"
-              }}
-            >
+            {!hideInstruction && (
               <div
                 style={{
-                  borderBottom: "1px solid white",
-                  borderLeft: "1px solid white",
-                  borderBottomLeftRadius: 20,
-                  flex: 1
-                }}
-              ></div>
-              <div
-                style={{
-                  color: "white",
-                  fontSize: Math.min(0.035 * width, 20),
-                  backgroundColor: `rgba(0,0,0,0.5)`,
-                  borderBottom: "1px solid white",
-                  padding: 2
+                  width: "100%",
+                  display: "flex",
+                  flex: 1,
+                  justifyContent: "center",
+                  padding: "0px 10px"
                 }}
               >
-                {instruction[lang] ? instruction[lang] : instruction.hindi}
+                <div
+                  style={{
+                    borderBottom: "1px solid white",
+                    borderLeft: "1px solid white",
+                    borderBottomLeftRadius: 20,
+                    flex: 1
+                  }}
+                ></div>
+                <div
+                  style={{
+                    color: "white",
+                    fontSize: Math.min(0.035 * width, 20),
+                    backgroundColor: `rgba(0,0,0,0.5)`,
+                    borderBottom: "1px solid white",
+                    padding: 2
+                  }}
+                >
+                  {instruction[lang] ? instruction[lang] : instruction.hindi}
+                </div>
+                <div
+                  style={{
+                    borderBottom: "1px solid white",
+                    borderRight: "1px solid white",
+                    borderBottomRightRadius: 20,
+                    flex: 1
+                  }}
+                ></div>
               </div>
-              <div
-                style={{
-                  borderBottom: "1px solid white",
-                  borderRight: "1px solid white",
-                  borderBottomRightRadius: 20,
-                  flex: 1
-                }}
-              ></div>
-            </div>
+            )}
           </div>
         </div>
       </div>
@@ -559,6 +562,7 @@ class PlaylistPlayer extends Component {
   render() {
     const { button_size, width, session_id, playlist_data } = this.state;
     const isTitle = playlist_data && playlist_data.title_info;
+    const { hideInstruction } = this.props;
     return (
       <div
         ref={c => (this.container = c)}
@@ -587,6 +591,7 @@ class PlaylistPlayer extends Component {
             secondary_list={playlist_data.secondary_list}
             button_size={button_size}
             width={width}
+            hideInstruction={hideInstruction}
           />
         )}
       </div>

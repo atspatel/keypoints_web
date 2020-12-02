@@ -14,7 +14,7 @@ import * as sharechat_constants from "../constants/sharechat/sharechat_constants
 
 import HtmlVideoIdComp from "./HtmlVideoIdComp";
 
-const colors = ["#9661BA", "#40C9FF", "#FFA233", "#FF5A7E", "#FFD814"];
+const defaultColors = ["#9661BA", "#40C9FF", "#FFA233", "#FF5A7E", "#FFD814"];
 const borderColor = "#494949";
 
 const instruction = constants.button_instruction;
@@ -369,7 +369,8 @@ class VideoSection extends Component {
       isSingleSecondary,
       secondary_list,
       width,
-      hideInstruction
+      hideInstruction,
+      colors
     } = this.props;
     const { selected_id, playedSeconds, paused } = this.state;
     return (
@@ -562,7 +563,7 @@ class PlaylistPlayer extends Component {
   render() {
     const { button_size, width, session_id, playlist_data } = this.state;
     const isTitle = playlist_data && playlist_data.title_info;
-    const { hideInstruction } = this.props;
+    const { hideInstruction, colors } = this.props;
     return (
       <div
         ref={c => (this.container = c)}
@@ -592,6 +593,7 @@ class PlaylistPlayer extends Component {
             button_size={button_size}
             width={width}
             hideInstruction={hideInstruction}
+            colors={colors ? colors : defaultColors}
           />
         )}
       </div>

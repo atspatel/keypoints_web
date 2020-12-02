@@ -18,6 +18,12 @@ class HLSVideo extends Component {
         autoPlay && video.play();
       });
       setHls && setHls(hls);
+    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      var video = this.player;
+      video.src = src;
+      video.addEventListener("loadedmetadata", function() {
+        autoPlay && video.play();
+      });
     }
   }
   render() {

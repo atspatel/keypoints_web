@@ -430,7 +430,8 @@ class VideoSection extends Component {
         <div
           style={{
             position: "absolute",
-            top: hideInstruction ? "85%" : "75%",
+            // top: hideInstruction ? "85%" : "75%",
+            bottom: 0,
             left: 0,
             width: "100%",
             display: "flex",

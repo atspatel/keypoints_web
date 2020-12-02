@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import queryString from "query-string";
-import Iframe from "react-iframe";
 
 import PlaylistPlayer from "../components/PlaylistPlayer";
 const { innerHeight, innerWidth } = window;
@@ -14,7 +13,23 @@ const colors = [
   "#0d362e"
 ];
 class ColorBarPlayer extends Component {
+  state = {
+    height: innerHeight,
+    width: innerWidth
+  };
+  updateDimensions = () => {
+    const { innerHeight, innerWidth } = window;
+    this.setState({ height: innerHeight, width: innerWidth });
+  };
+
+  componentDidMount() {
+    window.addEventListener("resize", this.updateDimensions);
+  }
+  componentWillMount() {
+    window.removeEventListener("resize", this.updateDimensions);
+  }
   render() {
+    const { height, width } = this.state;
     const { location } = this.props;
     // let p_id = "5afc9113-d9cf-4164-a185-1f4456a1731d"; //localhost
     let p_id = "80674f5e-3465-45a2-9447-3d8480452a57"; // live
@@ -27,8 +42,8 @@ class ColorBarPlayer extends Component {
         style={{
           height: 720,
           width: 1280,
-          maxHeight: innerHeight,
-          maxWidth: innerWidth
+          maxHeight: height,
+          maxWidth: width
         }}
         className="centerH"
       >

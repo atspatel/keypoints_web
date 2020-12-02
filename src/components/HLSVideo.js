@@ -6,7 +6,8 @@ class HLSVideo extends Component {
     const { src, autoPlay, maxBuffer, autoStartLoad, setHls } = this.props;
     var config = {
       maxMaxBufferLength: maxBuffer ? maxBuffer : 300,
-      autoStartLoad: autoStartLoad !== undefined ? autoStartLoad : true
+      autoStartLoad: autoStartLoad !== undefined ? autoStartLoad : true,
+      startLevel: 0
     };
     if (Hls.isSupported()) {
       var video = this.player;

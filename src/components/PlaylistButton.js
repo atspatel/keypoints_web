@@ -101,6 +101,8 @@ export class PlaylistButton extends Component {
               style={{
                 height: "100%",
                 width: "100%",
+                objectFit: "cover",
+                objectPosition: "0 0",
                 borderRadius: "50%",
                 border: border ? `2px solid ${borderColor}` : null
               }}

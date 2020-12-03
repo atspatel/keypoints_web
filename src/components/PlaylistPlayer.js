@@ -155,6 +155,7 @@ class VideoSection extends Component {
   state = {
     selected_id: null,
     current_index: null,
+    current_button: null,
     playedSeconds: 0,
     paused: true,
 
@@ -307,9 +308,18 @@ class VideoSection extends Component {
       }
       return true;
     });
+    const { onChangeButton } = this.props;
     playlist.map((item, index) => {
       if (item.id === selected_id) {
-        this.setState({ current_index: index });
+        this.setState(
+          {
+            current_index: index,
+            current_button: item.button_info.name
+          },
+          () => {
+            onChangeButton && onChangeButton(this.state.current_button);
+          }
+        );
       }
       return true;
     });
@@ -370,7 +380,8 @@ class VideoSection extends Component {
       secondary_list,
       width,
       hideInstruction,
-      colors
+      colors,
+      onChangeButton
     } = this.props;
     const { selected_id, playedSeconds, paused } = this.state;
     return (
@@ -564,7 +575,7 @@ class PlaylistPlayer extends Component {
   render() {
     const { button_size, width, session_id, playlist_data } = this.state;
     const isTitle = playlist_data && playlist_data.title_info;
-    const { hideInstruction, colors } = this.props;
+    const { hideInstruction, colors, onChangeButton } = this.props;
     return (
       <div
         ref={c => (this.container = c)}
@@ -592,6 +603,7 @@ class PlaylistPlayer extends Component {
             isSingleSecondary={playlist_data.isSingleSecondary}
             secondary_list={playlist_data.secondary_list}
             button_size={button_size}
+            onChangeButton={onChangeButton}
             width={width}
             hideInstruction={hideInstruction}
             colors={colors ? colors : defaultColors}

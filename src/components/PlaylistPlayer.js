@@ -296,7 +296,7 @@ class VideoSection extends Component {
       if (id === selected_id) {
         this.playerRef[id].div.style.display = "block";
         this.playerRef[id].player.currentTime = 0;
-        this.playerRef[id].hls.startLoad(-1);
+        this.playerRef[id].hls && this.playerRef[id].hls.startLoad(-1);
         toPlay &&
           this.setState({ paused: false }, () => {
             this.playerRef[id].player.play();
@@ -304,7 +304,7 @@ class VideoSection extends Component {
       } else {
         this.playerRef[id].div.style.display = "none";
         this.playerRef[id].player.pause();
-        this.playerRef[id].hls.stopLoad();
+        this.playerRef[id].hls && this.playerRef[id].hls.stopLoad();
       }
       return true;
     });

@@ -23,6 +23,7 @@
     "react-animate-on-scroll": "^2.1.5",
     "react-bootstrap": "^1.2.2",
     "react-circular-progressbar": "^2.0.3",
+    "react-device-detect": "^1.14.0",
     "react-dom": "^16.13.1",
     "react-fittext": "^1.0.0",
     "react-helmet": "^6.1.0",

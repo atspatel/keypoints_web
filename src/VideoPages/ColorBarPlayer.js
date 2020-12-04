@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import queryString from "query-string";
 import Iframe from "react-iframe";
-
+import { isIOS } from "react-device-detect";
 import PlaylistPlayer from "../components/PlaylistPlayer";
+import * as config from "../config";
+
 const { innerHeight, innerWidth } = window;
 
 const html_file = {
@@ -31,7 +33,6 @@ class ColorBarPlayer extends Component {
   };
 
   onChangeLook = look => {
-    console.log(look);
     this.setState({ curLook: look });
   };
   updateDimensions = () => {
@@ -45,11 +46,7 @@ class ColorBarPlayer extends Component {
 
   trackScrolling = () => {
     const wrappedElement = document.getElementById("container");
-    if (this.isBottom(wrappedElement)) {
-      this.setState({ isScrolling: true });
-    } else {
-      this.setState({ isScrolling: false });
-    }
+    this.setState({ isScrolling: this.isBottom(wrappedElement) });
   };
 
   componentDidMount() {
@@ -63,8 +60,8 @@ class ColorBarPlayer extends Component {
   render() {
     const { height, width, curLook, isScrolling } = this.state;
     const { location } = this.props;
-    // let p_id = "5afc9113-d9cf-4164-a185-1f4456a1731d"; //localhost
-    let p_id = "80674f5e-3465-45a2-9447-3d8480452a57"; // live
+
+    let p_id = config.colorbar_id;
     if (location && location.search) {
       const qParams = queryString.parse(location.search);
       p_id = qParams.p_id ? qParams.p_id : p_id;
@@ -93,7 +90,7 @@ class ColorBarPlayer extends Component {
             src={html_file[curLook]}
             width={width}
             height={innerHeight}
-            scrolling={isScrolling ? "yes" : "no"}
+            scrolling={isIOS ? null : isScrolling ? "yes" : "no"}
           />
         )}
       </div>

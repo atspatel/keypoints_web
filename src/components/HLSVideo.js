@@ -9,8 +9,8 @@ class HLSVideo extends Component {
       autoStartLoad: autoStartLoad !== undefined ? autoStartLoad : true,
       startLevel: 0
     };
+    var video = this.player;
     if (Hls.isSupported()) {
-      var video = this.player;
       var hls = new Hls(config);
       hls.loadSource(src);
       hls.attachMedia(video);
@@ -19,7 +19,6 @@ class HLSVideo extends Component {
       });
       setHls && setHls(hls);
     } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-      var video = this.player;
       video.src = src;
       video.addEventListener("loadedmetadata", function() {
         autoPlay && video.play();
@@ -58,6 +57,8 @@ class HLSVideo extends Component {
         onMouseEnter={onMouseEnter && onMouseEnter}
         onMouseLeave={onMouseLeave && onMouseLeave}
         onLoadedData={onLoadedData && onLoadedData}
+        webkit-playsinline="true"
+        playsInline={true}
       ></video>
     );
   }

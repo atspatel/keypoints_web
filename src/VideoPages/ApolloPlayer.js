@@ -8,12 +8,10 @@ import * as config from "../config";
 const { innerHeight, innerWidth } = window;
 
 const html_file = {
-  dream_girl_button: "./html/dream_girl.html",
-  go_getter_button: "./html/go_getter.html",
-  morning_muse_button: "./html/morning_muse.html",
-  the_head_turner_button: "./html/the_head_turner.html",
-  the_retro_chic_button: "./html/the_retro_chic.html",
-  the_ultimate_diva_button: "./html/the_ultimate_diva.html"
+  hindi_button: "Hindi",
+  english_button: "English",
+  telugu_button: "Telugu",
+  marathi_button: "Marathi"
 };
 
 const colors = [
@@ -28,7 +26,7 @@ class ApolloPlayer extends Component {
   state = {
     height: innerHeight,
     width: innerWidth,
-    curLook: null
+    curLook: 'hindi_button'
   };
 
   onChangeLook = look => {
@@ -70,6 +68,18 @@ class ApolloPlayer extends Component {
             colors={colors}
             onChangeButton={this.onChangeLook}
           />
+           <div 
+            style={{
+            position: 'absolute',
+            top: 0,
+            height: 40,
+            width: 1280,
+            maxHeight: height,
+            maxWidth: width
+            }}
+            className="centerH">
+                <p style={{color: "white", fontSize: 30}}>{html_file[curLook]}</p>
+            </div>
         </div>
     );
   }

@@ -15,7 +15,6 @@ import TVNineBharat002 from "./components/TVNineBharat002";
 import PlaylistVideo from "./VideoPages/PlaylistVideo";
 import BetterIndiaPlayer from "./VideoPages/BetterIndiaPlayer";
 import ColorBarPlayer from "./VideoPages/ColorBarPlayer";
-import ApolloPlayer from "./VideoPages/ApolloPlayer"
 
 import ShareChatPlayer from "./VideoPages/sharechat/ShareChatPlayer";
 import ShareChatPlayerMapped from "./VideoPages/sharechat/ShareChatPlayerMapped";
@@ -27,6 +26,8 @@ import LilyVideoPage from "./VideoPages/LilyVideoPage";
 import LandingPage from "./VideoPages/LandingPage";
 
 import RefreshToken from "./components/RefreshToken";
+
+import ApolloPlayer from "./ApolloPage/PlaylistPlayer";
 
 class AppRoute extends Component {
   render() {
@@ -45,46 +46,43 @@ class AppRoute extends Component {
         <Route path="/ndtv" render={() => <NDTVVideo />} />
         <Route path="/hotstar" render={() => <MatchVideo />} />
 
-        <Route path="/lily" render={props => <LilyVideoPage {...props} />} />
+        <Route path="/lily" render={(props) => <LilyVideoPage {...props} />} />
         <Route
           path="/playlist"
-          render={props => <PlaylistVideo {...props} />}
+          render={(props) => <PlaylistVideo {...props} />}
         />
 
         <Route
           path="/mxplayer"
-          render={props => <PlaylistVideo {...props} />}
+          render={(props) => <PlaylistVideo {...props} />}
         />
 
-        <Route path="/josh" render={props => <PlaylistVideo {...props} />} />
+        <Route path="/josh" render={(props) => <PlaylistVideo {...props} />} />
 
         <Route
           path="/betterindia"
-          render={props => <BetterIndiaPlayer {...props} />}
+          render={(props) => <BetterIndiaPlayer {...props} />}
         />
 
         <Route
           path="/colorbar"
-          render={props => <ColorBarPlayer {...props} />}
+          render={(props) => <ColorBarPlayer {...props} />}
         />
 
-        <Route
-          path="/apollo"
-          render={props => <ApolloPlayer {...props} />}
-        />
+        <Route path="/apollo" render={(props) => <ApolloPlayer />} />
 
         <Route
           path="/sharechat"
-          render={props => <ShareChatPlayer {...props} />}
+          render={(props) => <ShareChatPlayer {...props} />}
         />
         <Route
           path="/sharechat_*"
-          render={props => <Redirect to="/sharechat" />}
+          render={(props) => <Redirect to="/sharechat" />}
         />
 
         <Route
           path="/dhoni_tribute"
-          render={props => <DhoniTribute001 {...props} />}
+          render={(props) => <DhoniTribute001 {...props} />}
         />
 
         <Route path="/digital_aarti">

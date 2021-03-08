@@ -21,11 +21,11 @@ import ShareChatPlayerMapped from "./VideoPages/sharechat/ShareChatPlayerMapped"
 import DhoniTribute001 from "./VideoPages/DhoniTribute001";
 import InteractiveAarti from "./components/InteractiveAarti";
 
-import LilyVideoPage from "./VideoPages/LilyVideoPage";
+// import LilyVideoPage from "./VideoPages/LilyVideoPage";
 
 import LandingPage from "./VideoPages/LandingPage";
 
-import RefreshToken from "./components/RefreshToken";
+// import RefreshToken from "./components/RefreshToken";
 
 import ApolloPlayer from "./ApolloPage/PlaylistPlayer";
 
@@ -33,7 +33,7 @@ class AppRoute extends Component {
   render() {
     return (
       <Switch>
-        <Route path="/refresh" render={() => <RefreshToken />} />
+        {/* <Route path="/refresh" render={() => <RefreshToken />} /> */}
         <Route path="/samsung" render={() => <SamsungDemo />} />
         <Route path="/curefit" render={() => <CurefitVideo />} />
         <Route path="/indianexpress" render={() => <IEVideo />} />
@@ -46,7 +46,7 @@ class AppRoute extends Component {
         <Route path="/ndtv" render={() => <NDTVVideo />} />
         <Route path="/hotstar" render={() => <MatchVideo />} />
 
-        <Route path="/lily" render={(props) => <LilyVideoPage {...props} />} />
+        {/* <Route path="/lily" render={(props) => <LilyVideoPage {...props} />} /> */}
         <Route
           path="/playlist"
           render={(props) => <PlaylistVideo {...props} />}
